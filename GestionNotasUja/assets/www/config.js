@@ -1,2 +1,2 @@
 var idSesion = 0;
-var servicioWeb = "http://serrano5510.servehttp.com:8443/ServicioWeb/index.php"
+var p_url = "http://serrano5510.servehttp.com/ServicioWeb/index.php";
