@@ -38,7 +38,7 @@
 			<input type="password" name="pass" id="passwordinput" value=""  />
 			<br>
 			<div align="center">
-				<a href="" data-role="button" data-inline="true" onclick="peticionLogin()">Entrar</a>
+				<a href="#pageAddSignature" data-role="button" data-inline="true" >Entrar</a>
 			</div>
 		</form>
       </div>
@@ -94,8 +94,12 @@
 		<h1>Asignaturas</h1>
         <a href="#pageAddSignature" data-icon="plus">Añadir</a>
 	</div>
-	
-    <div data-role="content">
+	<ul data-role="listview">
+	  <li><a href="#">Página</a></li>
+	  <li><a href="#">Página</a></li>
+	  <li><a href="#">Página</a></li>
+  </ul>
+<div data-role="content">
       			
 	</div>
     
@@ -115,16 +119,41 @@
 		<form>
 		  <div data-role="fieldcontain">
 		    <label for="textinput4">Nombre asignatura:</label>
-		    <input type="text" name="textinput4" id="textinput4" value=""  />
+		    <input type="text" name="nombre" id="nombreId" value=""  />
+            
+            <label for="textinput5">Curso:</label>
+		    <input type="number" name="curso" id="cursoId" value=""  />
+            
+            <label for="textinput5">Descripción:</label>
+		    <input type="text" name="descripcion" id="descripcionId" value=""  />
+            
+            <label for="textinput5">Créditos:</label>
+		    <input type="number" name="creditos" id="creditosId" value=""  />
+
+            
+            
+            
             
 	      </div>
       	</form>	
         	
           <div data-role="collapsible-set">
             <div data-role="collapsible" data-collapsed="true">
-              <h3>Encabezado</h3>
-              <p>Contenido</p>
+              <h3>Calificaciones</h3>
+              
+            <label for="textinput4">Porcentaje Teoria:</label>
+		    <input type="number" name="porcentajeT" id="porcentajeTId" value=""  />
+            
+        	<label for="textinput4">Porcentaje Práctica:</label>
+		    <input type="number" name="porcentajeP" id="porcentajePId" value=""  />
+            
+            <label for="textinput4">Porcentaje Asistencia:</label>
+		    <input type="number" name="porcentajeA" id="porcentajeAId" value=""  />
+              
             </div>
+          </div>
+          <div align="center">
+          	<a href="#" data-role="button" data-inline="true" data-icon="" onclick="peticionAddAsignatura()"> Crear </a>
           </div>	
 			
 	</div>
@@ -134,7 +163,43 @@
 	</div>
 </div>
 
-
+<!-- Pagina de asginatura -->
+<div data-role="page" id="pageRegister">
+	<div data-role="header" data-position="fixed" >
+	    <a href="#pageSignatures" data-icon="back" >Atrás</a>
+		<h1 name="nombreAsignatura" id="asignatura"> Asignatura</h1>
+	</div>
+    
+	<div data-role="content" id="panel">
+      <form id="formRegister" >
+          <p>Nombre:</p>
+          <input type="text" name="nombre" id="textinput2" value=""  />
+		  <br>
+          <p>Apellidos:</p>
+          <input type="text" name="apellidos" id="textinput3" value=""  />
+          <br>
+          <p>DNI:</p>
+          <input type="text" name="dni" id="textinput3" value=""  />
+          <br>
+		  <p>Email:</p>
+          <input type="text" name="email" id="textinput3" value=""  />
+		  <br>
+          <p>Pass:</p>
+          <input type="password" name="pass" id="passwordinput2" value=""  />
+		  <br>
+          <p>Confirmar Pass:</p>
+          <input type="password" name="" id="passwordinput2" value=""  />
+          <br>
+          <div align="center">
+          	<a href="#" data-role="button" data-inline="true" data-icon="" onclick="peticionRegistro()">Registrarse</a>
+          </div>
+      </form>
+    </div>
+    
+	<div data-role="footer" data-position="fixed">
+		<h4>Gestor de Notas</h4>
+	</div>
+</div>
 
 <div data-role="page" id="page4">
 	<div data-role="header">
