@@ -3,7 +3,7 @@ function peticionLogin(){
 	//var p_url = "http://serrano5510.servehttp.com:8443/ServicioWeb/index.php";
 	
 	var cad = "[" + JSON.stringify($("#formLogin").serializeObject()) + "]";
-	//alert(cad);
+	
 	$.ajax({
 		type: "GET",
 		url: p_url,
@@ -22,6 +22,7 @@ function peticionLogin(){
 				//Guardamos el Id de la sessión
 				alert("Correcto");
 				idSesion = arrayRespuesta["sesion"];
+				peticionAsignaturas(); //Lista de asignaturas del profesor
 				location.href = "#pageSignatures";
 			}
 		},
