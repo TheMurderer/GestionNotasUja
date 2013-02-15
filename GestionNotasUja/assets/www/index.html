@@ -17,6 +17,7 @@
 	<script type="text/javascript" charset="utf-8" src="apis/login.js"></script>
 	<script type="text/javascript" charset="utf-8" src="apis/register.js"></script>
 	<script type="text/javascript" charset="utf-8" src="apis/asignatures.js"></script>
+	<script type="text/javascript" charset="utf-8" src="apis/addAsignatures.js"></script>
 	<!-- FIN -->
 	
 	<script src="jquery.mobile/json.min.js"></script>
@@ -93,7 +94,7 @@
 			<div data-role="header" data-position="fixed" >
 		    	<a href="#pageLogin" data-icon="back">Atrás</a>
 				<h1>Asignaturas</h1>
-		        <a href="#pageAddSignature" data-icon="plus">Añadir</a>
+		        <a href="#pageAddSignature" data-icon="plus" onclick="peticionTitulaciones()">Añadir</a>
 			</div>
 			
 		    <div data-role="content" id="listaAsignaturas">
@@ -113,40 +114,42 @@
 			</div>
 		    
 			<div data-role="content">
-				<form>
-				  <div data-role="fieldcontain">
-				    <label for="textinput4">Nombre asignatura:</label>
-				    <input type="text" name="nombre" id="nombreId" value=""  />
-		            
-		            <label for="textinput5">Curso:</label>
-				    <input type="number" name="curso" id="cursoId" value=""  />
-		            
-		            <label for="textinput5">Descripción:</label>
-				    <input type="text" name="descripcion" id="descripcionId" value=""  />
-		            
-		            <label for="textinput5">Créditos:</label>
-				    <input type="number" name="creditos" id="creditosId" value=""  />
-			      </div>
-		      	</form>	
+				<form id="formAnadeAsignatura">
+					  <div>
+					    <label for="textinput4">Nombre asignatura:</label>
+					    <input type="text" name="nombre" id="nombreId" value=""  />
+			            
+			            <label for="textinput5">Curso:</label>
+					    <input type="number" name="curso" id="cursoId" value=""  />
+			            
+			            <label for="textinput5">Descripción:</label>
+					    <input type="text" name="descripcion" id="descripcionId" value=""  />
+			            
+			            <label for="textinput5">Créditos:</label>
+					    <input type="number" name="creditos" id="creditosId" value=""  />
+					    <div id="titulaciones"></div>
+				      </div>
 		        	
-		          <div data-role="collapsible-set">
-		            <div data-role="collapsible" data-collapsed="true">
-		              <h3>Calificaciones</h3>
-		              
-		            <label for="textinput4">Porcentaje Teoria:</label>
-				    <input type="number" name="porcentajeT" id="porcentajeTId" value=""  />
-		            
-		        	<label for="textinput4">Porcentaje Práctica:</label>
-				    <input type="number" name="porcentajeP" id="porcentajePId" value=""  />
-		            
-		            <label for="textinput4">Porcentaje Asistencia:</label>
-				    <input type="number" name="porcentajeA" id="porcentajeAId" value=""  />
-		              
-		            </div>
-		          </div>
-		          <div align="center">
-		          	<a href="#" data-role="button" data-inline="true" data-icon="" onclick="peticionAddAsignatura()"> Crear </a>
-		          </div>	
+			          <div data-role="collapsible-set">
+			            <div data-role="collapsible" data-collapsed="true">
+			              	<h3>Calificaciones</h3>
+			              
+				            <label for="textinput4">Porcentaje Teoria:</label>
+						    <input type="number" name="porcentajeT" id="porcentajeTId" value=""  />
+				            
+				        	<label for="textinput4">Porcentaje Práctica:</label>
+						    <input type="number" name="porcentajeP" id="porcentajePId" value=""  />
+				            
+				            <label for="textinput4">Porcentaje Asistencia:</label>
+						    <input type="number" name="porcentajeA" id="porcentajeAId" value=""  />
+			              
+			            </div>
+			          </div>
+		        </form>
+		        
+		        <div align="center">
+		        	<a href="#" data-role="button" data-inline="true" data-icon="" onclick="peticionAnadirAsignatura()"> Crear </a>
+		        </div>	
 					
 			</div>
 		    
