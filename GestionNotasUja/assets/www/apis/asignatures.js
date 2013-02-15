@@ -31,6 +31,14 @@ function peticionAsignaturas(){
 		},
 		error: function(respuesta){
 			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+		},
+		beforeSend: function(){
+			$('#cargando').show();
+			$('#listaAsignaturas').hide();
+		},
+		complete: function(){
+			$('#cargando').hide();
+			$('#listaAsignaturas').show();
 		}
 	});
 	

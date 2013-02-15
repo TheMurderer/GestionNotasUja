@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>Aplic. Web de jQuery Mobile</title>
  	<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.1.0.min.css" />
-	<link rel="stylesheet" href="index.css" /> 
+	<link rel="stylesheet" href="styles/style.css" /> 
 
     <script src="jquery.mobile/jquery-1.7.2.min"></script>
 	<script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
@@ -98,7 +98,11 @@
 			</div>
 			
 		    <div data-role="content" id="listaAsignaturas">
-		          			
+		   	      			
+			</div>
+			
+			<div id="cargando" class = "capaCargando">
+				<img class="imagen" src="jquery.mobile/images/loading.gif">
 			</div>
 		    
 			<div data-role="footer" data-position="fixed">
@@ -127,6 +131,7 @@
 			            
 			            <label for="textinput5">Créditos:</label>
 					    <input type="number" name="creditos" id="creditosId" value=""  />
+					    <label for="textinput6">Titulación:</label>
 					    <div id="titulaciones"></div>
 				      </div>
 		        	

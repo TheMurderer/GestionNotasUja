@@ -1,0 +1,14 @@
+@CHARSET "ISO-8859-1";
+
+.imagen{
+	margin-top:100px;
+	width: 60px;
+	height: 60px;
+}
+
+.capaCargando{
+	position:absolute;
+	text-align: center;
+	width: 100%;
+	height: 90%;
+}

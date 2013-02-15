@@ -57,12 +57,12 @@ function peticionTitulaciones(){
 			var codhtml = '<select id="menuTitulaciones" >';
 			if(arrayRespuesta.length != 0){
 				for(i = 0; i < arrayRespuesta.length; i++){
-					codhtml = codhtml + '<option value="option1">'+ arrayRespuesta[i]["nombre"] +'</option>';
+					codhtml = codhtml + '<option value="'+ arrayRespuesta[i]["id"] +'">'+ arrayRespuesta[i]["nombre"] +'</option>';
 				}
 				codhtml = codhtml + '</select>';
 				
 				$('#titulaciones').html(codhtml);
-				$('#menuTitulaciones').select();
+				$('#menuTitulaciones').selectmenu();
 			}
 		},
 		error: function(respuesta){
