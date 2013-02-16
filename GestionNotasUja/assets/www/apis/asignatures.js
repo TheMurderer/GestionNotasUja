@@ -15,7 +15,7 @@ function peticionAsignaturas(){
 			arrayRespuesta = eval(respuesta);
 			
 			var i;
-			var codhtml = '<ul data-role="listview" id="lista">';
+			var codhtml = '<ul data-role="listview" id="lista" data-filter="true">';
 			if(arrayRespuesta.length != 0){
 				for(i = 0; i < arrayRespuesta.length; i++){
 					codhtml = codhtml + '<li><a href="#page2">'+ arrayRespuesta[i]["nombre"] +'</a> <a data-icon="gear"></a></li>';
