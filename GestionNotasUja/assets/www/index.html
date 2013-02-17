@@ -201,6 +201,173 @@
 			</div>
 		</div>
 		
+		               <!--NUEVO: Pagina de asignatura (TEORIA) -->
+        <div data-role="page" id="pageSignatureTeory">
+			<div data-role="header" data-position="fixed" >
+			    <a href="#pageSignatures" data-icon="back" >Atrás</a>
+                <a href="#pageConfigurationSignature" data-icon="gear" >Configuración</a>
+				<h1 name="nombreAsignatura" id="asignatura"> Asignatura</h1>
+			</div>
+		    
+			<div data-role="content" id="panel" >
+		   		<div data-role="controlgroup" data-type="horizontal" align="center" >
+					<a href="" data-role="button" onClick=""> Teoria </a>
+                    <a href="" data-role="button" onClick=""> Práticas </a> 
+                    <a href="" data-role="button" onClick=""> Asistencia </a>
+                </div>
+                <select id="sTeory" name="sIdTeory">
+                <!-- Dinamicamente -->
+                	<option value ="Practica 1"> Práctica 1 </option>
+                	<option value="Practica 2"> Práctica 2 </option>
+                </select>
+                
+              <!-- Repetir esta sentencia dinamicamente -->
+                <table>
+                	<tr>
+                    <td width="80%"> Pepe Lopez </td> <td>  <input type="number" name="punt1" id="punt1"></td>
+                    </tr>
+                </table>
+               <!-- Fin de repetir dinamicamente -->
+            </div>
+		    
+			<div data-role="footer" data-position="fixed">
+				<h4>Gestor de Notas</h4>
+			</div>
+		</div>
+        
+        
+         <!--NUEVO: Pagina de asignatura -->
+        		<div data-role="page" id="pageSignature">
+			<div data-role="header" data-position="fixed" >
+			    <a href="#pageSignatures" data-icon="back" >Atrás</a>
+                <a href="#pageConfigurationSignature" data-icon="gear" >Configuración</a>
+				<h1 name="nombreAsignatura" id="asignatura"> Asignatura</h1>
+			</div>
+		    
+			<div data-role="content" id="panel" >
+		   		<div data-role="controlgroup" data-type="horizontal" align="center" >
+					<a href="#pageSignatureTeory" data-role="button" onClick=""> Teoria </a>
+                    <a href="" data-role="button" onClick=""> Práticas </a> 
+                    <a href="" data-role="button" onClick=""> Asistencia </a>
+                </div>
+            </div>
+		    
+			<div data-role="footer" data-position="fixed">
+				<h4>Gestor de Notas</h4>
+			</div>
+		</div>
+        
+        <!--NUEVO: Pagina de asignatura (Practica) -->
+        <div data-role="page" id="pageSignaturePractics">
+			<div data-role="header" data-position="fixed" >
+			    <a href="#pageSignatures" data-icon="back" >Atrás</a>
+                <a href="#pageConfigurationSignature" data-icon="gear" >Configuración</a>
+				<h1 name="nombreAsignatura" id="asignatura"> Asignatura</h1>
+			</div>
+		    
+			<div data-role="content" id="panel" >
+		   		<div data-role="controlgroup" data-type="horizontal" align="center" >
+					<a href="" data-role="button" onClick=""> Teoria </a>
+                    <a href="" data-role="button" onClick=""> Práticas </a> 
+                    <a href="" data-role="button" onClick=""> Asistencia </a>
+                </div>
+                <select id="sTeory" name="sIdTeory">
+                <!-- Dinamicamente -->
+                	<option value ="Practica 1"> Práctica 1 </option>
+                	<option value="Practica 2"> Práctica 2 </option>
+                </select>
+                
+              <!-- Repetir esta sentencia dinamicamente -->
+                <table>
+                	<tr>
+                    <td width="80%"> Pepe Lopez </td> <td>  <input type="number" name="punt1" id="punt1"></td>
+                    </tr>
+                </table>
+               <!-- Fin de repetir dinamicamente -->
+            </div>
+		    
+			<div data-role="footer" data-position="fixed">
+				<h4>Gestor de Notas</h4>
+			</div>
+		</div>
+        
+ 				<!-- Nuevo Pagina de asignaturas asistencia -->       
+                <div data-role="page" id="pageSignatureAsist">
+			<div data-role="header" data-position="fixed" >
+			    <a href="#pageSignatures" data-icon="back" >Atrás</a>
+                <a href="#pageConfigurationSignature" data-icon="gear" >Configuración</a>
+				<h1 name="nombreAsignatura" id="asignatura"> Asignatura</h1>
+			</div>
+		    
+			<div data-role="content" id="panel" >
+		   		<div data-role="controlgroup" data-type="horizontal" align="center" >
+					<a href="" data-role="button" onClick=""> Teoria </a>
+                    <a href="" data-role="button" onClick=""> Práticas </a> 
+                    <a href="" data-role="button" onClick=""> Asistencia </a>
+                </div>
+                <select id="sTeory" name="sIdTeory">
+                <!-- Dinamicamente -->
+                	<option value ="Practica 1"> Práctica 1 </option>
+                	<option value="Practica 2"> Práctica 2 </option>
+                </select>
+                
+              <!-- Repetir esta sentencia dinamicamente -->
+                <table>
+                	<tr>
+                    <td width="80%"> Pepe Lopez </td> <td>  <input type="number" name="punt1" id="punt1"></td>
+                    </tr>
+                </table>
+               <!-- Fin de repetir dinamicamente -->
+            </div>
+		    
+			<div data-role="footer" data-position="fixed">
+				<h4>Gestor de Notas</h4>
+			</div>
+		</div>
+		
+		<!--NUEVO: Fichero COnfiguracion Notas -->
+        		<div data-role="page" id="pageConfigurationSignature">
+			<div data-role="header" data-position="fixed" >
+			    <a href="#pageSignatures" data-icon="back" >Atrás</a>
+				<h1 name="nombreAsignatura" id="asignatura"> Configuración Asignatura</h1>
+			</div>
+		    
+			<div data-role="content" id="panel" >
+		   		<div data-role="collapsible-set">
+					<div data-role="collapsible">
+                    <h3> Teoria </h3>
+                    <!-- Establecer dinamicamente conforme  se vayan creando -->
+                    Practica 1. Modelado <input type="text" name="name" id="basic" value=""  />
+                    Practica 2. Renderizado <input type="text" name="name" id="basic" value=""  />
+                    <!-- El último Text input se establece con un valor por defecto para que cubra el 100%
+                    sin pasarnos -->
+                    <!-- Establecimiento dinamico -->
+                    
+                </div>
+                
+                <div data-role="collapsible-set">
+					<div data-role="collapsible">
+                    <h3> Prácticas </h3>
+                    </div>
+                </div>
+                
+                <div data-role="collapsible-set">
+					<div data-role="collapsible">
+                    <h3> Asistencia </h3>
+                    <!-- La ponderación de asistencia cuesta el 100 % dividido entre el número de días que 
+                    se ha tomado asistencia, ya que supuestamente tiene que ser igual para todos los días
+                    -->
+                    </div>
+                </div>
+
+
+            </div>
+		    
+			<div data-role="footer" data-position="fixed">
+				<h4>Gestor de Notas</h4>
+			</div>
+		</div>
+		
 		<div data-role="page" id="page4">
 		<div data-role="header">
 			<h1>Página cuatro</h1>
