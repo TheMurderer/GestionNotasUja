@@ -1,385 +1,377 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>Aplic. Web de jQuery Mobile</title>
- 	<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.1.0.min.css" />
-	<link rel="stylesheet" href="styles/style.css" /> 
+<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.1.0.min.css" />
+<link rel="stylesheet" href="styles/style.css" />
 
-    <script src="jquery.mobile/jquery-1.7.2.min"></script>
-	<script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
-	<script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
-	<script type="text/javascript" charset="utf-8" src="index.js"></script>
-    
-	<script type="text/javascript" charset="utf-8" src="config.js"></script>	
-	
-	<!-- LIBRERÍAS DE LA API -->
-	<script type="text/javascript" charset="utf-8" src="apis/login.js"></script>
-	<script type="text/javascript" charset="utf-8" src="apis/register.js"></script>
-	<script type="text/javascript" charset="utf-8" src="apis/asignatures.js"></script>
-	<script type="text/javascript" charset="utf-8" src="apis/addAsignatures.js"></script>
-	<!-- FIN -->
-	
-	<script src="jquery.mobile/json.min.js"></script>
-	<!-- <script src="http://code.jquery.com/jquery-1.5.min.js" type="text/javascript"></script>-->
-</head> 
+<script src="jquery.mobile/jquery-1.7.2.min"></script>
+<script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
+<script type="text/javascript" charset="utf-8" src="index.js"></script>
 
-	<body> 
-	
-		<!-- PAGINA DE LOGIN -->
-		<div data-role="page" id="pageLogin">
-			<div data-role="header" data-position="fixed">
-				<a href="" data-icon="arrow-l" >Salir</a>
-		        <h1>Gestor de Notas</h1>
-		        <a href="#pageRegister" data-icon="gear" >Registro</a>
-			</div>
-			<div data-role="content">
-				<form id="formLogin">
-					<p>Usuario:</p>
-					<input type="text" name="email" id="textinput" value=""  />
-					<br>
-					<p>Contraseña:</p>
-					<input type="password" name="pass" id="passwordinput" value=""  />
-					<br>
-					<div align="center">
-						<a href="" data-role="button" data-inline="true" onclick="peticionLogin()">Entrar</a>
+<script type="text/javascript" charset="utf-8" src="config.js"></script>
+
+<!-- LIBRERÍAS DE LA API -->
+<script type="text/javascript" charset="utf-8" src="apis/login.js"></script>
+<script type="text/javascript" charset="utf-8" src="apis/register.js"></script>
+<script type="text/javascript" charset="utf-8" src="apis/asignatures.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="apis/addAsignatures.js"></script>
+<script type="text/javascript" charset="utf-8"
+	src="apis/confAsignature.js"></script>
+<!-- FIN -->
+
+<script src="jquery.mobile/json.min.js"></script>
+<!-- <script src="http://code.jquery.com/jquery-1.5.min.js" type="text/javascript"></script>-->
+</head>
+
+<body>
+
+	<!-- PAGINA DE LOGIN -->
+	<div data-role="page" id="pageLogin">
+		<div data-role="header" data-position="fixed">
+			<a href="" data-icon="arrow-l">Salir</a>
+			<h1>Gestor de Notas</h1>
+			<a href="#pageRegister" data-icon="gear">Registro</a>
+		</div>
+		<div data-role="content">
+			<form id="formLogin">
+				<p>Usuario:</p>
+				<input type="text" name="email" id="textinput" value="" /> <br>
+				<p>Contraseña:</p>
+				<input type="password" name="pass" id="passwordinput" value="" />
+				<br>
+				<div align="center">
+					<a href="" data-role="button" data-inline="true"
+						onclick="peticionLogin()">Entrar</a>
+				</div>
+			</form>
+		</div>
+		<div data-role="footer" data-position="fixed">
+			<h4>Uja</h4>
+		</div>
+	</div>
+
+	<!-- PAGINA DE REGISTRO -->
+	<div data-role="page" id="pageRegister">
+		<div data-role="header" data-position="fixed">
+			<a href="#pageLogin" data-icon="back">Atrás</a>
+			<h1>Registrarse</h1>
+		</div>
+
+		<div data-role="content" id="panel">
+			<form id="formRegister">
+				<p>Nombre:</p>
+				<input type="text" name="nombre" id="textinput2" value="" /> <br>
+				<p>Apellidos:</p>
+				<input type="text" name="apellidos" id="textinput3" value="" /> <br>
+				<p>DNI:</p>
+				<input type="text" name="dni" id="textinput3" value="" /> <br>
+				<p>Email:</p>
+				<input type="text" name="email" id="textinput3" value="" /> <br>
+				<p>Pass:</p>
+				<input type="password" name="pass" id="passwordinput2" value="" />
+				<br>
+				<p>Confirmar Pass:</p>
+				<input type="password" name="" id="passwordinput2" value="" /> <br>
+				<div align="center">
+					<a href="#" data-role="button" data-inline="true" data-icon=""
+						onclick="peticionRegistro()">Registrarse</a>
+				</div>
+			</form>
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+			<h4>Gestor de Notas</h4>
+		</div>
+	</div>
+
+	<!-- PÁGINA DE ASIGNATURAS -->
+	<div data-role="page" id="pageSignatures">
+		<div data-role="header" data-position="fixed">
+			<a href="#pageLogin" data-icon="back">Atrás</a>
+			<h1>Asignaturas</h1>
+			<a href="#pageAddSignature" data-icon="plus"
+				onclick="peticionTitulaciones()">Añadir</a>
+		</div>
+
+		<div data-role="content" id="listaAsignaturas"></div>
+
+		<div id="cargando" class="capaCargando">
+			<img class="imagen" src="jquery.mobile/images/loading.gif">
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+			<h4>Gestor de Notas</h4>
+		</div>
+	</div>
+
+	<!-- AÑADIR NUEVAS ASIGNATURAS -->
+	<div data-role="page" id="pageAddSignature">
+		<div data-role="header" data-position="fixed">
+			<a href="#pageSignatures" data-icon="back">Atrás</a>
+			<h1>Nueva asignatura</h1>
+		</div>
+
+		<div data-role="content">
+			<form id="formAnadeAsignatura">
+				<div>
+					<label for="textinput4">Nombre asignatura:</label> <input
+						type="text" name="nombre" id="nombreId" value="" /> <label
+						for="textinput5">Curso:</label> <input type="number" name="curso"
+						id="cursoId" value="" /> <label for="textinput5">Descripción:</label>
+					<input type="text" name="descripcion" id="descripcionId" value="" />
+
+					<label for="textinput5">Créditos:</label> <input type="number"
+						name="creditos" id="creditosId" value="" /> <label
+						for="textinput6">Titulación:</label>
+					<div id="titulaciones"></div>
+				</div>
+
+				<div data-role="collapsible-set">
+					<div data-role="collapsible" data-collapsed="true">
+						<h3>Calificaciones</h3>
+
+						<label for="textinput4">Porcentaje Teoria:</label> <input
+							type="number" name="porcentajeT" id="porcentajeTId" value="" />
+
+						<label for="textinput4">Porcentaje Práctica:</label> <input
+							type="number" name="porcentajeP" id="porcentajePId" value="" />
+
+						<label for="textinput4">Porcentaje Asistencia:</label> <input
+							type="number" name="porcentajeA" id="porcentajeAId" value="" />
+
 					</div>
-				</form>
-		    </div>
-			<div data-role="footer" data-position="fixed">
-				<h4>Uja</h4>
+				</div>
+			</form>
+
+			<div align="center">
+				<a href="#" data-role="button" data-inline="true" data-icon=""
+					onclick="peticionAnadirAsignatura()"> Crear </a>
 			</div>
+
 		</div>
-		
-		<!-- PAGINA DE REGISTRO -->
-		<div data-role="page" id="pageRegister">
-			<div data-role="header" data-position="fixed" >
-			    <a href="#pageLogin" data-icon="back" >Atrás</a>
-				<h1>Registrarse</h1>
-			</div>
-		    
-			<div data-role="content" id="panel">
-		      <form id="formRegister" >
-		          <p>Nombre:</p>
-		          <input type="text" name="nombre" id="textinput2" value=""  />
-				  <br>
-		          <p>Apellidos:</p>
-		          <input type="text" name="apellidos" id="textinput3" value=""  />
-		          <br>
-		          <p>DNI:</p>
-		          <input type="text" name="dni" id="textinput3" value=""  />
-		          <br>
-				  <p>Email:</p>
-		          <input type="text" name="email" id="textinput3" value=""  />
-				  <br>
-		          <p>Pass:</p>
-		          <input type="password" name="pass" id="passwordinput2" value=""  />
-				  <br>
-		          <p>Confirmar Pass:</p>
-		          <input type="password" name="" id="passwordinput2" value=""  />
-		          <br>
-		          <div align="center">
-		          	<a href="#" data-role="button" data-inline="true" data-icon="" onclick="peticionRegistro()">Registrarse</a>
-		          </div>
-		      </form>
-		    </div>
-		    
-			<div data-role="footer" data-position="fixed">
-				<h4>Gestor de Notas</h4>
-			</div>
+
+		<div data-role="footer" data-position="fixed">
+			<h4>Gestor de Notas</h4>
 		</div>
-		
-		<!-- PÁGINA DE ASIGNATURAS -->
-		<div data-role="page" id="pageSignatures">
-			<div data-role="header" data-position="fixed" >
-		    	<a href="#pageLogin" data-icon="back">Atrás</a>
-				<h1>Asignaturas</h1>
-		        <a href="#pageAddSignature" data-icon="plus" onclick="peticionTitulaciones()">Añadir</a>
-			</div>
-			
-		    <div data-role="content" id="listaAsignaturas">
-		   	      			
-			</div>
-			
-			<div id="cargando" class = "capaCargando">
-				<img class="imagen" src="jquery.mobile/images/loading.gif">
-			</div>
-		    
-			<div data-role="footer" data-position="fixed">
-				<h4>Gestor de Notas</h4>
-			</div>
+	</div>
+
+	<!-- Pagina de asginatura -->
+	<div data-role="page" id="pageRegister">
+		<div data-role="header" data-position="fixed">
+			<a href="#pageSignatures" data-icon="back">Atrás</a>
+			<h1 name="nombreAsignatura" id="asignatura">Asignatura</h1>
 		</div>
-		
-		<!-- AÑADIR NUEVAS ASIGNATURAS -->
-		<div data-role="page" id="pageAddSignature">
-			<div data-role="header" data-position="fixed">
-		    	<a href="#pageSignatures" data-icon="back">Atrás</a>
-				<h1>Nueva asignatura</h1>
-			</div>
-		    
-			<div data-role="content">
-				<form id="formAnadeAsignatura">
-					  <div>
-					    <label for="textinput4">Nombre asignatura:</label>
-					    <input type="text" name="nombre" id="nombreId" value=""  />
-			            
-			            <label for="textinput5">Curso:</label>
-					    <input type="number" name="curso" id="cursoId" value=""  />
-			            
-			            <label for="textinput5">Descripción:</label>
-					    <input type="text" name="descripcion" id="descripcionId" value=""  />
-			            
-			            <label for="textinput5">Créditos:</label>
-					    <input type="number" name="creditos" id="creditosId" value=""  />
-					    <label for="textinput6">Titulación:</label>
-					    <div id="titulaciones"></div>
-				      </div>
-		        	
-			          <div data-role="collapsible-set">
-			            <div data-role="collapsible" data-collapsed="true">
-			              	<h3>Calificaciones</h3>
-			              
-				            <label for="textinput4">Porcentaje Teoria:</label>
-						    <input type="number" name="porcentajeT" id="porcentajeTId" value=""  />
-				            
-				        	<label for="textinput4">Porcentaje Práctica:</label>
-						    <input type="number" name="porcentajeP" id="porcentajePId" value=""  />
-				            
-				            <label for="textinput4">Porcentaje Asistencia:</label>
-						    <input type="number" name="porcentajeA" id="porcentajeAId" value=""  />
-			              
-			            </div>
-			          </div>
-		        </form>
-		        
-		        <div align="center">
-		        	<a href="#" data-role="button" data-inline="true" data-icon="" onclick="peticionAnadirAsignatura()"> Crear </a>
-		        </div>	
-					
-			</div>
-		    
-			<div data-role="footer" data-position="fixed">
-				<h4>Gestor de Notas</h4>
-			</div>
+
+		<div data-role="content" id="panel">
+			<form id="formRegister">
+				<p>Nombre:</p>
+				<input type="text" name="nombre" id="textinput2" value="" /> <br>
+				<p>Apellidos:</p>
+				<input type="text" name="apellidos" id="textinput3" value="" /> <br>
+				<p>DNI:</p>
+				<input type="text" name="dni" id="textinput3" value="" /> <br>
+				<p>Email:</p>
+				<input type="text" name="email" id="textinput3" value="" /> <br>
+				<p>Pass:</p>
+				<input type="password" name="pass" id="passwordinput2" value="" />
+				<br>
+				<p>Confirmar Pass:</p>
+				<input type="password" name="" id="passwordinput2" value="" /> <br>
+				<div align="center">
+					<a href="#" data-role="button" data-inline="true" data-icon=""
+						onclick="peticionRegistro()">Registrarse</a>
+				</div>
+			</form>
 		</div>
-		
-		<!-- Pagina de asginatura -->
-		<div data-role="page" id="pageRegister">
-			<div data-role="header" data-position="fixed" >
-			    <a href="#pageSignatures" data-icon="back" >Atrás</a>
-				<h1 name="nombreAsignatura" id="asignatura"> Asignatura</h1>
-			</div>
-		    
-			<div data-role="content" id="panel">
-		      <form id="formRegister" >
-		          <p>Nombre:</p>
-		          <input type="text" name="nombre" id="textinput2" value=""  />
-				  <br>
-		          <p>Apellidos:</p>
-		          <input type="text" name="apellidos" id="textinput3" value=""  />
-		          <br>
-		          <p>DNI:</p>
-		          <input type="text" name="dni" id="textinput3" value=""  />
-		          <br>
-				  <p>Email:</p>
-		          <input type="text" name="email" id="textinput3" value=""  />
-				  <br>
-		          <p>Pass:</p>
-		          <input type="password" name="pass" id="passwordinput2" value=""  />
-				  <br>
-		          <p>Confirmar Pass:</p>
-		          <input type="password" name="" id="passwordinput2" value=""  />
-		          <br>
-		          <div align="center">
-		          	<a href="#" data-role="button" data-inline="true" data-icon="" onclick="peticionRegistro()">Registrarse</a>
-		          </div>
-		      </form>
-		    </div>
-		    
-			<div data-role="footer" data-position="fixed">
-				<h4>Gestor de Notas</h4>
-			</div>
+
+		<div data-role="footer" data-position="fixed">
+			<h4>Gestor de Notas</h4>
 		</div>
-		
-		               <!--NUEVO: Pagina de asignatura (TEORIA) -->
-        <div data-role="page" id="pageSignatureTeory">
-			<div data-role="header" data-position="fixed" >
-			    <a href="#pageSignatures" data-icon="back" >Atrás</a>
-                <a href="#pageConfigurationSignature" data-icon="gear" >Configuración</a>
-				<h1 name="nombreAsignatura" id="asignatura"> Asignatura</h1>
-			</div>
-		    
-			<div data-role="content" id="panel" >
-		   		<div data-role="controlgroup" data-type="horizontal" align="center" >
-					<a href="" data-role="button" onClick=""> Teoria </a>
-                    <a href="" data-role="button" onClick=""> Práticas </a> 
-                    <a href="" data-role="button" onClick=""> Asistencia </a>
-                </div>
-                <select id="sTeory" name="sIdTeory">
-                <!-- Dinamicamente -->
-                	<option value ="Practica 1"> Práctica 1 </option>
-                	<option value="Practica 2"> Práctica 2 </option>
-                </select>
-                
-              <!-- Repetir esta sentencia dinamicamente -->
-                <table>
-                	<tr>
-                    <td width="80%"> Pepe Lopez </td> <td>  <input type="number" name="punt1" id="punt1"></td>
-                    </tr>
-                </table>
-               <!-- Fin de repetir dinamicamente -->
-            </div>
-		    
-			<div data-role="footer" data-position="fixed">
-				<h4>Gestor de Notas</h4>
-			</div>
+	</div>
+
+	<!--NUEVO: Pagina de asignatura (TEORIA) -->
+	<div data-role="page" id="pageSignatureTeory">
+		<div data-role="header" data-position="fixed">
+			<a href="#pageSignatures" data-icon="back">Atrás</a> <a
+				href="#pageConfigurationSignature" data-icon="gear">Configuración</a>
+			<h1 name="nombreAsignatura" id="asignatura">Asignatura</h1>
 		</div>
-        
-        
-         <!--NUEVO: Pagina de asignatura -->
-        		<div data-role="page" id="pageSignature">
-			<div data-role="header" data-position="fixed" >
-			    <a href="#pageSignatures" data-icon="back" >Atrás</a>
-                <a href="#pageConfigurationSignature" data-icon="gear" >Configuración</a>
-				<h1 name="nombreAsignatura" id="asignatura"> Asignatura</h1>
+
+		<div data-role="content" id="panel">
+			<div data-role="controlgroup" data-type="horizontal" align="center">
+				<a href="" data-role="button" onClick=""> Teoria </a> <a href=""
+					data-role="button" onClick=""> Práticas </a> <a href=""
+					data-role="button" onClick=""> Asistencia </a>
 			</div>
-		    
-			<div data-role="content" id="panel" >
-		   		<div data-role="controlgroup" data-type="horizontal" align="center" >
-					<a href="#pageSignatureTeory" data-role="button" onClick=""> Teoria </a>
-                    <a href="" data-role="button" onClick=""> Práticas </a> 
-                    <a href="" data-role="button" onClick=""> Asistencia </a>
-                </div>
-            </div>
-		    
-			<div data-role="footer" data-position="fixed">
-				<h4>Gestor de Notas</h4>
-			</div>
+			<select id="sTeory" name="sIdTeory">
+				<!-- Dinamicamente -->
+				<option value="Practica 1">Práctica 1</option>
+				<option value="Practica 2">Práctica 2</option>
+			</select>
+
+			<!-- Repetir esta sentencia dinamicamente -->
+			<table>
+				<tr>
+					<td width="80%">Pepe Lopez</td>
+					<td><input type="number" name="punt1" id="punt1"></td>
+				</tr>
+			</table>
+			<!-- Fin de repetir dinamicamente -->
 		</div>
-        
-        <!--NUEVO: Pagina de asignatura (Practica) -->
-        <div data-role="page" id="pageSignaturePractics">
-			<div data-role="header" data-position="fixed" >
-			    <a href="#pageSignatures" data-icon="back" >Atrás</a>
-                <a href="#pageConfigurationSignature" data-icon="gear" >Configuración</a>
-				<h1 name="nombreAsignatura" id="asignatura"> Asignatura</h1>
-			</div>
-		    
-			<div data-role="content" id="panel" >
-		   		<div data-role="controlgroup" data-type="horizontal" align="center" >
-					<a href="" data-role="button" onClick=""> Teoria </a>
-                    <a href="" data-role="button" onClick=""> Práticas </a> 
-                    <a href="" data-role="button" onClick=""> Asistencia </a>
-                </div>
-                <select id="sTeory" name="sIdTeory">
-                <!-- Dinamicamente -->
-                	<option value ="Practica 1"> Práctica 1 </option>
-                	<option value="Practica 2"> Práctica 2 </option>
-                </select>
-                
-              <!-- Repetir esta sentencia dinamicamente -->
-                <table>
-                	<tr>
-                    <td width="80%"> Pepe Lopez </td> <td>  <input type="number" name="punt1" id="punt1"></td>
-                    </tr>
-                </table>
-               <!-- Fin de repetir dinamicamente -->
-            </div>
-		    
-			<div data-role="footer" data-position="fixed">
-				<h4>Gestor de Notas</h4>
-			</div>
+
+		<div data-role="footer" data-position="fixed">
+			<h4>Gestor de Notas</h4>
 		</div>
-        
- 				<!-- Nuevo Pagina de asignaturas asistencia -->       
-                <div data-role="page" id="pageSignatureAsist">
-			<div data-role="header" data-position="fixed" >
-			    <a href="#pageSignatures" data-icon="back" >Atrás</a>
-                <a href="#pageConfigurationSignature" data-icon="gear" >Configuración</a>
-				<h1 name="nombreAsignatura" id="asignatura"> Asignatura</h1>
-			</div>
-		    
-			<div data-role="content" id="panel" >
-		   		<div data-role="controlgroup" data-type="horizontal" align="center" >
-					<a href="" data-role="button" onClick=""> Teoria </a>
-                    <a href="" data-role="button" onClick=""> Práticas </a> 
-                    <a href="" data-role="button" onClick=""> Asistencia </a>
-                </div>
-                <select id="sTeory" name="sIdTeory">
-                <!-- Dinamicamente -->
-                	<option value ="Practica 1"> Práctica 1 </option>
-                	<option value="Practica 2"> Práctica 2 </option>
-                </select>
-                
-              <!-- Repetir esta sentencia dinamicamente -->
-                <table>
-                	<tr>
-                    <td width="80%"> Pepe Lopez </td> <td>  <input type="number" name="punt1" id="punt1"></td>
-                    </tr>
-                </table>
-               <!-- Fin de repetir dinamicamente -->
-            </div>
-		    
-			<div data-role="footer" data-position="fixed">
-				<h4>Gestor de Notas</h4>
-			</div>
-		</div>
-		
-		<!--NUEVO: Fichero COnfiguracion Notas -->
-        		<div data-role="page" id="pageConfigurationSignature">
-			<div data-role="header" data-position="fixed" >
-			    <a href="#pageSignatures" data-icon="back" >Atrás</a>
-				<h1 name="nombreAsignatura" id="asignatura"> Configuración Asignatura</h1>
-			</div>
-		    
-			<div data-role="content" id="panel" >
-		   		<div data-role="collapsible-set">
-					<div data-role="collapsible">
-                    <h3> Teoria </h3>
-                    <!-- Establecer dinamicamente conforme  se vayan creando -->
-                    Practica 1. Modelado <input type="text" name="name" id="basic" value=""  />
-                    Practica 2. Renderizado <input type="text" name="name" id="basic" value=""  />
-                    <!-- El último Text input se establece con un valor por defecto para que cubra el 100%
-                    sin pasarnos -->
-                    <!-- Establecimiento dinamico -->
-                    
-                </div>
-                
-                <div data-role="collapsible-set">
-					<div data-role="collapsible">
-                    <h3> Prácticas </h3>
-                    </div>
-                </div>
-                
-                <div data-role="collapsible-set">
-					<div data-role="collapsible">
-                    <h3> Asistencia </h3>
-                    <!-- La ponderación de asistencia cuesta el 100 % dividido entre el número de días que 
-                    se ha tomado asistencia, ya que supuestamente tiene que ser igual para todos los días
-                    -->
-                    </div>
-                </div>
+	</div>
 
 
-            </div>
-		    
-			<div data-role="footer" data-position="fixed">
-				<h4>Gestor de Notas</h4>
+	<!--NUEVO: Pagina de asignatura -->
+	<div data-role="page" id="pageSignature">
+		<div data-role="header" data-position="fixed">
+			<a href="#pageSignatures" data-icon="back">Atrás</a> <a
+				href="#pageConfigurationSignature" data-icon="gear">Configuración</a>
+			<h1 name="nombreAsignatura" id="asignatura">Asignatura</h1>
+		</div>
+
+		<div data-role="content" id="panel">
+			<div data-role="controlgroup" data-type="horizontal" align="center">
+				<a href="#pageSignatureTeory" data-role="button" onClick="">
+					Teoria </a> <a href="" data-role="button" onClick=""> Práticas </a> <a
+					href="" data-role="button" onClick=""> Asistencia </a>
 			</div>
 		</div>
-		
-		<div data-role="page" id="page4">
+
+		<div data-role="footer" data-position="fixed">
+			<h4>Gestor de Notas</h4>
+		</div>
+	</div>
+
+	<!--NUEVO: Pagina de asignatura (Practica) -->
+	<div data-role="page" id="pageSignaturePractics">
+		<div data-role="header" data-position="fixed">
+			<a href="#pageSignatures" data-icon="back">Atrás</a> <a
+				href="#pageConfigurationSignature" data-icon="gear">Configuración</a>
+			<h1 name="nombreAsignatura" id="asignatura">Asignatura</h1>
+		</div>
+
+		<div data-role="content" id="panel">
+			<div data-role="controlgroup" data-type="horizontal" align="center">
+				<a href="" data-role="button" onClick=""> Teoria </a> <a href=""
+					data-role="button" onClick=""> Práticas </a> <a href=""
+					data-role="button" onClick=""> Asistencia </a>
+			</div>
+			<select id="sTeory" name="sIdTeory">
+				<!-- Dinamicamente -->
+				<option value="Practica 1">Práctica 1</option>
+				<option value="Practica 2">Práctica 2</option>
+			</select>
+
+			<!-- Repetir esta sentencia dinamicamente -->
+			<table>
+				<tr>
+					<td width="80%">Pepe Lopez</td>
+					<td><input type="number" name="punt1" id="punt1"></td>
+				</tr>
+			</table>
+			<!-- Fin de repetir dinamicamente -->
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+			<h4>Gestor de Notas</h4>
+		</div>
+	</div>
+
+	<!-- Nuevo Pagina de asignaturas asistencia -->
+	<div data-role="page" id="pageSignatureAsist">
+		<div data-role="header" data-position="fixed">
+			<a href="#pageSignatures" data-icon="back">Atrás</a> <a
+				href="#pageConfigurationSignature" data-icon="gear">Configuración</a>
+			<h1 name="nombreAsignatura" id="asignatura">Asignatura</h1>
+		</div>
+
+		<div data-role="content" id="panel">
+			<div data-role="controlgroup" data-type="horizontal" align="center">
+				<a href="" data-role="button" onClick=""> Teoria </a> <a href=""
+					data-role="button" onClick=""> Práticas </a> <a href=""
+					data-role="button" onClick=""> Asistencia </a>
+					<div data-role="navbar">
+				<ul>
+					<li><a href="" onClick=""> Teoria </a></li>
+					<li><a href="" onClick=""> Práticas </a></li>
+					<li><a href="" onClick=""> Asistencia </a></li>
+				</ul>
+			</div>
+			</div>
+			<select id="sTeory" name="sIdTeory">
+				<!-- Dinamicamente -->
+				<option value="Practica 1">Práctica 1</option>
+				<option value="Practica 2">Práctica 2</option>
+			</select>
+
+			<!-- Repetir esta sentencia dinamicamente -->
+			<table>
+				<tr>
+					<td width="80%">Pepe Lopez</td>
+					<td><input type="number" name="punt1" id="punt1"></td>
+				</tr>
+			</table>
+			<!-- Fin de repetir dinamicamente -->
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+			<h4>Gestor de Notas</h4>
+		</div>
+	</div>
+
+	<!-- Nuevo Pagina de configuracion  -->
+	<div data-role="page" id="pageConfigurationSignature">
+		<div data-role="header" data-position="fixed">
+			<a href="#pageSignatures" data-icon="back">Atrás</a> <a
+				href="#pageConfigurationSignature" data-icon="gear">Configuración</a>
+			<h1 name="nombreAsignatura" id="asignatura">Asignatura</h1>
+
+			<div data-role="navbar">
+				<ul>
+					<li><a href="" onClick="mostrarDIV('T')"> Teoria </a></li>
+					<li><a href="" onClick="mostrarDIV('P')"> Práticas </a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div data-role="content" id="panelConfiguracionAsignatura">
+
+			<div data-role="content" id="confDIVTeoria">Teoria</div>
+
+			<div data-role="content" id="confDIVPractica"> Practica</div>
+
+			<div align="center">
+				<a href="#" data-role="button" data-inline="true" data-icon="plus" onclick="anadir()">Añadir</a>
+			</div>
+
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+			<h4>Gestor de Notas</h4>
+		</div>
+	</div>
+
+
+
+
+	<div data-role="page" id="page4">
 		<div data-role="header">
 			<h1>Página cuatro</h1>
 		</div>
-		<div data-role="content">	
-			Contenido		
-		</div>
+		<div data-role="content">Contenido</div>
 		<div data-role="footer">
 			<h4>Pie de página</h4>
 		</div>
 	</div>
-	
-	</body>
-	
+
+</body>
+
 </html>

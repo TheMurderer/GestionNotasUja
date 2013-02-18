@@ -18,7 +18,7 @@ function peticionAsignaturas(){
 			var codhtml = '<ul data-role="listview" id="lista" data-filter="true">';
 			if(arrayRespuesta.length != 0){
 				for(i = 0; i < arrayRespuesta.length; i++){
-					codhtml = codhtml + '<li><a href="#page2">'+ arrayRespuesta[i]["nombre"] +'</a> <a data-icon="gear"></a></li>';
+					codhtml = codhtml + '<li><a href="">'+ arrayRespuesta[i]["nombre"] +'</a> <a onclick="configuracionAsig(' + arrayRespuesta[i]["id"] +')" data-icon="gear"></a></li>';
 				}
 				codhtml = codhtml + '</ul>';
 				
