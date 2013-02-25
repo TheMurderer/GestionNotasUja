@@ -50,6 +50,8 @@ function configuracionAsig(idAsignatura){
 				if(arrayRespuesta[1].length != 0){
 					for(i = 0; i < arrayRespuesta[1].length;i++){
 						codhtmlPracticas = codhtmlPracticas + '<br>' + arrayRespuesta[1][i]["descripcion"] + '<input type="number" name="name" id="' +arrayRespuesta[1][i]["id"] + '"  value="' + arrayRespuesta[1][i]["porcentaje"]+'"<br>';
+						//cad = '#' + arrayRespuesta[1][i]["id"];
+						//$(cad).textinput();
 					}
 				}else{
 					codhtmlPracticas = 'No se ha añadido nada aún.';
@@ -57,7 +59,8 @@ function configuracionAsig(idAsignatura){
 				
 				$('#confDIVTeoria').html(codhtmlTeoria);
 				$('#confDIVPractica').html(codhtmlPracticas);
-				//$('#panelConfiguracionAsignatura').refresh();
+				//$('#pageConfigurationSignature').trigger('refresh');
+				$('#panelConfiguracionAsignatura').trigger('create');
 			
 			location.href = "#pageConfigurationSignature";
 				
