@@ -114,20 +114,17 @@
 			<a href="#pageSignatures" data-icon="back">Atrás</a>
 			<h1>Nueva asignatura</h1>
 		</div>
-
-		<div data-role="content">
+		
+		
+		<div id="cargando2" class="capaCargando">
+			<img class="imagen" src="jquery.mobile/images/loading.gif">
+		</div>
+		
+		<div data-role="content" id = "listarAsignaturasTitulacion">
 			<form id="formAnadeAsignatura">
 				<div>
-					<label for="textinput4">Nombre asignatura:</label> <input
-						type="text" name="nombre" id="nombreId" value="" /> <label
-						for="textinput5">Curso:</label> <input type="number" name="curso"
-						id="cursoId" value="" /> <label for="textinput5">Descripción:</label>
-					<input type="text" name="descripcion" id="descripcionId" value="" />
-
-					<label for="textinput5">Créditos:</label> <input type="number"
-						name="creditos" id="creditosId" value="" /> <label
-						for="textinput6">Titulación:</label>
 					<div id="titulaciones"></div>
+					<div id="asignaturaElegida"></div>
 				</div>
 
 				<div data-role="collapsible-set">
@@ -144,7 +141,7 @@
 							type="number" name="porcentajeA" id="porcentajeAId" value="" />
 						
 						<label for="textinput5">Porcentaje Trabajos:</label> <input
-							type="number" name="porcentajeA" id="porcentajeVId" value="" />	
+							type="number" name="porcentajeTV" id="porcentajeVId" value="" />	
 
 					</div>
 				</div>
@@ -152,7 +149,7 @@
 
 			<div align="center">
 				<a href="#" data-role="button" data-inline="true" data-icon=""
-					onclick="peticionAnadirAsignatura()"> Crear </a>
+					onclick="peticionAnadirAsignatura()"> Añadir </a>
 			</div>
 
 		</div>
@@ -341,6 +338,7 @@
 				<ul>
 					<li><a href="" onClick="mostrarDIV('T')"> Teoria </a></li>
 					<li><a href="" onClick="mostrarDIV('P')"> Práticas </a></li>
+					<li><a href="" onClick="mostrarDIV('TV')"> Trabajos </a></li>
 				</ul>
 			</div>
 		</div>
@@ -350,6 +348,8 @@
 			<div data-role="content" id="confDIVTeoria">Teoria</div>
 
 			<div data-role="content" id="confDIVPractica"> Practica</div>
+			
+			<div data-role="content" id="confDIVTrabajos"> Trabajos</div>
 	
 			<div align="center">
 				<a href="#" data-role="button" data-inline="true" data-icon="plus" onclick="anadir()">Añadir</a>

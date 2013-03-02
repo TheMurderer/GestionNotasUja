@@ -2,10 +2,17 @@ function mostrarDIV(valor){
 	if(valor == 'T'){
 		$('#confDIVTeoria').show();
 		$('#confDIVPractica').hide();
+		$('#confDIVTrabajos').hide();
 		$('#panelConfiguracionAsignatura').refresh();
 	}else if (valor == 'P'){
 		$('#confDIVTeoria').hide();
 		$('#confDIVPractica').show();
+		$('#confDIVTrabajos').hide();
+		$('#panelConfiguracionAsignatura').refresh();
+	}else{
+		$('#confDIVTeoria').hide();
+		$('#confDIVPractica').hide();
+		$('#confDIVTrabajos').show();
 		$('#panelConfiguracionAsignatura').refresh();
 	}
 }
@@ -13,6 +20,7 @@ function mostrarDIV(valor){
 function ocultarTodosDIV(){
 	$('#confDIVTeoria').hide();
 	$('#confDIVPractica').hide();
+	$('#confDIVTrabajos').hide();
 }
 
 function configuracionAsig(idAsignatura){
@@ -38,13 +46,14 @@ function configuracionAsig(idAsignatura){
 			var i;
 			var codhtmlTeoria="";
 			var codhtmlPracticas ="";
+			var codhtmlTrabajos ="";
 			
 				if(arrayRespuesta[0].length != 0){
 					for(i = 0; i < arrayRespuesta[0].length;i++){
 						codhtmlTeoria = codhtmlTeoria + '<br>' + arrayRespuesta[0][i]["descripcion"] + '<input type="number" name="name" id="' +arrayRespuesta[0][i]["id"] + '"  value="' + arrayRespuesta[0][i]["porcentaje"]+'"<br>';
 					}
 				}else{
-					codhtmlTeoria = 'No se ha añadido nada aún.';
+					codhtmlTeoria = 'No hay Teoria';
 				}
 				
 				if(arrayRespuesta[1].length != 0){
@@ -54,16 +63,26 @@ function configuracionAsig(idAsignatura){
 						//$(cad).textinput();
 					}
 				}else{
-					codhtmlPracticas = 'No se ha añadido nada aún.';
+					codhtmlPracticas = 'No hay Practicas.';
+				}
+				
+				if(arrayRespuesta[2].length != 0){
+					for(i = 0; i < arrayRespuesta[1].length;i++){
+						codhtmlTrabajos = codhtmlTrabajos + '<br>' + arrayRespuesta[2][i]["descripcion"] + '<input type="number" name="name" id="' +arrayRespuesta[2][i]["id"] + '"  value="' + arrayRespuesta[2][i]["porcentaje"]+'"<br>';
+						//cad = '#' + arrayRespuesta[1][i]["id"];
+						//$(cad).textinput();
+					}
+				}else{
+					codhtmlTrabajos = 'No hay Trabajos.';
 				}
 				
 				$('#confDIVTeoria').html(codhtmlTeoria);
 				$('#confDIVPractica').html(codhtmlPracticas);
-				//$('#pageConfigurationSignature').trigger('refresh');
+				$('#confDIVTrabajos').html(codhtmlTrabajos);
+				
 				$('#panelConfiguracionAsignatura').trigger('create');
 			
 			location.href = "#pageConfigurationSignature";
-				
 			
             },
 		error: function(respuesta){
