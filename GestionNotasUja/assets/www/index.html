@@ -121,7 +121,7 @@
 		
 		<div data-role="content" id = "listarAsignaturasTitulacion">
 			<form id="formAnadeAsignatura">
-				<div>
+				<div id="Titula">
 					<div id="titulaciones"></div>
 					<div id="asignaturaElegida"></div>
 				</div>
@@ -130,23 +130,23 @@
 					<div data-role="collapsible" data-collapsed="true">
 						<h3>Calificaciones</h3>
 
-						<label for="textinput4">Porcentaje Teoria:</label> <input
-							type="number" name="porcentajeT" id="porcentajeTId" value="" />
+						<label for="textinput4">Porcentaje Teoria:</label> <div id="diTeoria"><input
+							type="number" name="porcentajeT" id="porcentajeTId" value="" /></div>
 
-						<label for="textinput4">Porcentaje Práctica:</label> <input
-							type="number" name="porcentajeP" id="porcentajePId" value="" />
+						<label for="textinput4">Porcentaje Práctica:</label> <div id="diPractica"><input
+							type="number" name="porcentajeP" id="porcentajePId" value="" /></div>
 
-						<label for="textinput4">Porcentaje Asistencia:</label> <input
-							type="number" name="porcentajeA" id="porcentajeAId" value="" />
+						<label for="textinput4">Porcentaje Asistencia:</label> <div id="diAsistencia"><input
+							type="number" name="porcentajeA" id="porcentajeAId" value="" /></div>
 						
-						<label for="textinput5">Porcentaje Trabajos:</label> <input
-							type="number" name="porcentajeTV" id="porcentajeVId" value="" />	
+						<label for="textinput5">Porcentaje Trabajos:</label> <div id="diTrabajos"><input
+							type="number" name="porcentajeTV" id="porcentajeVId" value="" /></div>
 
 					</div>
 				</div>
 			</form>
 
-			<div align="center">
+			<div id="botonConf" align="center">
 				<a href="#" data-role="button" data-inline="true" data-icon=""
 					onclick="peticionAnadirAsignatura()"> Añadir </a>
 			</div>
@@ -160,18 +160,18 @@
 
 	<!-- Configura la asignatura Teoría/Práctica/Trabajos  -->
 	<div data-role="page" id="pageConfigurationSignature">
-		<div data-role="header" data-position="fixed">
-			<a href="#pageSignatures" data-icon="back">Atrás</a> <a
-				href="#pageAddSignature" data-icon="gear">Configuración</a>
-			<h1 name="nombreAsignatura" id="asignatura">Asignatura</h1>
-
-			<div data-role="navbar">
+		<div data-role="header" data-position="fixed" id="cabecer">
+			<!-- <a href="#pageSignatures" data-icon="back">Atrás</a>-->
+			
+			 <!-- <a href="javascript:modificarConfAsignatura()" data-icon="gear">Configuración</a>-->
+			<!-- <h1 name="nombreAsignatura" id="asignatura">Asignatura</h1>-->
+			<!-- <div data-role="navbar">
 				<ul>
 					<li><a href="" class="ui-btn-active" onClick="mostrarDIV('T')"> Teoria </a></li>
 					<li><a href="" onClick="mostrarDIV('P')"> Práticas </a></li>
 					<li><a href="" onClick="mostrarDIV('TV')"> Trabajos </a></li>
 				</ul>
-			</div>
+			</div> -->
 		</div>
 
 		<div data-role="content" id="panelConfiguracionAsignatura">

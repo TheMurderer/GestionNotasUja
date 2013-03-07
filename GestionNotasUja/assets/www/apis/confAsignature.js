@@ -101,6 +101,7 @@ function configuracionAsig(idAsignatura){
 			var codhtmlTeoria="";
 			var codhtmlPracticas ="";
 			var codhtmlTrabajos ="";
+			var codConfig = "";
 			
 				if(arrayRespuesta[0].length != 0){
 					for(i = 0; i < arrayRespuesta[0].length;i++){
@@ -140,6 +141,22 @@ function configuracionAsig(idAsignatura){
 				$('#panelConfiguracionAsignatura').trigger('create');
 			
 				location.href = "#pageConfigurationSignature";
+				codConfig ="<a href=\"#pageSignatures\" data-icon=\"back\">Atras</a>";
+				codConfig = codConfig + "<a href=\"javascript:modificarConfAsignatura("+ idAsignatura +");\" data-icon=\"gear\">Configuracion</a>";
+				codConfig = codConfig + "<h1 name=\"nombreAsignatura\" id=\"asignatura\">Asignatura</h1>";
+				codConfig= codConfig + "<div data-role= \"navbar\">";
+				codConfig= codConfig +"<ul>";
+				codConfig= codConfig +	"<li><a href=\"\" class=\"ui-btn-active\" onClick=\"mostrarDIV('T')\"> Teoria </a></li>";
+				codConfig= codConfig +	"<li><a href=\"\" onClick=\"mostrarDIV('P')\"> Praticas </a></li>";
+				codConfig= codConfig +	"<li><a href=\"\" onClick=\"mostrarDIV('TV')\"> Trabajos </a></li>";
+				codConfig= codConfig +"</ul>";
+				codConfig= codConfig +"</div>";
+				
+				$('#cabecer').html(codConfig);
+	
+				$('#cabecer').trigger('create');
+				
+
 			
             },
 		error: function(respuesta){
@@ -155,4 +172,82 @@ function configuracionAsig(idAsignatura){
 		}
 	});
 	
+}
+
+function modificarConfAsignatura(idAsignatura){
+	
+	var cad = "[{\"id\":\"" + idAsignatura + "\"}]";
+	var code="";
+	alert(cad);
+	$.ajax({
+		type: "GET",
+		url: p_url,
+		dataType: 'jsonp',
+		data: {
+			'm':'modconf',
+			'datos': cad
+		},
+		contentType:'application/json; charset=utf-8',
+		success: function(respuesta){
+
+			arrayRespuesta = eval(respuesta);
+			location.href="#pageAddSignature";
+			$('#Titula').hide();
+			$('#cargando2').hide();
+			
+			code="<a href=\"#\" data-role=\"button\" data-inline=\"true\" data-icon=\"\" onclick=\"actualizarConfiguracion("+idAsignatura+")\"> Actualizar </a>";
+			$('#botonConf').html(code);
+			
+			code="<input type=\"number\" name=\"porcentajeT\" id=\"porcentajeTId\" value=\""+arrayRespuesta[0]+"\" />";
+			$('#diTeoria').html(code);
+			
+			code="<input type=\"number\" name=\"porcentajeP\" id=\"porcentajePId\" value=\""+arrayRespuesta[1]+"\" />";
+			$('#diPractica').html(code);
+			
+			code="<input type=\"number\" name=\"porcentajeA\" id=\"porcentajeAId\" value=\""+arrayRespuesta[2]+"\" />";
+			$('#diAsistencia').html(code);
+			
+			code="<input type=\"number\" name=\"porcentajeTV\" id=\"porcentajeVId\" value=\""+arrayRespuesta[3]+"\" />";
+			$('#diTrabajos').html(code);
+			
+
+		//location.href = "#pageConfigurationSignature";
+		},
+		error: function(respuesta){
+			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+		}
+		});	
+}
+
+function actualizarConfiguracion(idAsignatura){
+	var cad ="[" + JSON.stringify($("#formAnadeAsignatura").serializeObject());
+	cad = cad.replace("}","");
+	cad = cad +",\"id\":\""+idAsignatura+"\"}]";
+	alert(cad);
+	
+	$.ajax({
+		type: "GET",
+		url: p_url,
+		dataType: 'jsonp',
+		data: {
+			'm':'updconf',
+			'datos':cad
+		},
+		contentType:'application/json; charset=utf-8',
+		success: function(respuesta){
+			//alert(respuesta);
+			arrayRespuesta = eval(respuesta);
+            if (arrayRespuesta["ok"] == 0){
+				alert('Creación de asignatura incorrecta');
+				navigator.notification.alert('Error al crear asignatura',null,'Nueva asignatura', 'Aceptar');
+			}else{
+				//Guardamos el Id de la sessión
+				alert("Correcto");
+				location.href = "#pageSignatures";
+			}
+		},
+		error: function(respuesta){
+			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+		}
+	});
 }
