@@ -17,10 +17,9 @@
 <script type="text/javascript" charset="utf-8" src="apis/login.js"></script>
 <script type="text/javascript" charset="utf-8" src="apis/register.js"></script>
 <script type="text/javascript" charset="utf-8" src="apis/asignatures.js"></script>
-<script type="text/javascript" charset="utf-8"
-	src="apis/addAsignatures.js"></script>
-<script type="text/javascript" charset="utf-8"
-	src="apis/confAsignature.js"></script>
+<script type="text/javascript" charset="utf-8" src="apis/addAsignatures.js"></script>
+<script type="text/javascript" charset="utf-8" src="apis/confAsignature.js"></script>
+<script type="text/javascript" charset="utf-8" src="apis/addMaterialAsignature.js"></script>
 <!-- FIN -->
 
 <script src="jquery.mobile/json.min.js"></script>
@@ -159,184 +158,16 @@
 		</div>
 	</div>
 
-	<!-- Pagina de asginatura -->
-	<div data-role="page" id="pageRegister">
-		<div data-role="header" data-position="fixed">
-			<a href="#pageSignatures" data-icon="back">Atrás</a>
-			<h1 name="nombreAsignatura" id="asignatura">Asignatura</h1>
-		</div>
-
-		<div data-role="content" id="panel">
-			<form id="formRegister">
-				<p>Nombre:</p>
-				<input type="text" name="nombre" id="textinput2" value="" /> <br>
-				<p>Apellidos:</p>
-				<input type="text" name="apellidos" id="textinput3" value="" /> <br>
-				<p>DNI:</p>
-				<input type="text" name="dni" id="textinput3" value="" /> <br>
-				<p>Email:</p>
-				<input type="text" name="email" id="textinput3" value="" /> <br>
-				<p>Pass:</p>
-				<input type="password" name="pass" id="passwordinput2" value="" />
-				<br>
-				<p>Confirmar Pass:</p>
-				<input type="password" name="" id="passwordinput2" value="" /> <br>
-				<div align="center">
-					<a href="#" data-role="button" data-inline="true" data-icon=""
-						onclick="peticionRegistro()">Registrarse</a>
-				</div>
-			</form>
-		</div>
-
-		<div data-role="footer" data-position="fixed">
-			<h4>Gestor de Notas</h4>
-		</div>
-	</div>
-
-	<!--NUEVO: Pagina de asignatura (TEORIA) -->
-	<div data-role="page" id="pageSignatureTeory">
-		<div data-role="header" data-position="fixed">
-			<a href="#pageSignatures" data-icon="back">Atrás</a> <a
-				href="#pageConfigurationSignature" data-icon="gear">Configuración</a>
-			<h1 name="nombreAsignatura" id="asignatura">Asignatura</h1>
-		</div>
-
-		<div data-role="content" id="panel">
-			<div data-role="controlgroup" data-type="horizontal" align="center">
-				<a href="" data-role="button" onClick=""> Teoria </a> <a href=""
-					data-role="button" onClick=""> Práticas </a> <a href=""
-					data-role="button" onClick=""> Asistencia </a>
-			</div>
-			<select id="sTeory" name="sIdTeory">
-				<!-- Dinamicamente -->
-				<option value="Practica 1">Práctica 1</option>
-				<option value="Practica 2">Práctica 2</option>
-			</select>
-
-			<!-- Repetir esta sentencia dinamicamente -->
-			<table>
-				<tr>
-					<td width="80%">Pepe Lopez</td>
-					<td><input type="number" name="punt1" id="punt1"></td>
-				</tr>
-			</table>
-			<!-- Fin de repetir dinamicamente -->
-		</div>
-
-		<div data-role="footer" data-position="fixed">
-			<h4>Gestor de Notas</h4>
-		</div>
-	</div>
-
-
-	<!--NUEVO: Pagina de asignatura -->
-	<div data-role="page" id="pageSignature">
-		<div data-role="header" data-position="fixed">
-			<a href="#pageSignatures" data-icon="back">Atrás</a> <a
-				href="#pageConfigurationSignature" data-icon="gear">Configuración</a>
-			<h1 name="nombreAsignatura" id="asignatura">Asignatura</h1>
-		</div>
-
-		<div data-role="content" id="panel">
-			<div data-role="controlgroup" data-type="horizontal" align="center">
-				<a href="#pageSignatureTeory" data-role="button" onClick="">
-					Teoria </a> <a href="" data-role="button" onClick=""> Práticas </a> <a
-					href="" data-role="button" onClick=""> Asistencia </a>
-			</div>
-		</div>
-
-		<div data-role="footer" data-position="fixed">
-			<h4>Gestor de Notas</h4>
-		</div>
-	</div>
-
-	<!--NUEVO: Pagina de asignatura (Practica) -->
-	<div data-role="page" id="pageSignaturePractics">
-		<div data-role="header" data-position="fixed">
-			<a href="#pageSignatures" data-icon="back">Atrás</a> <a
-				href="#pageConfigurationSignature" data-icon="gear">Configuración</a>
-			<h1 name="nombreAsignatura" id="asignatura">Asignatura</h1>
-		</div>
-
-		<div data-role="content" id="panel">
-			<div data-role="controlgroup" data-type="horizontal" align="center">
-				<a href="" data-role="button" onClick=""> Teoria </a> <a href=""
-					data-role="button" onClick=""> Práticas </a> <a href=""
-					data-role="button" onClick=""> Asistencia </a>
-			</div>
-			<select id="sTeory" name="sIdTeory">
-				<!-- Dinamicamente -->
-				<option value="Practica 1">Práctica 1</option>
-				<option value="Practica 2">Práctica 2</option>
-			</select>
-
-			<!-- Repetir esta sentencia dinamicamente -->
-			<table>
-				<tr>
-					<td width="80%">Pepe Lopez</td>
-					<td><input type="number" name="punt1" id="punt1"></td>
-				</tr>
-			</table>
-			<!-- Fin de repetir dinamicamente -->
-		</div>
-
-		<div data-role="footer" data-position="fixed">
-			<h4>Gestor de Notas</h4>
-		</div>
-	</div>
-
-	<!-- Nuevo Pagina de asignaturas asistencia -->
-	<div data-role="page" id="pageSignatureAsist">
-		<div data-role="header" data-position="fixed">
-			<a href="#pageSignatures" data-icon="back">Atrás</a> <a
-				href="#pageConfigurationSignature" data-icon="gear">Configuración</a>
-			<h1 name="nombreAsignatura" id="asignatura">Asignatura</h1>
-		</div>
-
-		<div data-role="content" id="panel">
-			<div data-role="controlgroup" data-type="horizontal" align="center">
-				<a href="" data-role="button" onClick=""> Teoria </a> <a href=""
-					data-role="button" onClick=""> Práticas </a> <a href=""
-					data-role="button" onClick=""> Asistencia </a>
-					<div data-role="navbar">
-				<ul>
-					<li><a href="" onClick=""> Teoria </a></li>
-					<li><a href="" onClick=""> Práticas </a></li>
-					<li><a href="" onClick=""> Asistencia </a></li>
-				</ul>
-			</div>
-			</div>
-			<select id="sTeory" name="sIdTeory">
-				<!-- Dinamicamente -->
-				<option value="Practica 1">Práctica 1</option>
-				<option value="Practica 2">Práctica 2</option>
-			</select>
-
-			<!-- Repetir esta sentencia dinamicamente -->
-			<table>
-				<tr>
-					<td width="80%">Pepe Lopez</td>
-					<td><input type="number" name="punt1" id="punt1"></td>
-				</tr>
-			</table>
-			<!-- Fin de repetir dinamicamente -->
-		</div>
-
-		<div data-role="footer" data-position="fixed">
-			<h4>Gestor de Notas</h4>
-		</div>
-	</div>
-
-	<!-- Nuevo Pagina de configuracion  -->
+	<!-- Configura la asignatura Teoría/Práctica/Trabajos  -->
 	<div data-role="page" id="pageConfigurationSignature">
 		<div data-role="header" data-position="fixed">
 			<a href="#pageSignatures" data-icon="back">Atrás</a> <a
-				href="#pageConfigurationSignature" data-icon="gear">Configuración</a>
+				href="#pageAddSignature" data-icon="gear">Configuración</a>
 			<h1 name="nombreAsignatura" id="asignatura">Asignatura</h1>
 
 			<div data-role="navbar">
 				<ul>
-					<li><a href="" onClick="mostrarDIV('T')"> Teoria </a></li>
+					<li><a href="" class="ui-btn-active" onClick="mostrarDIV('T')"> Teoria </a></li>
 					<li><a href="" onClick="mostrarDIV('P')"> Práticas </a></li>
 					<li><a href="" onClick="mostrarDIV('TV')"> Trabajos </a></li>
 				</ul>
@@ -350,9 +181,9 @@
 			<div data-role="content" id="confDIVPractica"> Practica</div>
 			
 			<div data-role="content" id="confDIVTrabajos"> Trabajos</div>
-	
+
 			<div align="center">
-				<a href="#" data-role="button" data-inline="true" data-icon="plus" onclick="anadir()">Añadir</a>
+				<a href="#anadirMateriaAsignatura" data-role="button" data-inline="true" data-icon="plus" onclick="">Añadir</a>
 			</div>
 
 		</div>
@@ -362,18 +193,30 @@
 		</div>
 	</div>
 
-
-
-
-	<div data-role="page" id="page4">
+	<!-- Añade Teoría / Práctica / trabajos voluntarios -->
+ 	<div data-role="page" id="anadirMateriaAsignatura">
 		<div data-role="header">
-			<h1>Página cuatro</h1>
+			<h1>Añadir</h1>
 		</div>
-		<div data-role="content">Contenido</div>
-		<div data-role="footer">
+		<div data-role="content">
+		<form id="formRegister">
+				<p>Descripción:</p>
+				<input type="text" id="descripcionParcial" name="descripcion"/> <br>
+				<p>Puntuación:</p>
+				<input type="text" id="puntuacionParcial" name="puntuacion" /> <br>
+				<div align="center">
+					<a href="#pageConfigurationSignature" data-role="button" data-inline="true" data-icon=""
+						onclick="addMaterial(idAsignaturaSeleccionada,pestanaSeleccionada)">Añadir</a>
+				</div>
+			</form>
+		
+		
+		</div>
+		<div data-role="footer" data-position="fixed">
 			<h4>Pie de página</h4>
 		</div>
 	</div>
+
 
 </body>
 
