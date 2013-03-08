@@ -1,6 +1,7 @@
 var pestanaSeleccionada = '';
 var idAsignaturaSeleccionada = '';
 
+
 //¿Se ha insertado información en los contenedores? Por Defecto TRUE
 var numeroParcialTeoria = 1;
 var numeroParcialPractica = 1;
@@ -101,7 +102,7 @@ function configuracionAsig(idAsignatura){
 			var codhtmlTeoria="";
 			var codhtmlPracticas ="";
 			var codhtmlTrabajos ="";
-			var codConfig = "";
+
 			
 				if(arrayRespuesta[0].length != 0){
 					for(i = 0; i < arrayRespuesta[0].length;i++){
@@ -139,24 +140,8 @@ function configuracionAsig(idAsignatura){
 				$('#confDIVTrabajos').html(codhtmlTrabajos);
 				
 				$('#panelConfiguracionAsignatura').trigger('create');
-			
+				
 				location.href = "#pageConfigurationSignature";
-				codConfig ="<a href=\"#pageSignatures\" data-icon=\"back\">Atras</a>";
-				codConfig = codConfig + "<a href=\"javascript:modificarConfAsignatura("+ idAsignatura +");\" data-icon=\"gear\">Configuracion</a>";
-				codConfig = codConfig + "<h1 name=\"nombreAsignatura\" id=\"asignatura\">Asignatura</h1>";
-				codConfig= codConfig + "<div data-role= \"navbar\">";
-				codConfig= codConfig +"<ul>";
-				codConfig= codConfig +	"<li><a href=\"\" class=\"ui-btn-active\" onClick=\"mostrarDIV('T')\"> Teoria </a></li>";
-				codConfig= codConfig +	"<li><a href=\"\" onClick=\"mostrarDIV('P')\"> Praticas </a></li>";
-				codConfig= codConfig +	"<li><a href=\"\" onClick=\"mostrarDIV('TV')\"> Trabajos </a></li>";
-				codConfig= codConfig +"</ul>";
-				codConfig= codConfig +"</div>";
-				
-				$('#cabecer').html(codConfig);
-	
-				$('#cabecer').trigger('create');
-				
-
 			
             },
 		error: function(respuesta){
@@ -174,9 +159,9 @@ function configuracionAsig(idAsignatura){
 	
 }
 
-function modificarConfAsignatura(idAsignatura){
-	
-	var cad = "[{\"id\":\"" + idAsignatura + "\"}]";
+function modificarConfAsignatura(){
+	alert("entra");
+	var cad = "[{\"id\":\"" + idAsignaturaSeleccionada + "\"}]";
 	var code="";
 	alert(cad);
 	$.ajax({
@@ -191,11 +176,11 @@ function modificarConfAsignatura(idAsignatura){
 		success: function(respuesta){
 
 			arrayRespuesta = eval(respuesta);
-			location.href="#pageAddSignature";
-			$('#Titula').hide();
+			
+			$('#TitulaAsign').hide();
 			$('#cargando2').hide();
 			
-			code="<a href=\"#\" data-role=\"button\" data-inline=\"true\" data-icon=\"\" onclick=\"actualizarConfiguracion("+idAsignatura+")\"> Actualizar </a>";
+			code="<a href=\"#\" data-role=\"button\" data-inline=\"true\" data-icon=\"\" onclick=\"actualizarConfiguracion("+idAsignaturaSeleccionada+")\"> Actualizar </a>";
 			$('#botonConf').html(code);
 			
 			code="<input type=\"number\" name=\"porcentajeT\" id=\"porcentajeTId\" value=\""+arrayRespuesta[0]+"\" />";
@@ -209,8 +194,11 @@ function modificarConfAsignatura(idAsignatura){
 			
 			code="<input type=\"number\" name=\"porcentajeTV\" id=\"porcentajeVId\" value=\""+arrayRespuesta[3]+"\" />";
 			$('#diTrabajos').html(code);
+			$('#DivPorcentajes').trigger('create');
+			$('#botonConf').trigger('create');
 			
-
+			location.href="#pageAddSignature";
+			
 		//location.href = "#pageConfigurationSignature";
 		},
 		error: function(respuesta){

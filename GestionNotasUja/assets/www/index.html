@@ -20,6 +20,7 @@
 <script type="text/javascript" charset="utf-8" src="apis/addAsignatures.js"></script>
 <script type="text/javascript" charset="utf-8" src="apis/confAsignature.js"></script>
 <script type="text/javascript" charset="utf-8" src="apis/addMaterialAsignature.js"></script>
+<script type="text/javascript" charset="utf-8" src="apis/contentSignature.js"></script>
 <!-- FIN -->
 
 <script src="jquery.mobile/json.min.js"></script>
@@ -121,12 +122,12 @@
 		
 		<div data-role="content" id = "listarAsignaturasTitulacion">
 			<form id="formAnadeAsignatura">
-				<div id="Titula">
+				<div id="TitulaAsign">
 					<div id="titulaciones"></div>
 					<div id="asignaturaElegida"></div>
 				</div>
 
-				<div data-role="collapsible-set">
+				<div data-role="collapsible-set" id="DivPorcentajes">
 					<div data-role="collapsible" data-collapsed="true">
 						<h3>Calificaciones</h3>
 
@@ -160,18 +161,17 @@
 
 	<!-- Configura la asignatura Teoría/Práctica/Trabajos  -->
 	<div data-role="page" id="pageConfigurationSignature">
-		<div data-role="header" data-position="fixed" id="cabecer">
-			<!-- <a href="#pageSignatures" data-icon="back">Atrás</a>-->
-			
-			 <!-- <a href="javascript:modificarConfAsignatura()" data-icon="gear">Configuración</a>-->
-			<!-- <h1 name="nombreAsignatura" id="asignatura">Asignatura</h1>-->
-			<!-- <div data-role="navbar">
+		<div data-role="header" data-position="fixed" id="cabeceraConfiguracion">
+			<a href="#pageSignatures" data-icon="back">Atrás</a>
+			<h1 name="nombreAsignatura" id="asignatura">Asignatura</h1>
+		    <a href="javascript:modificarConfAsignatura()" data-icon="gear">Configuración</a>
+			<div data-role="navbar">
 				<ul>
 					<li><a href="" class="ui-btn-active" onClick="mostrarDIV('T')"> Teoria </a></li>
 					<li><a href="" onClick="mostrarDIV('P')"> Práticas </a></li>
 					<li><a href="" onClick="mostrarDIV('TV')"> Trabajos </a></li>
 				</ul>
-			</div> -->
+			</div>
 		</div>
 
 		<div data-role="content" id="panelConfiguracionAsignatura">
@@ -212,6 +212,22 @@
 		
 		
 		</div>
+		<div data-role="footer" data-position="fixed">
+			<h4>Pie de página</h4>
+		</div>
+	</div>
+	
+	
+	<!-- Página asignatura (lista de alumnos) -->
+ 	<div data-role="page" id="mostrarListadoAlumnos">
+		
+		<div data-role="header">
+			<a href="#pageSignatures" data-icon="back">Atrás</a>
+			<h1>Alumnos</h1>
+		</div>
+
+		<div data-role="content" id="listaAlumnos"></div>
+	
 		<div data-role="footer" data-position="fixed">
 			<h4>Pie de página</h4>
 		</div>

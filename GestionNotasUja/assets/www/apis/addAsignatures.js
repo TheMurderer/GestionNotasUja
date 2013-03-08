@@ -51,6 +51,7 @@ function peticionTitulaciones(){
 			arrayRespuesta = eval(respuesta);
 
 			var i;
+			var codeButton = "";
 			var codhtml = '<p>Titulacion</p>'; 
 			codhtml = codhtml + '<select id="menuTitulaciones" name="titulacion" >';
 			if(arrayRespuesta.length != 0){
@@ -59,8 +60,14 @@ function peticionTitulaciones(){
 				}
 				codhtml = codhtml + '</select>';
 				
+				codeButton = "<a href=\"#\" data-role=\"button\" data-inline=\"true\" data-icon=\"\" onclick=\"peticionAnadirAsignatura()\"> Añadir </a>";
+				
 				$('#titulaciones').html(codhtml);
 				$('#menuTitulaciones').selectmenu();
+				$('#TitulaAsign').show();
+				$('#botonConf').html(codeButton);
+				
+				$('#botonConf').trigger('create');
 			}
 			
 			$('#menuTitulaciones').change(function() {
@@ -97,6 +104,7 @@ function peticionAsignaturasTitulacion(idTitulacion){
 		contentType:'application/json; charset=utf-8',
 		success: function(respuesta){
 			alert(idTitulacion);
+
 			
 			//Asignaturas pertenecientes a una titulación
 			arrayRespuesta = eval(respuesta);
@@ -115,6 +123,7 @@ function peticionAsignaturasTitulacion(idTitulacion){
 			
 			$('#asignaturaElegida').html(codhtml);
 			$('#menuAsigntauras').selectmenu();
+			
 			
 		},
 		error: function(respuesta){
