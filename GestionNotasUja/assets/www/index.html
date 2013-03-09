@@ -21,6 +21,7 @@
 <script type="text/javascript" charset="utf-8" src="apis/confAsignature.js"></script>
 <script type="text/javascript" charset="utf-8" src="apis/addMaterialAsignature.js"></script>
 <script type="text/javascript" charset="utf-8" src="apis/contentSignature.js"></script>
+<script type="text/javascript" charset="utf-8" src="apis/califications.js"></script>
 <!-- FIN -->
 
 <script src="jquery.mobile/json.min.js"></script>
@@ -234,6 +235,36 @@
 
 		<div data-role="footer" data-position="fixed">
 			<h4>Pie de página</h4>
+		</div>
+	</div>
+	
+	<!-- Pagina de calificacion de los alumnos-->
+	<div data-role="page" id="calificacionAlumnos">
+		<div data-role="header" data-position="fixed" id="cabeceraConfiguracionAlumnos">
+			<a href="#pageSignatures" data-icon="back">Atrás</a>
+			<h1 id="asignatura">Alumno</h1>
+		    
+			<div data-role="navbar">
+				<ul>
+					<li><a href="" class="ui-btn-active" onClick="mostrarDIV('T')"> Teoria </a></li>
+					<li><a href="" onClick="mostrarDIV('P')"> Práticas </a></li>
+					<li><a href="" onClick="mostrarDIV('TV')"> Trabajos </a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div data-role="content" id="panelConfiguracionAsignatura">
+
+			<div data-role="content" id="confDIVTeoria">Teoria</div>
+
+			<div data-role="content" id="confDIVPractica"> Practica</div>
+			
+			<div data-role="content" id="confDIVTrabajos"> Trabajos</div>
+
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+			<h4>Gestor de Notas</h4>
 		</div>
 	</div>
 
