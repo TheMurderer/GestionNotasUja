@@ -246,20 +246,33 @@
 		    
 			<div data-role="navbar">
 				<ul>
-					<li><a href="" class="ui-btn-active" onClick="mostrarDIV('T')"> Teoria </a></li>
-					<li><a href="" onClick="mostrarDIV('P')"> Práticas </a></li>
-					<li><a href="" onClick="mostrarDIV('TV')"> Trabajos </a></li>
+					<li><a href="" class="ui-btn-active" onClick="mostrarDIVAsig('T')"> Teoria </a></li>
+					<li><a href="" onClick="mostrarDIVAsig('P')"> Prácticas </a></li>
+					<li><a href="" onClick="mostrarDIVAsig('TV')"> Trabajos </a></li>
 				</ul>
 			</div>
 		</div>
+		
+		<div id="cargando4" class="capaCargando">
+			<img class="imagen" src="jquery.mobile/images/loading.gif">
+		</div>
 
-		<div data-role="content" id="panelConfiguracionAsignatura">
-
-			<div data-role="content" id="confDIVTeoria">Teoria</div>
-
-			<div data-role="content" id="confDIVPractica"> Practica</div>
+		<div data-role="content" id="panelContenidoAsignaturaAlum">
+			<form id="formCalificAlumnoTeoria">
+				<div data-role="content" id="contDIVTeoria"></div>
+			</form>
+			<form id="formCalificAlumnoPracticas">
+				<div data-role="content" id="contDIVPractica"></div>
+			</form>
+			<form id="formCalificAlumnoTrabajos">		
+				<div data-role="content" id="contDIVTrabajos"></div>
+			</form>
 			
-			<div data-role="content" id="confDIVTrabajos"> Trabajos</div>
+				<div align="center">
+						<a href="" data-role="button" data-inline="true" data-icon=""
+							onclick="actualizarDatos()">Actualizar</a>
+				</div>
+			
 
 		</div>
 
