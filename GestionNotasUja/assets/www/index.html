@@ -163,7 +163,7 @@
 	<div data-role="page" id="pageConfigurationSignature">
 		<div data-role="header" data-position="fixed" id="cabeceraConfiguracion">
 			<a href="#pageSignatures" data-icon="back">Atrás</a>
-			<h1 name="nombreAsignatura" id="asignatura">Asignatura</h1>
+			<h1 id="asignatura">Asignatura</h1>
 		    <a href="javascript:modificarConfAsignatura()" data-icon="gear">Configuración</a>
 			<div data-role="navbar">
 				<ul>
@@ -225,9 +225,13 @@
 			<a href="#pageSignatures" data-icon="back">Atrás</a>
 			<h1>Alumnos</h1>
 		</div>
+		
+		<div id="cargando3" class="capaCargando">
+			<img class="imagen" src="jquery.mobile/images/loading.gif">
+		</div>
 
 		<div data-role="content" id="listaAlumnos"></div>
-	
+
 		<div data-role="footer" data-position="fixed">
 			<h4>Pie de página</h4>
 		</div>

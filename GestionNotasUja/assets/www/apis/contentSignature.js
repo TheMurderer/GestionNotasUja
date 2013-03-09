@@ -1,7 +1,8 @@
 var idAsignaturaSeleccionada = 0;
 
 function mostrarListaAlumnos(idAsignatura){
-	alert(idAsignatura);
+	
+	location.href = "#mostrarListadoAlumnos";
 	
 	idAsignaturaSeleccionada = idAsignatura;
 	
@@ -18,38 +19,33 @@ function mostrarListaAlumnos(idAsignatura){
 		contentType:'application/json; charset=utf-8',
 		success: function(respuesta){
 			
-			var i;
 			arrayRespuesta = eval(respuesta);
 			
+			var i;
+			var codhtml = '<ul data-role="listview" data-filter="true" id="listadoAlumnos">';
 			if(arrayRespuesta.length != 0){
-				alert("Hay datos");
-				var codhtml = '<ul data-role="listview" id="listaAl" data-filter="true">';
-				
 				for(i = 0; i < arrayRespuesta.length; i++){
-					codhtml = codhtml + '<li><a href="" onclick="mostrarAlumno('+ arrayRespuesta[i]["dni"] +')" >'+ arrayRespuesta[i]["apellidos"] +', ' + arrayRespuesta[i]["nombre"] +'</li>';
+					codhtml = codhtml + '<li><a href="" onclick="" >'+ arrayRespuesta[i]["apellidos"] + ',' + arrayRespuesta[i]["nombre"] +'</a></li>';
 				}
 				codhtml = codhtml + '</ul>';
-				alert(codhtml);	
 				
 				$('#listaAlumnos').html(codhtml);
-				location.href = "#mostrarListadoAlumnos";
-				
-				$('#listadoAl').refresh();
-				$('#listadoAlumnos').trigger('create');
-				
-				
-				//location.href = "#mostrarListadoAlumnos";
-				
+				$('#listadoAlumnos').listview();
 				
 			}else{
-				alert("No tiene alumnos");
+				$('#listaAlumnos').html("<h3>No se hay ningún alumno todavia</h3>");
 			}
-			
-			location.href = "#mostrarListadoAlumnos";
-			
         },
 		error: function(respuesta){
 			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+		},
+		beforeSend: function(){
+			$('#cargando3').show();
+			$('#listaAlumnos').hide();
+		},
+		complete: function(){
+			$('#cargando3').hide();
+			$('#listaAlumnos').show();
 		}
 	});
 }
