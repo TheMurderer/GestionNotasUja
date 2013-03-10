@@ -28,14 +28,13 @@ function calificarAlumno(dniAlumno, idAsignatura){
 			var codhtmlTeoria="";
 			var codhtmlPracticas ="";
 			var codhtmlTrabajos ="";
-
-			
+						
 				if(arrayRespuesta[0].length != 0){
 					for(i = 0; i < arrayRespuesta[0].length;i++){
 						if(arrayRespuesta[0][i]["valor"] != -1){
-							codhtmlTeoria = codhtmlTeoria + '<br><b>' + arrayRespuesta[0][i]["descripcion"] + '</b> Maxima puntuacion: '+ arrayRespuesta[0][i]["porcentaje"]+ ' <input type="text" name="' +arrayRespuesta[0][i]["id"] + '" id="' +arrayRespuesta[0][i]["id"] + '"  value="' + arrayRespuesta[0][i]["valor"]+'" /><br>';
+							codhtmlTeoria = codhtmlTeoria + '<br><b>' + arrayRespuesta[0][i]["descripcion"] + '</b> Maxima puntuacion: '+ arrayRespuesta[0][i]["porcentaje"]+ ' <input type="text" class="numbersOnly" onkeyup="javascript:soloNumeros(this,0,'+arrayRespuesta[0][i]["porcentaje"]+');" name="' +arrayRespuesta[0][i]["id"] + '" id="' +arrayRespuesta[0][i]["id"] + '"  value="' + arrayRespuesta[0][i]["valor"]+'" /><br>';
 						}else{
-							codhtmlTeoria = codhtmlTeoria + '<br><b>' + arrayRespuesta[0][i]["descripcion"] + '</b> Maxima puntuacion: '+ arrayRespuesta[0][i]["porcentaje"]+ ' <input type="text" name="' +arrayRespuesta[0][i]["id"] + '" id="' +arrayRespuesta[0][i]["id"] + '"  value="" /><br>';
+							codhtmlTeoria = codhtmlTeoria + '<br><b>' + arrayRespuesta[0][i]["descripcion"] + '</b> Maxima puntuacion: '+ arrayRespuesta[0][i]["porcentaje"]+ ' <input type="text" class="numbersOnly" onkeyup="javascript:soloNumeros(this,0,'+arrayRespuesta[0][i]["porcentaje"]+');" name="' +arrayRespuesta[0][i]["id"] + '" id="' +arrayRespuesta[0][i]["id"] + '"  value="" /><br>';
 
 						}
 					}
@@ -46,9 +45,9 @@ function calificarAlumno(dniAlumno, idAsignatura){
 				if(arrayRespuesta[1].length != 0){
 					for(i = 0; i < arrayRespuesta[1].length;i++){
 						if(arrayRespuesta[1][i]["valor"] != -1){
-							codhtmlPracticas = codhtmlPracticas + '<br> <b>' + arrayRespuesta[1][i]["descripcion"] + '</b> Maxima puntuacion: '+ arrayRespuesta[1][i]["porcentaje"] + ' <input type="text" name="' +arrayRespuesta[1][i]["id"] + '" id="' +arrayRespuesta[1][i]["id"] + '"  value="' + arrayRespuesta[1][i]["valor"]+'" /><br>';
+							codhtmlPracticas = codhtmlPracticas + '<br> <b>' + arrayRespuesta[1][i]["descripcion"] + '</b> Maxima puntuacion: '+ arrayRespuesta[1][i]["porcentaje"] + ' <input type="text" class="numbersOnly" onkeyup="javascript:soloNumeros(this,0,'+arrayRespuesta[1][i]["porcentaje"]+');" name="' +arrayRespuesta[1][i]["id"] + '" id="' +arrayRespuesta[1][i]["id"] + '"  value="' + arrayRespuesta[1][i]["valor"]+'" /><br>';
 						}else{
-							codhtmlPracticas = codhtmlPracticas + '<br><b>' + arrayRespuesta[1][i]["descripcion"] + '</b> Maxima puntuacion: '+ arrayRespuesta[1][i]["porcentaje"] + ' <input type="text" name="' +arrayRespuesta[1][i]["id"] + '" id="' +arrayRespuesta[1][i]["id"] + '"  value="" /><br>';
+							codhtmlPracticas = codhtmlPracticas + '<br><b>' + arrayRespuesta[1][i]["descripcion"] + '</b> Maxima puntuacion: '+ arrayRespuesta[1][i]["porcentaje"] + ' <input type="text" class="numbersOnly" onkeyup="javascript:soloNumeros(this,0,'+arrayRespuesta[1][i]["porcentaje"]+');" name="' +arrayRespuesta[1][i]["id"] + '" id="' +arrayRespuesta[1][i]["id"] + '"  value="" /><br>';
 						}
 					}
 				}else{
@@ -58,15 +57,16 @@ function calificarAlumno(dniAlumno, idAsignatura){
 				if(arrayRespuesta[2].length != 0){
 					for(i = 0; i < arrayRespuesta[2].length;i++){
 						if(arrayRespuesta[2][i]["valor"] != -1){
-							codhtmlTrabajos = codhtmlTrabajos + '<br> <b>' + arrayRespuesta[2][i]["descripcion"] + '</b> Maxima puntuacion: '+ arrayRespuesta[2][i]["porcentaje"] + ' <input type="text" name="' +arrayRespuesta[2][i]["id"] + '" id="' +arrayRespuesta[2][i]["id"] + '"  value="' + arrayRespuesta[2][i]["valor"]+'" /><br>';
+							codhtmlTrabajos = codhtmlTrabajos + '<br> <b>' + arrayRespuesta[2][i]["descripcion"] + '</b> Maxima puntuacion: '+ arrayRespuesta[2][i]["porcentaje"] + ' <input type="text" class="numbersOnly" onkeyup="javascript:soloNumeros(this,0,'+arrayRespuesta[2][i]["porcentaje"]+');" name="' +arrayRespuesta[2][i]["id"] + '" id="' +arrayRespuesta[2][i]["id"] + '"  value="' + arrayRespuesta[2][i]["valor"]+'" /><br>';
 						}else{
-							codhtmlTrabajos = codhtmlTrabajos + '<br><b>' + arrayRespuesta[2][i]["descripcion"] + '</b> Maxima puntuacion: '+ arrayRespuesta[2][i]["porcentaje"] + ' <input type="text" name="' +arrayRespuesta[2][i]["id"] + '" id="' +arrayRespuesta[2][i]["id"] + '"  value="" /><br>';
+							codhtmlTrabajos = codhtmlTrabajos + '<br><b>' + arrayRespuesta[2][i]["descripcion"] + '</b> Maxima puntuacion: '+ arrayRespuesta[2][i]["porcentaje"] + ' <input type="text" class="numbersOnly" onkeyup="javascript:soloNumeros(this,0,'+arrayRespuesta[2][i]["porcentaje"]+');" name="' +arrayRespuesta[2][i]["id"] + '" id="' +arrayRespuesta[2][i]["id"] + '"  value="" /><br>';
 
 						}
 					}
 				}else{
 					codhtmlTrabajos = 'No hay Trabajos';
 				}
+				
 				
 				$('#contDIVTeoria').html(codhtmlTeoria);
 				$('#contDIVPractica').html(codhtmlPracticas);
@@ -139,8 +139,13 @@ function actualizarDatos(){
 		},
 		contentType:'application/json; charset=utf-8',
 		success: function(respuesta){
-			//alert(respuesta);
 			arrayRespuesta = eval(respuesta);
+			
+			if (arrayRespuesta["ok"] == 1){
+				alert("Datos actualizados correctamente");
+			}else{
+				alert("Incorrecto")
+			}
             
 		},
 		error: function(respuesta){
@@ -149,3 +154,4 @@ function actualizarDatos(){
 	});
 	
 }
+
