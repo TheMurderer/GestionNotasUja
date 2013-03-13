@@ -1,3 +1,6 @@
+var idTitulacionSeleccionada = '';
+var idAsignaturaSeleccionada = '';
+
 function peticionAnadirAsignatura(){
 	var cad = "[" + JSON.stringify($("#formAnadeAsignatura").serializeObject()) + "]";
 	alert(cad);
@@ -71,8 +74,11 @@ function peticionTitulaciones(){
 			}
 			
 			$('#menuTitulaciones').change(function() {
+				idTitulacionSeleccionada = $('#menuTitulaciones').val()
 				peticionAsignaturasTitulacion($('#menuTitulaciones').val());
 			});
+			
+			//$('#botonAnadirAsignatura').button();
 		},
 		error: function(respuesta){
 			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
@@ -124,7 +130,9 @@ function peticionAsignaturasTitulacion(idTitulacion){
 			$('#asignaturaElegida').html(codhtml);
 			$('#menuAsigntauras').selectmenu();
 			
-			
+			$('#menuAsigntauras').change(function() {
+				idAsignaturaSeleccionada = $('#menuAsigntauras').val()
+			});
 		},
 		error: function(respuesta){
 			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
@@ -140,4 +148,129 @@ function peticionAsignaturasTitulacion(idTitulacion){
 	});
 	
 }
+
+function hacerVisibleBloque(visible){
+	if(visible == 0){
+		$('#DivPorcentajes').hide();
+		$('#DivNumeroDeGrupos').hide();
+		$('#DivConfiguracionDeGrupos').hide();
+	}else{
+		$('#DivPorcentajes').show();
+		$('#DivNumeroDeGrupos').show();
+		$('#DivConfiguracionDeGrupos').show();
+	}
+	
+}
+
+function deshabilitarBoton(idComponente){
+	var id = '#' + idComponente;
+	$(id).button('disable'); 
+}
+
+/*-------------------------------------------------------*/
+var numeroGruposTeoriaAnadidos = 1;
+function addGruposTeoria(){
+	var codhtml = '';
+	var nombre = "GrupoT" + numeroGruposTeoriaAnadidos;
+	
+	codhtml = codhtml + '<select name=\"'+ nombre +'\" >';
+	
+	codhtml = codhtml + '<option value="A">Grupo A</option>';
+	codhtml = codhtml + '<option value="A">Grupo B</option>';
+	codhtml = codhtml + '<option value="A">Grupo C</option>';
+	codhtml = codhtml + '<option value="A">Grupo D</option>';
+	codhtml = codhtml + '<option value="A">Grupo E</option>';
+	codhtml = codhtml + '<option value="A">Grupo F</option>';
+	codhtml = codhtml + '<option value="A">Grupo G</option>';
+	codhtml = codhtml + '<option value="A">Grupo H</option>';
+	codhtml = codhtml + '<option value="A">Grupo I</option>';
+	codhtml = codhtml + '<option value="A">Grupo J</option>';
+	
+	nombre="TurnoT" + numeroGruposTeoriaAnadidos;
+	codhtml = codhtml + '</select>';
+	
+	codhtml = codhtml + '<select name=\"'+ nombre +'\">';
+	
+	codhtml = codhtml + '<option value="M">Manana</option>';
+	codhtml = codhtml + '<option value="T">Tarde</option>';
+	
+	codhtml = codhtml + '</select><br>';
+	
+	
+	numeroGruposTeoriaAnadidos ++;
+	
+	$('#DivGruposTeoria').append(codhtml);
+	$('#listaGruposTeoria').trigger('create');
+}
+
+var numeroGruposPracticasAnadidos = 1;
+function addGruposPracticas(){
+	var codhtml = '';
+	var nombre = "GrupoP" + numeroGruposPracticasAnadidos;
+	
+	codhtml = codhtml + '<select name=\"'+ nombre +'\" >';
+	
+	codhtml = codhtml + '<option value="A">Grupo A</option>';
+	codhtml = codhtml + '<option value="A">Grupo B</option>';
+	codhtml = codhtml + '<option value="A">Grupo C</option>';
+	codhtml = codhtml + '<option value="A">Grupo D</option>';
+	codhtml = codhtml + '<option value="A">Grupo E</option>';
+	codhtml = codhtml + '<option value="A">Grupo F</option>';
+	codhtml = codhtml + '<option value="A">Grupo G</option>';
+	codhtml = codhtml + '<option value="A">Grupo H</option>';
+	codhtml = codhtml + '<option value="A">Grupo I</option>';
+	codhtml = codhtml + '<option value="A">Grupo J</option>';
+	
+	nombre="TurnoPE" + numeroGruposPracticasAnadidos;
+	codhtml = codhtml + '</select>';
+	
+	codhtml = codhtml + '<table><tr>';
+	
+	codhtml = codhtml + '<td><select name=\"'+ nombre +'\" data-inline="true">';
+	
+	codhtml = codhtml + '<option value="M">9:30</option>';
+	codhtml = codhtml + '<option value="T">10:30</option>';
+	codhtml = codhtml + '<option value="T">11:30</option>';
+	codhtml = codhtml + '<option value="T">12:30</option>';
+	codhtml = codhtml + '<option value="T">13:30</option>';
+	codhtml = codhtml + '<option value="T">14:30</option>';
+	codhtml = codhtml + '<option value="T">15:30</option>';
+	codhtml = codhtml + '<option value="T">16:30</option>';
+	codhtml = codhtml + '<option value="T">17:30</option>';
+	codhtml = codhtml + '<option value="T">18:30</option>';
+	codhtml = codhtml + '<option value="T">19:30</option>';
+	codhtml = codhtml + '<option value="T">20:30</option>';
+	codhtml = codhtml + '<option value="T">21:30</option>';
+	
+	
+	codhtml = codhtml + '</select></td>';
+	
+	nombre="TurnoPT" + numeroGruposPracticasAnadidos;
+	
+	codhtml = codhtml + '<td><select name=\"'+ nombre +'\" data-inline="true">';
+	
+	codhtml = codhtml + '<option value="M">9:30</option>';
+	codhtml = codhtml + '<option value="T">10:30</option>';
+	codhtml = codhtml + '<option value="T">11:30</option>';
+	codhtml = codhtml + '<option value="T">12:30</option>';
+	codhtml = codhtml + '<option value="T">13:30</option>';
+	codhtml = codhtml + '<option value="T">14:30</option>';
+	codhtml = codhtml + '<option value="T">15:30</option>';
+	codhtml = codhtml + '<option value="T">16:30</option>';
+	codhtml = codhtml + '<option value="T">17:30</option>';
+	codhtml = codhtml + '<option value="T">18:30</option>';
+	codhtml = codhtml + '<option value="T">19:30</option>';
+	codhtml = codhtml + '<option value="T">20:30</option>';
+	codhtml = codhtml + '<option value="T">21:30</option>';
+	
+	codhtml = codhtml + '</select></td>';
+	
+	codhtml = codhtml + '</tr></table> <br>';
+	
+	numeroGruposPracticasAnadidos ++;
+	
+	$('#DivGruposPracticas').append(codhtml);
+	$('#listaGruposPracticas').trigger('create');
+}
+
 

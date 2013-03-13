@@ -41,9 +41,9 @@
 		<div data-role="content">
 			<form id="formLogin">
 				<p>Usuario:</p>
-				<input type="email" name="email" id="textinput" value="" /> <br>
+				<input type="email" name="email" id="textinput" value="lidia@ujaen.es" /> <br>
 				<p>Contraseña:</p>
-				<input type="password" name="pass" id="passwordinput" value="" />
+				<input type="password" name="pass" id="passwordinput" value="12345" />
 				<br>
 				<div align="center">
 					<a href="" data-role="button" data-inline="true"
@@ -128,38 +128,119 @@
 					<div id="titulaciones"></div>
 					<div id="asignaturaElegida"></div>
 				</div>
-
-				<div data-role="collapsible-set" id="DivPorcentajes">
-					<div data-role="collapsible" data-collapsed="true">
-						<h3>Calificaciones</h3>
-
-						<label for="textinput4">Porcentaje Teoria:</label> <div id="diTeoria"><input
-							type="number" name="porcentajeT" id="porcentajeTId" value="" /></div>
-
-						<label for="textinput4">Porcentaje Práctica:</label> <div id="diPractica"><input
-							type="number" name="porcentajeP" id="porcentajePId" value="" /></div>
-
-						<label for="textinput4">Porcentaje Asistencia:</label> <div id="diAsistencia"><input
-							type="number" name="porcentajeA" id="porcentajeAId" value="" /></div>
-						
-						<label for="textinput5">Porcentaje Trabajos:</label> <div id="diTrabajos"><input
-							type="number" name="porcentajeTV" id="porcentajeVId" value="" /></div>
-
-					</div>
-				</div>
 			</form>
-
-			<div id="botonConf" align="center">
-				<a href="#" data-role="button" data-inline="true" data-icon=""
-					onclick="peticionAnadirAsignatura()"> Añadir </a>
+		    
+			<div align="center">
+				<a href="#divDialogo" data-role="button" data-inline="true" data-rel="dialog" data-theme="b" data-transition="flip">Añadir</a>
 			</div>
-
+			
+			
+			
 		</div>
 
 		<div data-role="footer" data-position="fixed">
 			<h4>Gestor de Notas</h4>
 		</div>
 	</div>
+	
+	<!-- DIALOGO -->
+	<div data-role="page" id="divDialogo">
+		<div data-role="header" data-position="fixed" id="cabeceraConfiguracion">
+			<h1 id="asignatura">Dialogo</h1>
+		</div>
+
+		<div data-role="content" id="panelConfiguracionAsignatura" align="center">
+			<h3>¿Es usted el representante de la asignatura?</h3>
+			<a href="#pageAddPorcentaje" data-role="button" data-inline="true">Si</a>
+			<a href="#pageSignatures" data-role="button" data-inline="true">No</a>		
+		</div>
+	</div>
+
+	
+	<!-- CONFIGURAR PORCENTAJES DE LAS ASIGNATURA -->
+	<div data-role="page" id="pageAddPorcentaje">
+		<div data-role="header" data-position="fixed">
+			<a href="#pageAddSignature" data-icon="back">Atrás</a>
+			<h1>Porcenjates</h1>
+		</div>
+		
+		<div data-role="content" id = "listaPorcentajesAsignatura">
+			<h3>Calificaciones</h3>
+
+			<label for="textinput4">Porcentaje Teoria:</label> <div id="diTeoria"><input
+				type="number" name="porcentajeT" id="porcentajeTId" value="" /></div>
+
+			<label for="textinput4">Porcentaje Práctica:</label> <div id="diPractica"><input
+				type="number" name="porcentajeP" id="porcentajePId" value="" /></div>
+
+			<label for="textinput4">Porcentaje Asistencia:</label> <div id="diAsistencia"><input
+				type="number" name="porcentajeA" id="porcentajeAId" value="" /></div>
+			
+			<label for="textinput5">Porcentaje Trabajos:</label> <div id="diTrabajos"><input
+				type="number" name="porcentajeTV" id="porcentajeVId" value="" /></div>
+		</div>
+	
+		<div align = "center">
+			<a href="#pageAddGruposTeoria" data-role="button" data-inline="true" data-theme="b" >Siguiente</a>	
+		</div>
+		
+		<div data-role="footer" data-position="fixed">
+			<h4>Gestor de Notas</h4>
+		</div>
+	</div>
+
+	<!-- CONFIGURAR GRUPOS TEORÍA -->
+	<div data-role="page" id="pageAddGruposTeoria">
+		<div data-role="header" data-position="fixed">
+			<a href="#pageAddPorcentaje" data-icon="back">Atrás</a>
+			
+			<h1>Grupos Teoría</h1>
+			
+			<a href="javascript:addGruposTeoria()" data-icon="plus">Añadir</a>
+		</div>
+		
+		<div data-role="content" id = "listaGruposTeoria">
+			<h3>Grupos de Teoría</h3>
+			<div id="DivGruposTeoria">
+			
+			</div>
+		</div>
+	
+		<div align = "center">
+			<a href="#pageAddGruposPracticas" data-role="button" data-inline="true" data-theme="b" >Siguiente</a>	
+		</div>
+		
+		<div data-role="footer" data-position="fixed">
+			<h4>Gestor de Notas</h4>
+		</div>
+	</div>
+	
+	<!-- CONFIGURAR GRUPOS PRÁCTICAS -->
+	<div data-role="page" id="pageAddGruposPracticas">
+		<div data-role="header" data-position="fixed">
+			<a href="#pageAddGruposTeoria" data-icon="back">Atrás</a>
+			
+			<h1>Grupos Prácticas</h1>
+			
+			<a href="javascript:addGruposPracticas()" data-icon="plus">Añadir</a>
+		</div>
+		
+		<div data-role="content" id = "listaGruposPracticas">
+			<h3>Grupos de Prácticas</h3>
+			<div id="DivGruposPracticas">
+			
+			</div>
+		</div>
+	
+		<div align = "center">
+			<a href="#" data-role="button" data-inline="true" data-theme="b" >Terminar</a>	
+		</div>
+		
+		<div data-role="footer" data-position="fixed">
+			<h4>Gestor de Notas</h4>
+		</div>
+	</div>
+
 
 	<!-- Configura la asignatura Teoría/Práctica/Trabajos  -->
 	<div data-role="page" id="pageConfigurationSignature">
