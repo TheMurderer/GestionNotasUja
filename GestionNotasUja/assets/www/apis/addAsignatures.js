@@ -74,7 +74,7 @@ function peticionTitulaciones(){
 			}
 			
 			$('#menuTitulaciones').change(function() {
-				idTitulacionSeleccionada = $('#menuTitulaciones').val()
+				idTitulacionSeleccionada = $('#menuTitulaciones').val();
 				peticionAsignaturasTitulacion($('#menuTitulaciones').val());
 			});
 			
@@ -94,7 +94,6 @@ function peticionTitulaciones(){
 	});
 	
 }
-
 
 function peticionAsignaturasTitulacion(idTitulacion){
 	var cad = "[{\"titulacion\":\""+ idTitulacion +"\"}]";
@@ -131,7 +130,7 @@ function peticionAsignaturasTitulacion(idTitulacion){
 			$('#menuAsigntauras').selectmenu();
 			
 			$('#menuAsigntauras').change(function() {
-				idAsignaturaSeleccionada = $('#menuAsigntauras').val()
+				idAsignaturaSeleccionada = $('#menuAsigntauras').val();
 			});
 		},
 		error: function(respuesta){
@@ -173,6 +172,10 @@ function addGruposTeoria(){
 	var codhtml = '';
 	var nombre = "GrupoT" + numeroGruposTeoriaAnadidos;
 	
+	codhtml = codhtml + '<div align="center" class="'+ nombre +'">';
+	
+	codhtml = codhtml + '<div data-role="controlgroup">';
+	
 	codhtml = codhtml + '<select name=\"'+ nombre +'\" >';
 	
 	codhtml = codhtml + '<option value="A">Grupo A</option>';
@@ -194,7 +197,13 @@ function addGruposTeoria(){
 	codhtml = codhtml + '<option value="M">Manana</option>';
 	codhtml = codhtml + '<option value="T">Tarde</option>';
 	
-	codhtml = codhtml + '</select><br>';
+	codhtml = codhtml + '</select>';
+	
+	codhtml = codhtml + '</div>';
+	
+	codhtml = codhtml + '<a href="#" data-inline="true" data-role="button" onclick="javascript:borrarGrupoTeoria('+numeroGruposTeoriaAnadidos+');">Borrar</a>';
+	
+	codhtml = codhtml + '</div> <br>';
 	
 	
 	numeroGruposTeoriaAnadidos ++;
@@ -203,69 +212,82 @@ function addGruposTeoria(){
 	$('#listaGruposTeoria').trigger('create');
 }
 
+function borrarGrupoTeoria(numero){
+	$("div.GrupoT"+numero).remove();
+	$('#listaGruposTeoria').trigger('create');
+}
+
+
 var numeroGruposPracticasAnadidos = 1;
 function addGruposPracticas(){
 	var codhtml = '';
 	var nombre = "GrupoP" + numeroGruposPracticasAnadidos;
 	
-	codhtml = codhtml + '<select name=\"'+ nombre +'\" >';
+	codhtml = codhtml + '<div align="center" class="'+ nombre +'">';
 	
-	codhtml = codhtml + '<option value="A">Grupo A</option>';
-	codhtml = codhtml + '<option value="A">Grupo B</option>';
-	codhtml = codhtml + '<option value="A">Grupo C</option>';
-	codhtml = codhtml + '<option value="A">Grupo D</option>';
-	codhtml = codhtml + '<option value="A">Grupo E</option>';
-	codhtml = codhtml + '<option value="A">Grupo F</option>';
-	codhtml = codhtml + '<option value="A">Grupo G</option>';
-	codhtml = codhtml + '<option value="A">Grupo H</option>';
-	codhtml = codhtml + '<option value="A">Grupo I</option>';
-	codhtml = codhtml + '<option value="A">Grupo J</option>';
+	codhtml = codhtml + '<div data-role="controlgroup">';
+	
+	codhtml = codhtml + '<select name="'+ nombre +'" >';
+	
+	codhtml = codhtml + '<option value="1">Grupo 1</option>';
+	codhtml = codhtml + '<option value="2">Grupo 2</option>';
+	codhtml = codhtml + '<option value="3">Grupo 3</option>';
+	codhtml = codhtml + '<option value="4">Grupo 4</option>';
+	codhtml = codhtml + '<option value="5">Grupo 5</option>';
+	codhtml = codhtml + '<option value="6">Grupo 6</option>';
+	codhtml = codhtml + '<option value="7">Grupo 7</option>';
+	codhtml = codhtml + '<option value="8">Grupo 8</option>';
+	codhtml = codhtml + '<option value="9">Grupo 9</option>';
+	codhtml = codhtml + '<option value="10">Grupo 10</option>';
 	
 	nombre="TurnoPE" + numeroGruposPracticasAnadidos;
 	codhtml = codhtml + '</select>';
 	
-	codhtml = codhtml + '<table><tr>';
 	
-	codhtml = codhtml + '<td><select name=\"'+ nombre +'\" data-inline="true">';
+	codhtml = codhtml + '<select name="'+ nombre +'" >';
 	
-	codhtml = codhtml + '<option value="M">9:30</option>';
-	codhtml = codhtml + '<option value="T">10:30</option>';
-	codhtml = codhtml + '<option value="T">11:30</option>';
-	codhtml = codhtml + '<option value="T">12:30</option>';
-	codhtml = codhtml + '<option value="T">13:30</option>';
-	codhtml = codhtml + '<option value="T">14:30</option>';
-	codhtml = codhtml + '<option value="T">15:30</option>';
-	codhtml = codhtml + '<option value="T">16:30</option>';
-	codhtml = codhtml + '<option value="T">17:30</option>';
-	codhtml = codhtml + '<option value="T">18:30</option>';
-	codhtml = codhtml + '<option value="T">19:30</option>';
-	codhtml = codhtml + '<option value="T">20:30</option>';
-	codhtml = codhtml + '<option value="T">21:30</option>';
+	codhtml = codhtml + '<option value="9:30">9:30</option>';
+	codhtml = codhtml + '<option value="10:30">10:30</option>';
+	codhtml = codhtml + '<option value="11:30">11:30</option>';
+	codhtml = codhtml + '<option value="12:30">12:30</option>';
+	codhtml = codhtml + '<option value="13:30">13:30</option>';
+	codhtml = codhtml + '<option value="14:30">14:30</option>';
+	codhtml = codhtml + '<option value="15:30">15:30</option>';
+	codhtml = codhtml + '<option value="16:30">16:30</option>';
+	codhtml = codhtml + '<option value="17:30">17:30</option>';
+	codhtml = codhtml + '<option value="18:30">18:30</option>';
+	codhtml = codhtml + '<option value="19:30">19:30</option>';
+	codhtml = codhtml + '<option value="20:30">20:30</option>';
+	codhtml = codhtml + '<option value="21:30">21:30</option>';
 	
 	
-	codhtml = codhtml + '</select></td>';
+	codhtml = codhtml + '</select>';
 	
 	nombre="TurnoPT" + numeroGruposPracticasAnadidos;
 	
-	codhtml = codhtml + '<td><select name=\"'+ nombre +'\" data-inline="true">';
+	codhtml = codhtml + '<select name="'+ nombre +'" >';
 	
-	codhtml = codhtml + '<option value="M">9:30</option>';
-	codhtml = codhtml + '<option value="T">10:30</option>';
-	codhtml = codhtml + '<option value="T">11:30</option>';
-	codhtml = codhtml + '<option value="T">12:30</option>';
-	codhtml = codhtml + '<option value="T">13:30</option>';
-	codhtml = codhtml + '<option value="T">14:30</option>';
-	codhtml = codhtml + '<option value="T">15:30</option>';
-	codhtml = codhtml + '<option value="T">16:30</option>';
-	codhtml = codhtml + '<option value="T">17:30</option>';
-	codhtml = codhtml + '<option value="T">18:30</option>';
-	codhtml = codhtml + '<option value="T">19:30</option>';
-	codhtml = codhtml + '<option value="T">20:30</option>';
-	codhtml = codhtml + '<option value="T">21:30</option>';
+	codhtml = codhtml + '<option value="9:30">9:30</option>';
+	codhtml = codhtml + '<option value="10:30">10:30</option>';
+	codhtml = codhtml + '<option value="11:30">11:30</option>';
+	codhtml = codhtml + '<option value="12:30">12:30</option>';
+	codhtml = codhtml + '<option value="13:30">13:30</option>';
+	codhtml = codhtml + '<option value="14:30">14:30</option>';
+	codhtml = codhtml + '<option value="15:30">15:30</option>';
+	codhtml = codhtml + '<option value="16:30">16:30</option>';
+	codhtml = codhtml + '<option value="17:30">17:30</option>';
+	codhtml = codhtml + '<option value="18:30">18:30</option>';
+	codhtml = codhtml + '<option value="19:30">19:30</option>';
+	codhtml = codhtml + '<option value="20:30">20:30</option>';
+	codhtml = codhtml + '<option value="21:30">21:30</option>';
 	
-	codhtml = codhtml + '</select></td>';
+	codhtml = codhtml + '</select>';
 	
-	codhtml = codhtml + '</tr></table> <br>';
+	codhtml = codhtml + '</div>';
+	
+	codhtml = codhtml + '<a href="#" data-inline="true" data-role="button" onclick="javascript:borrarGrupoPracticas('+numeroGruposPracticasAnadidos+');">Borrar</a>';
+	
+	codhtml = codhtml + '</div><br>';
 	
 	numeroGruposPracticasAnadidos ++;
 	
@@ -273,4 +295,8 @@ function addGruposPracticas(){
 	$('#listaGruposPracticas').trigger('create');
 }
 
+function borrarGrupoPracticas(numero){
+	$("div.GrupoP"+numero).remove();
+	$('#listaGruposPracticas').trigger('create');
+}
 

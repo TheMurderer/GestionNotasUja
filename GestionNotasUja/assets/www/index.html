@@ -31,7 +31,12 @@
 
 <body>
 
-	<!-- PAGINA DE LOGIN -->
+	<!--***********************************************************************-->
+	<!-- @page 		  : LOGIN de usario -->
+	<!-- @description : Punto de entrada a la aplicación con el logeo del usuario -->
+	<!-- @pageBefore  : Ninguna -->
+	<!-- @pageAfter   : -->
+	<!--***********************************************************************-->
 	<div data-role="page" id="pageLogin">
 		<div data-role="header" data-position="fixed">
 			<a href="" data-icon="arrow-l">Salir</a>
@@ -56,7 +61,12 @@
 		</div>
 	</div>
 
-	<!-- PAGINA DE REGISTRO -->
+	<!--***********************************************************************-->
+	<!-- @page 		  : REGISTRO de usuario-->
+	<!-- @description : Permite cambiar los datos del profesor-->
+	<!-- @pageBefore  : LOGIN -->
+	<!-- @pageAfter   : LOGIN -->
+	<!--***********************************************************************-->
 	<div data-role="page" id="pageRegister">
 		<div data-role="header" data-position="fixed">
 			<a href="#pageLogin" data-icon="back">Atrás</a>
@@ -90,7 +100,12 @@
 		</div>
 	</div>
 
-	<!-- PÁGINA DE ASIGNATURAS -->
+	<!--***********************************************************************-->
+	<!-- @page 		  : ASIGNATURAS DEL PROFESOR -->
+	<!-- @description : Muestra una lista con las asignaturas que el profesor lleva -->
+	<!-- @pageBefore  : LOGIN -->
+	<!-- @pageAfter   : AÑADIR ASIGNATURA/ -->
+	<!--***********************************************************************-->
 	<div data-role="page" id="pageSignatures">
 		<div data-role="header" data-position="fixed">
 			<a href="#pageLogin" data-icon="back">Atrás</a>
@@ -110,13 +125,17 @@
 		</div>
 	</div>
 
-	<!-- AÑADIR NUEVAS ASIGNATURAS -->
+	<!--***********************************************************************-->
+	<!-- @page 		  : AÑADIR ASIGNATURA -->
+	<!-- @description : Añade una asignatura nueva a la lista del profesor, permitiendo su configuración -->
+	<!-- @pageBefore  : ASIGNATURAS DEL PROFESOR -->
+	<!-- @pageAfter   : ASIGNATURAS DEL PROFESOR -->
+	<!--***********************************************************************-->
 	<div data-role="page" id="pageAddSignature">
 		<div data-role="header" data-position="fixed">
 			<a href="#pageSignatures" data-icon="back">Atrás</a>
 			<h1>Nueva asignatura</h1>
 		</div>
-		
 		
 		<div id="cargando2" class="capaCargando">
 			<img class="imagen" src="jquery.mobile/images/loading.gif">
@@ -143,21 +162,25 @@
 		</div>
 	</div>
 	
-	<!-- DIALOGO -->
+	<!-- DIALOGO RESPONSABLE -->
 	<div data-role="page" id="divDialogo">
 		<div data-role="header" data-position="fixed" id="cabeceraConfiguracion">
-			<h1 id="asignatura">Dialogo</h1>
+			<h1 id="asignatura">Responsable</h1>
 		</div>
 
 		<div data-role="content" id="panelConfiguracionAsignatura" align="center">
-			<h3>¿Es usted el representante de la asignatura?</h3>
+			<h3>¿Es usted el responsable de la asignatura?</h3>
 			<a href="#pageAddPorcentaje" data-role="button" data-inline="true">Si</a>
 			<a href="#pageSignatures" data-role="button" data-inline="true">No</a>		
 		</div>
 	</div>
-
 	
-	<!-- CONFIGURAR PORCENTAJES DE LAS ASIGNATURA -->
+	<!--***********************************************************************-->
+	<!-- @page 		  : CONFIGURACION PORCENTAJES DE ASIGNTAURA -->
+	<!-- @description : Permite configurar el porcentaje de teoría/prácticas/trabajos/asistencia -->
+	<!-- @pageBefore  : AÑADIR ASIGNATURA -->
+	<!-- @pageAfter   : CONFIGURAR GRUPOS TEORÍA -->
+	<!--***********************************************************************-->
 	<div data-role="page" id="pageAddPorcentaje">
 		<div data-role="header" data-position="fixed">
 			<a href="#pageAddSignature" data-icon="back">Atrás</a>
@@ -189,7 +212,12 @@
 		</div>
 	</div>
 
-	<!-- CONFIGURAR GRUPOS TEORÍA -->
+	<!--***********************************************************************-->
+	<!-- @page 		  : CONFIGURACION GRUPOS TEORÍA -->
+	<!-- @description : Permite configurar los grupos de tería que posee la asignatura -->
+	<!-- @pageBefore  : CONFIGURACION PORCENTAJES DE ASIGNTAURA -->
+	<!-- @pageAfter   : CONFIGURAR GRUPOS PRÁCTICAS -->
+	<!--***********************************************************************-->
 	<div data-role="page" id="pageAddGruposTeoria">
 		<div data-role="header" data-position="fixed">
 			<a href="#pageAddPorcentaje" data-icon="back">Atrás</a>
@@ -215,7 +243,12 @@
 		</div>
 	</div>
 	
-	<!-- CONFIGURAR GRUPOS PRÁCTICAS -->
+	<!--***********************************************************************-->
+	<!-- @page 		  : CONFIGURACION GRUPOS PRÁCTICAS -->
+	<!-- @description : Permite configurar los grupos de prácticas que posee la asignatura -->
+	<!-- @pageBefore  : CONFIGURACION GRUPOS TEORÍA -->
+	<!-- @pageAfter   : AÑADIR ASIGNATURA (para que el responsable de la asignatuara escoja grupos) -->
+	<!--***********************************************************************-->
 	<div data-role="page" id="pageAddGruposPracticas">
 		<div data-role="header" data-position="fixed">
 			<a href="#pageAddGruposTeoria" data-icon="back">Atrás</a>
@@ -241,8 +274,13 @@
 		</div>
 	</div>
 
-
-	<!-- Configura la asignatura Teoría/Práctica/Trabajos  -->
+	
+	<!--***********************************************************************-->
+	<!-- @page 		  : CONFIGURACION ASIGNATURA -->
+	<!-- @description : Muestra las teoría/prácticas/trabajos que posee una asigntaura  -->
+	<!-- @pageBefore  : ASIGNATURAS DEL PROFESOR -->
+	<!-- @pageAfter   : *** -->
+	<!--***********************************************************************-->
 	<div data-role="page" id="pageConfigurationSignature">
 		<div data-role="header" data-position="fixed" id="cabeceraConfiguracion">
 			<a href="#pageSignatures" data-icon="back">Atrás</a>
@@ -276,7 +314,12 @@
 		</div>
 	</div>
 
-	<!-- Añade Teoría / Práctica / trabajos voluntarios -->
+	<!--***********************************************************************-->
+	<!-- @page 		  : AÑADIR MATERIA A LA ASIGNATURA -->
+	<!-- @description : Permite añadir teoría/prácticas/trabajos a la asignatura  -->
+	<!-- @pageBefore  : CONFIGURACION ASIGNATURA -->
+	<!-- @pageAfter   : CONFIGURACION ASIGNATURA -->
+	<!--***********************************************************************-->
  	<div data-role="page" id="anadirMateriaAsignatura">
 		<div data-role="header">
 			<h1>Añadir</h1>
@@ -301,7 +344,12 @@
 	</div>
 	
 	
-	<!-- Página asignatura (lista de alumnos) -->
+	<!--***********************************************************************-->
+	<!-- @page 		  : LISTADO DE ALUMNOS DE UNA ASIGNATURA -->
+	<!-- @description : Lista los alumnos de la asignatura  -->
+	<!-- @pageBefore  : ASIGNATURAS DEL PROFESOR -->
+	<!-- @pageAfter   : *** -->
+	<!--***********************************************************************-->
  	<div data-role="page" id="mostrarListadoAlumnos">
 		
 		<div data-role="header">
@@ -320,7 +368,12 @@
 		</div>
 	</div>
 	
-	<!-- Pagina de calificacion de los alumnos-->
+	<!--***********************************************************************-->
+	<!-- @page 		  : CALIFICAR ALUMNO -->
+	<!-- @description : Permite poner la nota de teoría/prácticas/trabajos al alumno seleccionado  -->
+	<!-- @pageBefore  : LISTADO DE ALUMNOS DE UNA ASIGNATURA -->
+	<!-- @pageAfter   : LISTADO DE ALUMNOS DE UNA ASIGNATURA -->
+	<!--***********************************************************************-->
 	<div data-role="page" id="calificacionAlumnos">
 		<div data-role="header" data-position="fixed" id="cabeceraConfiguracionAlumnos">
 			<a href="#pageSignatures" data-icon="back">Atrás</a>
@@ -362,7 +415,6 @@
 			<h4>Gestor de Notas</h4>
 		</div>
 	</div>
-
 
 </body>
 
