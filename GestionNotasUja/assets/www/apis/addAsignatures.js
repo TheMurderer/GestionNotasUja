@@ -1,5 +1,6 @@
 var idTitulacionSeleccionada = '';
 var idAsignaturaSeleccionada = '';
+var esResponsable='';
 
 function peticionAnadirAsignatura(){
 	var cad = "[" + JSON.stringify($("#formAnadeAsignatura").serializeObject()) + "]";
@@ -131,6 +132,7 @@ function peticionAsignaturasTitulacion(idTitulacion){
 			
 			$('#menuAsigntauras').change(function() {
 				idAsignaturaSeleccionada = $('#menuAsigntauras').val();
+				existeResponsableAsignatura();
 			});
 		},
 		error: function(respuesta){
@@ -175,21 +177,21 @@ function addGruposTeoria(){
 	codhtml = codhtml + '<div align="center" class="'+ nombre +'">';
 	
 	codhtml = codhtml + '<div data-role="controlgroup">';
-	
+	nombre="GrupoT";
 	codhtml = codhtml + '<select name=\"'+ nombre +'\" >';
 	
 	codhtml = codhtml + '<option value="A">Grupo A</option>';
-	codhtml = codhtml + '<option value="A">Grupo B</option>';
-	codhtml = codhtml + '<option value="A">Grupo C</option>';
-	codhtml = codhtml + '<option value="A">Grupo D</option>';
-	codhtml = codhtml + '<option value="A">Grupo E</option>';
-	codhtml = codhtml + '<option value="A">Grupo F</option>';
-	codhtml = codhtml + '<option value="A">Grupo G</option>';
-	codhtml = codhtml + '<option value="A">Grupo H</option>';
-	codhtml = codhtml + '<option value="A">Grupo I</option>';
-	codhtml = codhtml + '<option value="A">Grupo J</option>';
+	codhtml = codhtml + '<option value="B">Grupo B</option>';
+	codhtml = codhtml + '<option value="C">Grupo C</option>';
+	codhtml = codhtml + '<option value="D">Grupo D</option>';
+	codhtml = codhtml + '<option value="E">Grupo E</option>';
+	codhtml = codhtml + '<option value="F">Grupo F</option>';
+	codhtml = codhtml + '<option value="G">Grupo G</option>';
+	codhtml = codhtml + '<option value="H">Grupo H</option>';
+	codhtml = codhtml + '<option value="I">Grupo I</option>';
+	codhtml = codhtml + '<option value="J">Grupo J</option>';
 	
-	nombre="TurnoT" + numeroGruposTeoriaAnadidos;
+	nombre="TurnoT";
 	codhtml = codhtml + '</select>';
 	
 	codhtml = codhtml + '<select name=\"'+ nombre +'\">';
@@ -226,7 +228,7 @@ function addGruposPracticas(){
 	codhtml = codhtml + '<div align="center" class="'+ nombre +'">';
 	
 	codhtml = codhtml + '<div data-role="controlgroup">';
-	
+	nombre="GrupoP";
 	codhtml = codhtml + '<select name="'+ nombre +'" >';
 	
 	codhtml = codhtml + '<option value="1">Grupo 1</option>';
@@ -240,7 +242,7 @@ function addGruposPracticas(){
 	codhtml = codhtml + '<option value="9">Grupo 9</option>';
 	codhtml = codhtml + '<option value="10">Grupo 10</option>';
 	
-	nombre="TurnoPE" + numeroGruposPracticasAnadidos;
+	nombre="TurnoPE";
 	codhtml = codhtml + '</select>';
 	
 	
@@ -263,7 +265,7 @@ function addGruposPracticas(){
 	
 	codhtml = codhtml + '</select>';
 	
-	nombre="TurnoPT" + numeroGruposPracticasAnadidos;
+	nombre="TurnoPT";
 	
 	codhtml = codhtml + '<select name="'+ nombre +'" >';
 	
@@ -293,6 +295,110 @@ function addGruposPracticas(){
 	
 	$('#DivGruposPracticas').append(codhtml);
 	$('#listaGruposPracticas').trigger('create');
+}
+
+function existeResponsableAsignatura(){
+	var cad = "[" + JSON.stringify($("#formAnadeAsignatura").serializeObject()) + "]";
+
+	$.ajax({
+		type: "GET",
+		url: p_url,
+		dataType: 'jsonp',
+		data: {
+			'm':'existeResp',
+			'datos':cad
+		},
+		contentType:'application/json; charset=utf-8',
+		success: function(respuesta){
+			//titulaciones
+			var codhtml="";
+			arrayRespuesta = eval(respuesta);
+			if (arrayRespuesta["ok"] == 0){
+				codhtml="<a href=\"#divDialogo\" data-role=\"button\" data-inline=\"true\" data-rel=\"dialog\" data-theme=\"b\" data-transition=\"flip\">Añadir</a>";
+			}else{
+				codhtml="<a href=\"divDialogo\" data-role=\"button\" data-inline=\"true\" data-rel=\"dialog\" data-theme=\"b\" data-transition=\"flip\">Añadir</a>";
+			}
+			
+			$('#btDialog').html(codhtml);
+			$('#btDialog').trigger('create');
+			
+			
+			//$('#botonAnadirAsignatura').button();
+		},
+		error: function(respuesta){
+			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+		},
+		beforeSend: function(){
+			$('#cargando2').show();
+			$('#listarAsignaturasTitulacion').hide();
+		},
+		complete: function(){
+			$('#cargando2').hide();
+			$('#listarAsignaturasTitulacion').show();
+		}
+	});
+}
+
+function EsResponsable(){
+	esResponsable = 1;
+	location.href="#pageAddPorcentaje";
+}
+
+function noEsResponsable(){
+	esResponsable = 0;
+	location.href="#gruposImparteAsig";
+}
+
+function almacenarInformacionResponsable(){
+	
+	var ident = JSON.stringify($("#formAnadeAsignatura").serializeObject());
+	ident = ident.replace("{","");
+	
+	var cad = "[[" + JSON.stringify($("#formPorcentajes").serializeObject());
+	cad = cad.replace("}","") + "," + ident + "],[["; 
+	
+	var codT = JSON.stringify($("#formFruposTeoria").serializeObject());
+	codT= codT.replace(/,/g,"}],[{");
+	cad=cad + codT +"]],[[";
+
+	var codP = JSON.stringify($("#formGruposPracticas").serializeObject());
+	codP= codP.replace(/,/g,"}],[{");
+	cad = cad + codP +"]]]";
+	//alert(cad);
+	$.ajax({
+		type: "GET",
+		url: p_url,
+		dataType: 'jsonp',
+		data: {
+			'm':'almacenResponsa',
+			'datos':cad
+		},
+		contentType:'application/json; charset=utf-8',
+		success: function(respuesta){
+			//titulaciones
+
+			arrayRespuesta = eval(respuesta);
+			if (arrayRespuesta["ok"] != 0){
+				alert("Correcot");
+				location.href="#gruposImparteAsig";
+			}else{
+				alert("Error");
+			}
+
+		},
+		error: function(respuesta){
+			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+		},
+		beforeSend: function(){
+			$('#cargando2').show();
+			$('#listarAsignaturasTitulacion').hide();
+		},
+		complete: function(){
+			$('#cargando2').hide();
+			$('#listarAsignaturasTitulacion').show();
+		}
+	});
+
 }
 
 function borrarGrupoPracticas(numero){
