@@ -1,10 +1,10 @@
+/*************************************************************************
+ ** @name 		 : peticionregistro
+ ** @description : Petición json de registro de un profesor/a
+ *************************************************************************/
 function peticionRegistro(){
-	console.log($('#formRegister').serialize());
-	//var p_url = "http://serrano5510.servehttp.com:8443/ServicioWeb/index.php";
-	
 	var cad = "[" + JSON.stringify($("#formRegister").serializeObject()) + "]";
-	
-	var datas = 'm=reg&datos=' + cad;
+
 	$.ajax({
 		type: "GET",
 		url: p_url,
@@ -28,5 +28,4 @@ function peticionRegistro(){
 			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
 		}
 	});
-	
 }

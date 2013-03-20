@@ -1,7 +1,18 @@
+/*----------- VARIABLES GLOBALES -----------*/
 var idTitulacionSeleccionada = '';
 var idAsignaturaSeleccionada = '';
 var esResponsable='';
 
+var numeroGruposTeoriaAnadidos = 1;
+var numeroGruposPracticasAnadidos = 1;
+
+
+/*----------- PETICIONES JSON -----------*/
+
+/*************************************************************************
+ ** @name 		 : peticionAnadirAsignatura
+ ** @description : Petición json para añadir una nueva asignatura
+ *************************************************************************/
 function peticionAnadirAsignatura(){
 	var cad = "[" + JSON.stringify($("#formAnadeAsignatura").serializeObject()) + "]";
 	alert(cad);
@@ -36,6 +47,10 @@ function peticionAnadirAsignatura(){
 	
 }
 
+/*************************************************************************
+ ** @name 		 : peticionTitulaciones
+ ** @description : Petición json para recuperar las las titulaciones
+ *************************************************************************/
 function peticionTitulaciones(){
 	//Limpiamos todos los campos de todas las pantallas
 	limpiarAsignaturaCompleta();
@@ -99,6 +114,12 @@ function peticionTitulaciones(){
 	
 }
 
+
+/*************************************************************************
+ ** @name 		 		: peticionAsignaturasTitulacion
+ ** @description 		: Petición json para recuperar las Asignaturas de una titulación
+ ** @param idTitulacion : id de la titulación de la cual queremos recuperar las asignaturas
+ *************************************************************************/
 function peticionAsignaturasTitulacion(idTitulacion){
 	var cad = "[{\"titulacion\":\""+ idTitulacion +"\"}]";
 	
@@ -153,26 +174,114 @@ function peticionAsignaturasTitulacion(idTitulacion){
 	
 }
 
-function hacerVisibleBloque(visible){
-	if(visible == 0){
-		$('#DivPorcentajes').hide();
-		$('#DivNumeroDeGrupos').hide();
-		$('#DivConfiguracionDeGrupos').hide();
-	}else{
-		$('#DivPorcentajes').show();
-		$('#DivNumeroDeGrupos').show();
-		$('#DivConfiguracionDeGrupos').show();
-	}
+/*************************************************************************
+ ** @name 		 : existeResponsableAsignatura
+ ** @description : Petición json para comprobar si existe Responsable
+ **                de una asignatura
+ *************************************************************************/
+function existeResponsableAsignatura(){
+	var cad = "[" + JSON.stringify($("#formAnadeAsignatura").serializeObject()) + "]";
+
+	$.ajax({
+		type: "GET",
+		url: p_url,
+		dataType: 'jsonp',
+		data: {
+			'm':'existeResp',
+			'datos':cad
+		},
+		contentType:'application/json; charset=utf-8',
+		success: function(respuesta){
+			//titulaciones
+			var codhtml="";
+			arrayRespuesta = eval(respuesta);
+			if (arrayRespuesta["ok"] == 0){
+				codhtml="<a href=\"#divDialogo\" data-role=\"button\" data-inline=\"true\" data-rel=\"dialog\" data-theme=\"b\" data-transition=\"flip\">Añadir</a>";
+			}else{
+				codhtml="<a href=\"divDialogo\" data-role=\"button\" data-inline=\"true\" data-rel=\"dialog\" data-theme=\"b\" data-transition=\"flip\">Añadir</a>";
+			}
+			
+			$('#btDialog').html(codhtml);
+			$('#btDialog').trigger('create');
+			
+			
+			//$('#botonAnadirAsignatura').button();
+		},
+		error: function(respuesta){
+			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+		},
+		beforeSend: function(){
+			$('#cargando2').show();
+			$('#listarAsignaturasTitulacion').hide();
+		},
+		complete: function(){
+			$('#cargando2').hide();
+			$('#listarAsignaturasTitulacion').show();
+		}
+	});
+}
+
+/*************************************************************************
+ ** @name 		 : almacenarInformacionResponsable
+ ** @description : Petición json para almacenar el responsable de la asignatura
+ *************************************************************************/
+function almacenarInformacionResponsable(){
 	
+	var ident = JSON.stringify($("#formAnadeAsignatura").serializeObject());
+	ident = ident.replace("{","");
+	
+	var cad = "[[" + JSON.stringify($("#formPorcentajes").serializeObject());
+	cad = cad.replace("}","") + "," + ident + "],[["; 
+	
+	var codT = JSON.stringify($("#formFruposTeoria").serializeObject());
+	codT= codT.replace(/,/g,"}],[{");
+	cad=cad + codT +"]],[[";
+
+	var codP = JSON.stringify($("#formGruposPracticas").serializeObject());
+	codP= codP.replace(/,/g,"}],[{");
+	cad = cad + codP +"]]]";
+	//alert(cad);
+	$.ajax({
+		type: "GET",
+		url: p_url,
+		dataType: 'jsonp',
+		data: {
+			'm':'almacenResponsa',
+			'datos':cad
+		},
+		contentType:'application/json; charset=utf-8',
+		success: function(respuesta){
+			//titulaciones
+
+			arrayRespuesta = eval(respuesta);
+			if (arrayRespuesta["ok"] != 0){
+				alert("Correcot");
+				location.href="#gruposImparteAsig";
+			}else{
+				alert("Error");
+			}
+
+		},
+		error: function(respuesta){
+			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+		},
+		beforeSend: function(){
+			$('#cargando2').show();
+			$('#listarAsignaturasTitulacion').hide();
+		},
+		complete: function(){
+			$('#cargando2').hide();
+			$('#listarAsignaturasTitulacion').show();
+		}
+	});
 }
 
-function deshabilitarBoton(idComponente){
-	var id = '#' + idComponente;
-	$(id).button('disable'); 
-}
+/*----------- FUNCIONES GRUPOS DE TEORIA Y PRÁCTICAS -----------*/
 
-/*-------------------------------------------------------*/
-var numeroGruposTeoriaAnadidos = 1;
+/*************************************************************************
+ ** @name 		 : almacenarInformacionResponsable
+ ** @description : Petición json para almacenar el responsable de la asignatura
+ *************************************************************************/
 function addGruposTeoria(){
 	var codhtml = '';
 	var nombre = "GrupoT" + numeroGruposTeoriaAnadidos;
@@ -217,13 +326,21 @@ function addGruposTeoria(){
 	$('#listaGruposTeoria').trigger('create');
 }
 
+/*************************************************************************
+ ** @name 		 : almacenarInformacionResponsable
+ ** @description : Petición json para almacenar el responsable de la 
+ **                asignatura
+ *************************************************************************/
 function borrarGrupoTeoria(numero){
 	$("div.GrupoT"+numero).remove();
 	$('#listaGruposTeoria').trigger('create');
 }
 
-
-var numeroGruposPracticasAnadidos = 1;
+/*************************************************************************
+ ** @name 		 : almacenarInformacionResponsable
+ ** @description : Petición json para almacenar el responsable de la 
+ **                asignatura
+ *************************************************************************/
 function addGruposPracticas(){
 	var codhtml = '';
 	var nombre = "GrupoP" + numeroGruposPracticasAnadidos;
@@ -300,135 +417,79 @@ function addGruposPracticas(){
 	$('#listaGruposPracticas').trigger('create');
 }
 
-function existeResponsableAsignatura(){
-	var cad = "[" + JSON.stringify($("#formAnadeAsignatura").serializeObject()) + "]";
-
-	$.ajax({
-		type: "GET",
-		url: p_url,
-		dataType: 'jsonp',
-		data: {
-			'm':'existeResp',
-			'datos':cad
-		},
-		contentType:'application/json; charset=utf-8',
-		success: function(respuesta){
-			//titulaciones
-			var codhtml="";
-			arrayRespuesta = eval(respuesta);
-			if (arrayRespuesta["ok"] == 0){
-				codhtml="<a href=\"#divDialogo\" data-role=\"button\" data-inline=\"true\" data-rel=\"dialog\" data-theme=\"b\" data-transition=\"flip\">Añadir</a>";
-			}else{
-				codhtml="<a href=\"divDialogo\" data-role=\"button\" data-inline=\"true\" data-rel=\"dialog\" data-theme=\"b\" data-transition=\"flip\">Añadir</a>";
-			}
-			
-			$('#btDialog').html(codhtml);
-			$('#btDialog').trigger('create');
-			
-			
-			//$('#botonAnadirAsignatura').button();
-		},
-		error: function(respuesta){
-			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
-		},
-		beforeSend: function(){
-			$('#cargando2').show();
-			$('#listarAsignaturasTitulacion').hide();
-		},
-		complete: function(){
-			$('#cargando2').hide();
-			$('#listarAsignaturasTitulacion').show();
-		}
-	});
-}
-
-function EsResponsable(){
-	esResponsable = 1;
-	location.href="#pageAddPorcentaje";
-}
-
-function noEsResponsable(){
-	esResponsable = 0;
-	location.href="#gruposImparteAsig";
-}
-
-function almacenarInformacionResponsable(){
-	
-	var ident = JSON.stringify($("#formAnadeAsignatura").serializeObject());
-	ident = ident.replace("{","");
-	
-	var cad = "[[" + JSON.stringify($("#formPorcentajes").serializeObject());
-	cad = cad.replace("}","") + "," + ident + "],[["; 
-	
-	var codT = JSON.stringify($("#formFruposTeoria").serializeObject());
-	codT= codT.replace(/,/g,"}],[{");
-	cad=cad + codT +"]],[[";
-
-	var codP = JSON.stringify($("#formGruposPracticas").serializeObject());
-	codP= codP.replace(/,/g,"}],[{");
-	cad = cad + codP +"]]]";
-	//alert(cad);
-	$.ajax({
-		type: "GET",
-		url: p_url,
-		dataType: 'jsonp',
-		data: {
-			'm':'almacenResponsa',
-			'datos':cad
-		},
-		contentType:'application/json; charset=utf-8',
-		success: function(respuesta){
-			//titulaciones
-
-			arrayRespuesta = eval(respuesta);
-			if (arrayRespuesta["ok"] != 0){
-				alert("Correcot");
-				location.href="#gruposImparteAsig";
-			}else{
-				alert("Error");
-			}
-
-		},
-		error: function(respuesta){
-			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
-		},
-		beforeSend: function(){
-			$('#cargando2').show();
-			$('#listarAsignaturasTitulacion').hide();
-		},
-		complete: function(){
-			$('#cargando2').hide();
-			$('#listarAsignaturasTitulacion').show();
-		}
-	});
-
-}
-
+/*************************************************************************
+ ** @name 		 : almacenarInformacionResponsable
+ ** @description : Petición json para almacenar el responsable de la 
+ **                asignatura
+ *************************************************************************/
 function borrarGrupoPracticas(numero){
 	$("div.GrupoP"+numero).remove();
 	$('#listaGruposPracticas').trigger('create');
 }
 
+/*************************************************************************
+ ** @name 		 : almacenarInformacionResponsable
+ ** @description : Petición json para almacenar el responsable de la 
+ **                asignatura
+ *************************************************************************/
+function EsResponsable(){
+	esResponsable = 1;
+	location.href="#pageAddPorcentaje";
+}
 
-/************************* LIMPIAR PANTALLAS *****************************/
+/*************************************************************************
+ ** @name 		 : almacenarInformacionResponsable
+ ** @description : Petición json para almacenar el responsable de la 
+ **                       asignatura
+ *************************************************************************/
+function noEsResponsable(){
+	esResponsable = 0;
+	location.href="#gruposImparteAsig";
+}
 
+
+/*--------------------- LIMPIAR PANTALLAS ---------------------*/
+
+/*************************************************************************
+ ** @name 		 : limpiarTitulacionAsignatura
+ ** @description : Función para limpiar los combos de la titulaciones y 
+ **                las asignaturas
+ *************************************************************************/
 function limpiarTitulacionAsignatura() {
 	$("#titulaciones").empty();
 	$("#asignaturaElegida").empty();
 }
 
+/*************************************************************************
+ ** @name 		 : limpiarCalificaciones
+ ** @description : Función para restaurar los valores por defecto en las 
+ **                calificaciones
+ *************************************************************************/
 function limpiarCalificaciones(){
 	$("#formPorcentajes input").val('0');
 }
 
+/*************************************************************************
+ ** @name 		 : limpiarGruposTeoria
+ ** @description : Función para borrar los grupos de teoría
+ *************************************************************************/
 function limpiarGruposTeoria(){
 	$("#DivGruposTeoria").empty();
 }
 
+/*************************************************************************
+ ** @name 		 : existeResponsableAsignatura
+ ** @description : Función para borrar los grupos de prácticas
+ *************************************************************************/
 function limpiarGruposPracticas(){
 	$("#DivGruposPracticas").empty();
 }
 
+/*************************************************************************
+ ** @name 		 : limpiarAsignaturaCompleta
+ ** @description : Realiza la limpieza de todas las pantallas de añadir 
+ **                asignatura
+ *************************************************************************/
 function limpiarAsignaturaCompleta(){
 	limpiarTitulacionAsignatura();
 	limpiarCalificaciones();

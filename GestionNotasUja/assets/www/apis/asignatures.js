@@ -1,5 +1,11 @@
+/*----------- PETICIONES JSON -----------*/
+
+/*************************************************************************
+ ** @name 		 : peticionAsignaturas
+ ** @description : Petición json para obtener las asignaturas que tutoriza
+ **                un profesor
+ *************************************************************************/
 function peticionAsignaturas(){
-	
 	var cad = "[]";
 	
 	$.ajax({
@@ -41,5 +47,5 @@ function peticionAsignaturas(){
 			$('#listaAsignaturas').show();
 		}
 	});
-	
 }
+

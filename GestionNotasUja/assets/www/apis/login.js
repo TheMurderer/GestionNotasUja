@@ -1,7 +1,12 @@
-function peticionLogin(){
+/*----------- PETICIONES JSON -----------*/
 
-	console.log($('#formLogin').serialize());
-	//var p_url = "http://serrano5510.servehttp.com:8443/ServicioWeb/index.php";
+
+/*************************************************************************
+ ** @name 		 : peticionLogin
+ ** @description : Petición json de login
+ *************************************************************************/
+function peticionLogin(){
+    console.log($('#formLogin').serialize());
 	
 	var cad = "[" + JSON.stringify($("#formLogin").serializeObject()) + "]";
 	$.ajax({
@@ -30,5 +35,5 @@ function peticionLogin(){
 			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
 		}
 	});
-	
 }
+

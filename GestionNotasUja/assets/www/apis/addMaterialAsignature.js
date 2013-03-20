@@ -1,3 +1,9 @@
+/*************************************************************************
+ ** @name 		 		 : addMaterial
+ ** @description 		 : Petición json para añadir material a la asignatura
+ ** @param idAsignataura : Id de la asignatura a la que vamos a aññadir material
+ ** @param tipo			 : T-Teroría | P-Prácticas | TV-Trabajos volutarios
+ *************************************************************************/
 function addMaterial(idAsignatura,tipo){
 	alert("ID: " + idAsignatura + " Tipo: " + tipo);
 	var puntuacion = $("#puntuacionParcial").val();
@@ -31,8 +37,6 @@ function addMaterial(idAsignatura,tipo){
 				anadirMaterial("confDIVTrabajos", descripcion, puntuacion);
 				mostrarDIV('TV');
 			}
-			
-			//location.href = "#pageConfigurationSignature";
         },
 		error: function(respuesta){
 			alert("ERROR, YO NO ENTIENDO PUR KÉ...");

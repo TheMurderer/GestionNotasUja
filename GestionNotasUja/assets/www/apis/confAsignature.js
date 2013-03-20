@@ -1,84 +1,22 @@
+/*----------- VARIABLES GLOBALES -----------*/
 var pestanaSeleccionada = '';
 var idAsignaturaSeleccionada = '';
-
 
 //¿Se ha insertado información en los contenedores? Por Defecto TRUE
 var numeroParcialTeoria = 1;
 var numeroParcialPractica = 1;
 var numeroParcialTrabajos = 1;
 
-function anadirMaterial(divContenedor, descripcion, puntuacion){
-	var codhtml = '';
-	var contenedor = '#' + divContenedor;
-	codhtml = '<br>' + descripcion + '<input type="number" name="name" value="' + puntuacion +'"<br>';
-	
-	if(pestanaSeleccionada == 'T'){
-		if(numeroParcialTeoria == 1){
-			$(contenedor).append($(contenedor).val() + codhtml);
-		}else{
-			$(contenedor).html(codhtml);
-			numeroParcialTeoria = 1;
-		}
-	}else if(pestanaSeleccionada == 'P'){
-		if(numeroParcialPractica == 1){
-			$(contenedor).append($(contenedor).val() + codhtml);
-		}else{
-			$(contenedor).html(codhtml);
-			numeroParcialPractica = 1;
-		}
-	}else{
-		if(numeroParcialTrabajos == 1){
-			$(contenedor).append($(contenedor).val() + codhtml);
-		}else{
-			$(contenedor).html(codhtml);
-			numeroParcialTrabajos = 1;
-		}
-	}
-	
-	
-	$('#panelConfiguracionAsignatura').trigger('create');
 
-}
+/*----------- PETICIONES JSON -----------*/
 
-function mostrarDIV(valor){
-	if(valor == 'T'){
-		pestanaSeleccionada = 'T';
-		
-		$('#confDIVTeoria').show();
-		$('#confDIVPractica').hide();
-		$('#confDIVTrabajos').hide();
-		$('#panelConfiguracionAsignatura').refresh();
-	}else if (valor == 'P'){
-		pestanaSeleccionada = 'P';
-		
-		$('#confDIVTeoria').hide();
-		$('#confDIVPractica').show();
-		$('#confDIVTrabajos').hide();
-		$('#panelConfiguracionAsignatura').refresh();
-	}else{
-		pestanaSeleccionada = 'TV';
-		
-		$('#confDIVTeoria').hide();
-		$('#confDIVPractica').hide();
-		$('#confDIVTrabajos').show();
-		$('#panelConfiguracionAsignatura').refresh();
-	}
-}
-
-
-function ocultarTodosDIV(){
-	pestanaSeleccionada = 'T';
-	
-	$('#confDIVTeoria').show();
-	$('#confDIVPractica').hide();
-	$('#confDIVTrabajos').hide();
-}
-
-
+/*************************************************************************
+ ** @name 		 		 : configuracionAsig
+ ** @description 		 : Petición json para obtener la configuración de 
+ ** 					   la asignatura
+ ** @param idAsignatura  : Id de la asignatura a configurar
+ *************************************************************************/
 function configuracionAsig(idAsignatura){
-	
-
-	//alert(idAsignatura);
 	ocultarTodosDIV();
 	var cad = "[{\"id\":\"" + idAsignatura + "\"}]";
 	
@@ -116,8 +54,6 @@ function configuracionAsig(idAsignatura){
 				if(arrayRespuesta[1].length != 0){
 					for(i = 0; i < arrayRespuesta[1].length;i++){
 						codhtmlPracticas = codhtmlPracticas + '<br>' + arrayRespuesta[1][i]["descripcion"] + '<input type="number" name="name" id="' +arrayRespuesta[1][i]["id"] + '"  value="' + arrayRespuesta[1][i]["porcentaje"]+'"<br>';
-						//cad = '#' + arrayRespuesta[1][i]["id"];
-						//$(cad).textinput();
 					}
 				}else{
 					codhtmlPracticas = 'No hay Practicas';
@@ -127,8 +63,6 @@ function configuracionAsig(idAsignatura){
 				if(arrayRespuesta[2].length != 0){
 					for(i = 0; i < arrayRespuesta[2].length;i++){
 						codhtmlTrabajos = codhtmlTrabajos + '<br>' + arrayRespuesta[2][i]["descripcion"] + '<input type="number" name="name" id="' +arrayRespuesta[2][i]["id"] + '"  value="' + arrayRespuesta[2][i]["porcentaje"]+'"<br>';
-						//cad = '#' + arrayRespuesta[1][i]["id"];
-						//$(cad).textinput();
 					}
 				}else{
 					codhtmlTrabajos = 'No hay Trabajos';
@@ -159,8 +93,13 @@ function configuracionAsig(idAsignatura){
 	
 }
 
+
+/*************************************************************************
+ ** @name 		 		 : modificarConfAsignatura
+ ** @description 		 : Petición json para modificación de la configuración
+ **						   de la asignatura
+ *************************************************************************/
 function modificarConfAsignatura(){
-	alert("entra");
 	var cad = "[{\"id\":\"" + idAsignaturaSeleccionada + "\"}]";
 	var code="";
 	alert(cad);
@@ -207,6 +146,13 @@ function modificarConfAsignatura(){
 		});	
 }
 
+
+/*************************************************************************
+ ** @name 		 		 : actualizarConfiguracion
+ ** @description 		 : Petición json para actualizar la configuración 
+ **						   de la asignatura
+ ** @param idAsignatura  : Id de la asignatura
+ *************************************************************************/
 function actualizarConfiguracion(idAsignatura){
 	var cad ="[" + JSON.stringify($("#formAnadeAsignatura").serializeObject());
 	cad = cad.replace("}","");
@@ -223,7 +169,6 @@ function actualizarConfiguracion(idAsignatura){
 		},
 		contentType:'application/json; charset=utf-8',
 		success: function(respuesta){
-			//alert(respuesta);
 			arrayRespuesta = eval(respuesta);
             if (arrayRespuesta["ok"] == 0){
 				alert('Creación de asignatura incorrecta');
@@ -238,4 +183,94 @@ function actualizarConfiguracion(idAsignatura){
 			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
 		}
 	});
+}
+
+
+
+/*----------- FUNCIONES -----------*/
+
+/*************************************************************************
+ ** @name 		 		 : anadirMaterial
+ ** @description 		 : Añade material a la asignatura
+ ** @param divContenedor : Div contenerdor de la información
+ ** @param descripcion	 : Descripción del material
+ ** @param puntuacion	 : Puntuación del material
+ *************************************************************************/
+function anadirMaterial(divContenedor, descripcion, puntuacion){
+	var codhtml = '';
+	var contenedor = '#' + divContenedor;
+	codhtml = '<br>' + descripcion + '<input type="number" name="name" value="' + puntuacion +'"<br>';
+	
+	if(pestanaSeleccionada == 'T'){
+		if(numeroParcialTeoria == 1){
+			$(contenedor).append($(contenedor).val() + codhtml);
+		}else{
+			$(contenedor).html(codhtml);
+			numeroParcialTeoria = 1;
+		}
+	}else if(pestanaSeleccionada == 'P'){
+		if(numeroParcialPractica == 1){
+			$(contenedor).append($(contenedor).val() + codhtml);
+		}else{
+			$(contenedor).html(codhtml);
+			numeroParcialPractica = 1;
+		}
+	}else{
+		if(numeroParcialTrabajos == 1){
+			$(contenedor).append($(contenedor).val() + codhtml);
+		}else{
+			$(contenedor).html(codhtml);
+			numeroParcialTrabajos = 1;
+		}
+	}
+	
+	
+	$('#panelConfiguracionAsignatura').trigger('create');
+
+}
+
+
+/*************************************************************************
+ ** @name 		 : mostrarDIV
+ ** @description : Muestra el div de Teoría/Prácticas/Trabajos voluntarios
+ ** 			   según la pestaña seleccionada
+ ** @param valor : Div contenerdor de la información
+ *************************************************************************/
+function mostrarDIV(valor){
+	if(valor == 'T'){
+		pestanaSeleccionada = 'T';
+		
+		$('#confDIVTeoria').show();
+		$('#confDIVPractica').hide();
+		$('#confDIVTrabajos').hide();
+		$('#panelConfiguracionAsignatura').refresh();
+	}else if (valor == 'P'){
+		pestanaSeleccionada = 'P';
+		
+		$('#confDIVTeoria').hide();
+		$('#confDIVPractica').show();
+		$('#confDIVTrabajos').hide();
+		$('#panelConfiguracionAsignatura').refresh();
+	}else{
+		pestanaSeleccionada = 'TV';
+		
+		$('#confDIVTeoria').hide();
+		$('#confDIVPractica').hide();
+		$('#confDIVTrabajos').show();
+		$('#panelConfiguracionAsignatura').refresh();
+	}
+}
+
+
+/*************************************************************************
+ ** @name 		 : ocultarTodosDIV
+ ** @description : Oculta todos los div y deja mostrando la pestaña por defecto
+ **				   (Teoría)
+ *************************************************************************/
+function ocultarTodosDIV(){
+	pestanaSeleccionada = 'T';
+	
+	$('#confDIVTeoria').show();
+	$('#confDIVPractica').hide();
+	$('#confDIVTrabajos').hide();
 }

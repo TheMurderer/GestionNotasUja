@@ -1,7 +1,16 @@
+/*----------- VARIABLES GLOBALES -----------*/
 var pestanaSeleccionada = '';
 var dni = '';
 var idAsignaturaSel = '';
 
+/*----------- PETICIONES JSON -----------*/
+
+/*************************************************************************
+ ** @name 		        : calificarAlumno
+ ** @description        : Petición json para almacenar las calificaciones de un alumno
+ ** @param dniAlumno    : DNI del alumno a que se desea calificar
+ ** @param idAsignatura : Id de la asignatura en la cual se desea calificar
+ *************************************************************************/
 function calificarAlumno(dniAlumno, idAsignatura){
 	var cad = "[{\"dni\":\""+ dniAlumno +"\", \"idAsig\":\"" +idAsignatura +"\"}]";
 	
@@ -91,32 +100,10 @@ function calificarAlumno(dniAlumno, idAsignatura){
 	});
 }
 
-
-function mostrarDIVAsig(valor){
-	if(valor == 'T'){
-		pestanaSeleccionada = 'T';
-		
-		$('#contDIVTeoria').show();
-		$('#contDIVPractica').hide();
-		$('#contDIVTrabajos').hide();
-		//$('#panelContenidoAsignaturaAlum').refresh();
-	}else if (valor == 'P'){
-		pestanaSeleccionada = 'P';
-		
-		$('#contDIVTeoria').hide();
-		$('#contDIVPractica').show();
-		$('#contDIVTrabajos').hide();
-		//$('#panelContenidoAsignaturaAlum').refresh();
-	}else{
-		pestanaSeleccionada = 'TV';
-		
-		$('#contDIVTeoria').hide();
-		$('#contDIVPractica').hide();
-		$('#contDIVTrabajos').show();
-		//$('#panelContenidoAsignaturaAlum').refresh();
-	}
-}
-
+/*************************************************************************
+ ** @name 		 : actualizarDatos
+ ** @description : Petición json para actualizar las notas de un alumno
+ *************************************************************************/
 function actualizarDatos(){
 	var cad;
 	if(pestanaSeleccionada =='T'){
@@ -144,7 +131,7 @@ function actualizarDatos(){
 			if (arrayRespuesta["ok"] == 1){
 				alert("Datos actualizados correctamente");
 			}else{
-				alert("Incorrecto")
+				alert("Incorrecto");
 			}
             
 		},
@@ -155,3 +142,33 @@ function actualizarDatos(){
 	
 }
 
+
+/*----------- FUNCIONES -----------*/
+
+/*************************************************************************
+ ** @name 		 : mostrarDIVAsig
+ ** @description : Función que permite visualizar la teoría/práctica/trabajos
+ **				   en función del parámetro pasado
+ ** @param valor : T-Teoría | P-Práctica | T-Trabajos voluntarios
+ *************************************************************************/
+function mostrarDIVAsig(valor){
+	if(valor == 'T'){
+		pestanaSeleccionada = 'T';
+		
+		$('#contDIVTeoria').show();
+		$('#contDIVPractica').hide();
+		$('#contDIVTrabajos').hide();
+	}else if (valor == 'P'){
+		pestanaSeleccionada = 'P';
+		
+		$('#contDIVTeoria').hide();
+		$('#contDIVPractica').show();
+		$('#contDIVTrabajos').hide();
+	}else{
+		pestanaSeleccionada = 'TV';
+		
+		$('#contDIVTeoria').hide();
+		$('#contDIVPractica').hide();
+		$('#contDIVTrabajos').show();
+	}
+}

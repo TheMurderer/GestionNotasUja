@@ -1,5 +1,16 @@
+/*----------- VARIABLES GLOBALES -----------*/
 var idAsignaturaSeleccionada = 0;
 
+
+/*----------- PETICIONES JSON -----------*/
+
+/*************************************************************************
+ ** @name 		 		 : mostrarListaAlumnos
+ ** @description 		 : Petición json para obtener la lista de alumnos 
+ **						   de una asignatura
+ ** @param idAsignatura  : Id de la asignatura de la cual se desea mostrar
+ **						   la lista de alumnos
+ *************************************************************************/
 function mostrarListaAlumnos(idAsignatura){
 	
 	location.href = "#mostrarListadoAlumnos";
