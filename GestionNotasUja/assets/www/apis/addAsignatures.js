@@ -198,7 +198,7 @@ function existeResponsableAsignatura(){
 			if (arrayRespuesta["ok"] == 0){
 				codhtml="<a href=\"#divDialogo\" data-role=\"button\" data-inline=\"true\" data-rel=\"dialog\" data-theme=\"b\" data-transition=\"flip\">Añadir</a>";
 			}else{
-				codhtml="<a href=\"divDialogo\" data-role=\"button\" data-inline=\"true\" data-rel=\"dialog\" data-theme=\"b\" data-transition=\"flip\">Añadir</a>";
+				codhtml="<a href=\"#gruposImparteAsig\">Añadir</a>";
 			}
 			
 			$('#btDialog').html(codhtml);
@@ -231,16 +231,15 @@ function almacenarInformacionResponsable(){
 	ident = ident.replace("{","");
 	
 	var cad = "[[" + JSON.stringify($("#formPorcentajes").serializeObject());
-	cad = cad.replace("}","") + "," + ident + "],[["; 
+	cad = cad.replace("}","") + "," + ident + "],["; 
 	
 	var codT = JSON.stringify($("#formFruposTeoria").serializeObject());
-	codT= codT.replace(/,/g,"}],[{");
-	cad=cad + codT +"]],[[";
+	cad=cad + codT +"],[";
 
 	var codP = JSON.stringify($("#formGruposPracticas").serializeObject());
-	codP= codP.replace(/,/g,"}],[{");
-	cad = cad + codP +"]]]";
-	//alert(cad);
+	alert(codP);
+	cad = cad + codP +"]]";
+	alert(cad);
 	$.ajax({
 		type: "GET",
 		url: p_url,
@@ -289,7 +288,7 @@ function addGruposTeoria(){
 	codhtml = codhtml + '<div align="center" class="'+ nombre +'">';
 	
 	codhtml = codhtml + '<div data-role="controlgroup">';
-	nombre="GrupoT";
+
 	codhtml = codhtml + '<select name=\"'+ nombre +'\" >';
 	
 	codhtml = codhtml + '<option value="A">Grupo A</option>';
@@ -303,7 +302,7 @@ function addGruposTeoria(){
 	codhtml = codhtml + '<option value="I">Grupo I</option>';
 	codhtml = codhtml + '<option value="J">Grupo J</option>';
 	
-	nombre="TurnoT";
+	nombre="TurnoT" + numeroGruposTeoriaAnadidos;
 	codhtml = codhtml + '</select>';
 	
 	codhtml = codhtml + '<select name=\"'+ nombre +'\">';
@@ -348,7 +347,7 @@ function addGruposPracticas(){
 	codhtml = codhtml + '<div align="center" class="'+ nombre +'">';
 	
 	codhtml = codhtml + '<div data-role="controlgroup">';
-	nombre="GrupoP";
+	
 	codhtml = codhtml + '<select name="'+ nombre +'" >';
 	
 	codhtml = codhtml + '<option value="1">Grupo 1</option>';
@@ -362,7 +361,7 @@ function addGruposPracticas(){
 	codhtml = codhtml + '<option value="9">Grupo 9</option>';
 	codhtml = codhtml + '<option value="10">Grupo 10</option>';
 	
-	nombre="TurnoPE";
+	nombre="TurnoPE" + numeroGruposPracticasAnadidos;
 	codhtml = codhtml + '</select>';
 	
 	
@@ -385,7 +384,7 @@ function addGruposPracticas(){
 	
 	codhtml = codhtml + '</select>';
 	
-	nombre="TurnoPT";
+	nombre="TurnoPT" + numeroGruposPracticasAnadidos;
 	
 	codhtml = codhtml + '<select name="'+ nombre +'" >';
 	
