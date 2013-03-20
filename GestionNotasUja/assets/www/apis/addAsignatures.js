@@ -37,6 +37,9 @@ function peticionAnadirAsignatura(){
 }
 
 function peticionTitulaciones(){
+	//Limpiamos todos los campos de todas las pantallas
+	limpiarAsignaturaCompleta();
+	
 	var cad = "[]";
 	
 	$.ajax({
@@ -406,3 +409,29 @@ function borrarGrupoPracticas(numero){
 	$('#listaGruposPracticas').trigger('create');
 }
 
+
+/************************* LIMPIAR PANTALLAS *****************************/
+
+function limpiarTitulacionAsignatura() {
+	$("#titulaciones").empty();
+	$("#asignaturaElegida").empty();
+}
+
+function limpiarCalificaciones(){
+	$("#formPorcentajes input").val('0');
+}
+
+function limpiarGruposTeoria(){
+	$("#DivGruposTeoria").empty();
+}
+
+function limpiarGruposPracticas(){
+	$("#DivGruposPracticas").empty();
+}
+
+function limpiarAsignaturaCompleta(){
+	limpiarTitulacionAsignatura();
+	limpiarCalificaciones();
+	limpiarGruposTeoria();
+	limpiarGruposPracticas();
+}
