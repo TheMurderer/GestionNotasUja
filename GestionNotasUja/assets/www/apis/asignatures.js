@@ -1,3 +1,7 @@
+/*----------- VARIABLES GLOBALES -----------*/
+
+var asignaturaSeleccionadaOpciones = '';
+
 /*----------- PETICIONES JSON -----------*/
 
 /*************************************************************************
@@ -21,10 +25,10 @@ function peticionAsignaturas(){
 			arrayRespuesta = eval(respuesta);
 			
 			var i;
-			var codhtml = '<ul data-role="listview" id="lista" data-filter="true">';
+			var codhtml = '<ul data-role="listview" id="lista" data-filter="true" data-filter-placeholder="Filtrar asignaturas...">';
 			if(arrayRespuesta.length != 0){
 				for(i = 0; i < arrayRespuesta.length; i++){
-					codhtml = codhtml + '<li><a href="" onclick="mostrarListaAlumnos('+ arrayRespuesta[i]["id"] +')" >'+ arrayRespuesta[i]["nombre"] +'</a> <a onclick="configuracionAsig(' + arrayRespuesta[i]["id"] +')" data-icon="gear"></a></li>';
+					codhtml = codhtml + '<li data-icon="gear" ><a href="" onclick="mostrarListaAlumnos('+ arrayRespuesta[i]["id"] +')" >'+ arrayRespuesta[i]["nombre"] +'</a> <a href="#opcionesAsignatura" onclick="seleccionarAsignatura('+ arrayRespuesta[i]["id"] +')" data-rel="dialog"  data-transition="pop"></a></li>';
 				}
 				codhtml = codhtml + '</ul>';
 				
@@ -47,5 +51,12 @@ function peticionAsignaturas(){
 			$('#listaAsignaturas').show();
 		}
 	});
+}
+
+
+/*----------- OTRAS FUNCIONES -----------*/
+
+function seleccionarAsignatura(id){
+	asignaturaSeleccionadaOpciones = id;
 }
 

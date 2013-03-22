@@ -73,7 +73,7 @@ function peticionTitulaciones(){
 			arrayRespuesta = eval(respuesta);
 
 			var i;
-			var codeButton = "";
+			//var codeButton = "";
 			var codhtml = '<p>Titulacion</p>'; 
 			codhtml = codhtml + '<select id="menuTitulaciones" name="titulacion" >';
 			if(arrayRespuesta.length != 0){
@@ -82,19 +82,20 @@ function peticionTitulaciones(){
 				}
 				codhtml = codhtml + '</select>';
 				
-				codeButton = "<a href=\"#\" data-role=\"button\" data-inline=\"true\" data-icon=\"\" onclick=\"peticionAnadirAsignatura()\"> Añadir </a>";
+				//codeButton = "<a href=\"#\" data-role=\"button\" data-inline=\"true\" data-icon=\"\" onclick=\"peticionAnadirAsignatura()\"> Añadir </a>";
 				
 				$('#titulaciones').html(codhtml);
 				$('#menuTitulaciones').selectmenu();
 				$('#TitulaAsign').show();
-				$('#botonConf').html(codeButton);
+				//$('#botonConf').html(codeButton);
 				
-				$('#botonConf').trigger('create');
+				//$('#botonConf').trigger('create');
 			}
 			
 			$('#menuTitulaciones').change(function() {
 				idTitulacionSeleccionada = $('#menuTitulaciones').val();
 				peticionAsignaturasTitulacion($('#menuTitulaciones').val());
+				borraBotonNuevaAsignatura();
 			});
 			
 			//$('#botonAnadirAsignatura').button();
@@ -155,7 +156,7 @@ function peticionAsignaturasTitulacion(idTitulacion){
 			$('#menuAsigntauras').selectmenu();
 			
 			$('#menuAsigntauras').change(function() {
-				idAsignaturaSeleccionada = $('#menuAsigntauras').val();
+				idAsignaturaSeleccionada = $('#menuAsigntauras').val();				
 				existeResponsableAsignatura();
 			});
 		},
@@ -196,9 +197,9 @@ function existeResponsableAsignatura(){
 			var codhtml="";
 			arrayRespuesta = eval(respuesta);
 			if (arrayRespuesta["ok"] == 0){
-				codhtml="<a href=\"#divDialogo\" data-role=\"button\" data-inline=\"true\" data-rel=\"dialog\" data-theme=\"b\" data-transition=\"flip\">Añadir</a>";
+				codhtml="<a href=\"#divDialogo\" data-role=\"button\" data-inline=\"true\" data-rel=\"dialog\" data-transition=\"flip\">"+ "A\u00f1adir" +"</a>";
 			}else{
-				codhtml="<a href=\"javascript:introducirGrupoDisponibles()\">Añadir</a>";
+				codhtml="<a href=\"javascript:introducirGrupoDisponibles()\" data-role=\"button\" data-inline=\"true\">"+ "A\u00f1adir"  +"</a>";
 			}
 			
 			$('#btDialog').html(codhtml);
@@ -514,7 +515,7 @@ function introducirGrupoDisponibles(){
 			arrayRespuesta = eval(respuesta);
 			if (arrayRespuesta["ok"] != 0){
 				
-				var codHtml='';
+				//var codHtml='';
 				
 				alert("Correcot");
 				location.href="#gruposImparteAsig";
@@ -534,11 +535,10 @@ function introducirGrupoDisponibles(){
 			$('#cargando2').hide();
 			$('#listarAsignaturasTitulacion').show();
 		}
-	});
-	
-	
-
-	
-	
+	});	
 }
 
+
+function borraBotonNuevaAsignatura(){
+	$('#btDialog').empty();
+}

@@ -1,13 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html class="ui-mobile-rendering">
 <head>
 <meta charset="utf-8">
 <title>Aplic. Web de jQuery Mobile</title>
-<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.1.0.min.css" />
+
+<link rel="stylesheet" href="jquery.mobile/jquery.mobile-1.1.0.min.css" /> 
 <link rel="stylesheet" href="styles/style.css" />
+
+<link rel="stylesheet"  href="jquery.mobile/jqm-icon-pack-2.0-original.css" />
 
 <script src="jquery.mobile/jquery-1.7.2.min"></script>
 <script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
+
 <script type="text/javascript" charset="utf-8" src="cordova-1.9.0.js"></script>
 <script type="text/javascript" charset="utf-8" src="index.js"></script>
 
@@ -46,9 +50,9 @@
 		<div data-role="content">
 			<form id="formLogin">
 				<p>Usuario:</p>
-				<input type="email" name="email" id="textinput" value="lidia@ujaen.es" /> <br>
+				<input type="email" name="email" id="textinput" value="lidia@ujaen.es" placeholder="email"/> <br>
 				<p>Contraseña:</p>
-				<input type="password" name="pass" id="passwordinput" value="12345" />
+				<input type="password" name="pass" id="passwordinput" value="12345" placeholder="pass"/>
 				<br>
 				<div align="center">
 					<a href="" data-role="button" data-inline="true"
@@ -124,6 +128,23 @@
 			<h4>Gestor de Notas</h4>
 		</div>
 	</div>
+	
+	<!-- Dialogo de opciones -->
+	<div data-role="page" id="opcionesAsignatura">
+		<div data-role="header" data-position="fixed" id="cabeceraConfiguracion">
+			<h1>Opciones</h1>
+		</div>
+
+		<div data-role="content" align="center">
+			<ul data-role="listview" id="listaOpcionesAsignatura">
+				<li data-icon="plus"><a onclick="configuracionAsig(asignaturaSeleccionadaOpciones)">Materia</a></li>
+				<li data-icon="edit"><a href="#" >Grupos teroría</a></li>
+				<li data-icon="edit"><a href="#">Grupos prácticas</a></li>
+				<li data-icon="edit"><a href="#">Porcentajes</a></li>
+				<li data-icon="trash"><a href="#">Eliminar</a></li>
+			</ul>			
+		</div>
+	</div>
 
 	<!--***********************************************************************-->
 	<!-- @page 		  : AÑADIR ASIGNATURA -->
@@ -149,12 +170,7 @@
 				</div>
 			</form>
 		    
-			<div align="center" id="btDialog">
-				<a href="javascript:existeResponsableAsignatura()" data-role="button" data-inline="true" data-rel="dialog" data-theme="b" data-transition="flip">Añadir</a>
-			</div>
-			
-			
-			
+			<div data-role="content" align="center" id="btDialog"></div>
 		</div>
 
 		<div data-role="footer" data-position="fixed">
@@ -168,7 +184,7 @@
 			<h1 id="asignatura">Responsable</h1>
 		</div>
 
-		<div data-role="content" id="panelConfiguracionAsignatura" align="center">
+		<div data-role="content" id="" align="center">
 			<h3>¿Es usted el responsable de la asignatura?</h3>
 			<a href="javascript:EsResponsable()" data-role="button" data-inline="true">Si</a>
 			<a href="javascript:noEsResponsable()" data-role="button" data-inline="true">No</a>		
@@ -190,25 +206,25 @@
 		<div data-role="content" id = "listaPorcentajesAsignatura">
 			<h3>Calificaciones</h3>
 			<form id="formPorcentajes">
-				<label for="textinput4">Porcentaje <b>Teoria</b>:</label> <div id="diTeoria"><input
-					type="number" name="porcentajeT" id="porcentajeTId" value="" /></div>
-				<label for="textinput4">Porcentaje <b>Teoria</b> mínimo:</label> <div id="diTeoria"><input
-					type="number" name="porcentajeTMin" id="porcentajeTMinId" value="0" /></div>
+				<label for="textinput4">Porcentaje Teoria:</label> <div id="diTeoria"><input
+					type="number" name="porcentajeT" id="porcentajeT" value="" /></div>
+				<label for="textinput4">Puntuación mínima:</label> <div id="diTeoria"><input
+					type="number" name="porcentajeTMin" id="porcentajeTMin" value="0" /></div>
 				<hr>
 				<label for="textinput4">Porcentaje Práctica:</label> <div id="diPractica"><input
-					type="number" name="porcentajeP" id="porcentajePId" value="" /></div>
-				<label for="textinput4">Porcentaje <b>Práctica</b> mínimo:</label> <div id="diPractica"><input
-					type="number" name="porcentajePMin" id="porcentajePMinId" value="0" /></div>
+					type="number" name="porcentajeP" id="porcentajeP" value="" /></div>
+				<label for="textinput4">Puntuación mínima:</label> <div id="diPractica"><input
+					type="number" name="porcentajePMin" id="porcentajePMin" value="0" /></div>
 				<hr>
 				<label for="textinput4">Porcentaje Asistencia:</label> <div id="diAsistencia"><input
-					type="number" name="porcentajeA" id="porcentajeAId" value="" /></div>
-				<label for="textinput4">Porcentaje <b>Asistencia</b> mínimo:</label> <div id="diAsistencia"><input
-					type="number" name="porcentajeAMin" id="porcentajeAMinId" value="0" /></div>
+					type="number" name="porcentajeA" id="porcentajeA" value="" /></div>
+				<label for="textinput4">Puntuación mínima:</label> <div id="diAsistencia"><input
+					type="number" name="porcentajeAMin" id="porcentajeAMin" value="0" /></div>
 				<hr>
 				<label for="textinput5">Porcentaje Trabajos:</label> <div id="diTrabajos"><input
-					type="number" name="porcentajeTV" id="porcentajeVId" value="" /></div>
-				<label for="textinput5">Porcentaje <b>Trabajos</b> mínimo:</label> <div id="diTrabajos"><input
-					type="number" name="porcentajeTVMin" id="porcentajeVMinId" value="0" /></div>	
+					type="number" name="porcentajeTV" id="porcentajeTV" value="" /></div>
+				<label for="textinput5">Puntuación mínima:</label> <div id="diTrabajos"><input
+					type="number" name="porcentajeTVMin" id="porcentajeTVMin" value="0" /></div>	
 			</form>	
 		</div>
 	
@@ -246,7 +262,7 @@
 		</div>
 	
 		<div align = "center">
-			<a href="#pageAddGruposPracticas" data-role="button" data-inline="true" data-theme="b" >Siguiente</a>	
+			<a href="#pageAddGruposPracticas" onclick="numeroGrupos()" data-role="button" data-inline="true" data-theme="b" >Siguiente</a>	
 		</div>
 		
 		<div data-role="footer" data-position="fixed">
@@ -290,7 +306,7 @@
 	<!--***********************************************************************-->
 	<!-- @page 		  : GRUPOS QUE IMPARTE EN ASIGNATURA -->
 	<!-- @description : Indica los grupos que imparte en una asignatura  -->
-	<!-- @pageBefore  : DEPENTE -->
+	<!-- @pageBefore  : DEPENDE -->
 	<!-- @pageAfter   : PAGINA DE ASIGNATURAS -->
 	<!--***********************************************************************-->
  	<div data-role="page" id="gruposImparteAsig">
@@ -336,7 +352,7 @@
 		<div data-role="header" data-position="fixed" id="cabeceraConfiguracion">
 			<a href="#pageSignatures" data-icon="back">Atrás</a>
 			<h1 id="asignatura">Asignatura</h1>
-		    <a href="javascript:modificarConfAsignatura()" data-icon="gear">Configuración</a>
+		    <a href="#anadirMateriaAsignatura" data-icon="plus">Añadir</a>
 			<div data-role="navbar">
 				<ul>
 					<li><a href="" class="ui-btn-active" onClick="mostrarDIV('T')"> Teoria </a></li>
@@ -346,7 +362,7 @@
 			</div>
 		</div>
 
-		<div data-role="content" id="panelConfiguracionAsignatura">
+		<div data-role="content" id="panelConfiguracionAsignatura" >
 
 			<div data-role="content" id="confDIVTeoria">Teoria</div>
 
@@ -354,10 +370,10 @@
 			
 			<div data-role="content" id="confDIVTrabajos"> Trabajos</div>
 
-			<div align="center">
-				<a href="#anadirMateriaAsignatura" data-role="button" data-inline="true" data-icon="plus" onclick="">Añadir</a>
+			<!--  <div align="center">
+				<a href="#anadirMateriaAsignatura" data-role="button" data-inline="true" data-theme="d" data-icon="plus" onclick="">Añadir</a>
 			</div>
-
+			-->
 		</div>
 
 		<div data-role="footer" data-position="fixed">
@@ -373,14 +389,15 @@
 	<!--***********************************************************************-->
  	<div data-role="page" id="anadirMateriaAsignatura">
 		<div data-role="header">
+			<a href="#pageConfigurationSignature" data-icon="back">Atrás</a>
 			<h1>Añadir</h1>
 		</div>
 		<div data-role="content">
 		<form id="formRegister">
 				<p>Descripción:</p>
-				<input type="text" id="descripcionParcial" name="descripcion"/> <br>
+				<input type="text" id="descripcionParcial" name="descripcion" placeholder="Titulo del material"> <br>
 				<p>Puntuación:</p>
-				<input type="text" id="puntuacionParcial" name="puntuacion" /> <br>
+				<input type="text" id="puntuacionParcial" name="puntuacion" placeholder="Punciación máxima"> <br>
 				<div align="center">
 					<a href="#pageConfigurationSignature" data-role="button" data-inline="true" data-icon=""
 						onclick="addMaterial(idAsignaturaSeleccionada,pestanaSeleccionada)">Añadir</a>

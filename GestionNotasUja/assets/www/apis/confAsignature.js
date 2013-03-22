@@ -21,8 +21,7 @@ function configuracionAsig(idAsignatura){
 	var cad = "[{\"id\":\"" + idAsignatura + "\"}]";
 	
 	idAsignaturaSeleccionada = idAsignatura;
-	
-	alert(cad);
+
 	$.ajax({
 		type: "GET",
 		url: p_url,
@@ -44,7 +43,7 @@ function configuracionAsig(idAsignatura){
 			
 				if(arrayRespuesta[0].length != 0){
 					for(i = 0; i < arrayRespuesta[0].length;i++){
-						codhtmlTeoria = codhtmlTeoria + '<br>' + arrayRespuesta[0][i]["descripcion"] + '<input type="number" name="name" id="' +arrayRespuesta[0][i]["id"] + '"  value="' + arrayRespuesta[0][i]["porcentaje"]+'"<br>';
+						codhtmlTeoria = codhtmlTeoria + '<br>' + arrayRespuesta[0][i]["descripcion"] + '<input data-theme="d" type="number" name="name" id="' +arrayRespuesta[0][i]["id"] + '"  value="' + arrayRespuesta[0][i]["porcentaje"]+'"<br>';
 					}
 				}else{
 					codhtmlTeoria = 'No hay Teoria';
@@ -53,7 +52,7 @@ function configuracionAsig(idAsignatura){
 				
 				if(arrayRespuesta[1].length != 0){
 					for(i = 0; i < arrayRespuesta[1].length;i++){
-						codhtmlPracticas = codhtmlPracticas + '<br>' + arrayRespuesta[1][i]["descripcion"] + '<input type="number" name="name" id="' +arrayRespuesta[1][i]["id"] + '"  value="' + arrayRespuesta[1][i]["porcentaje"]+'"<br>';
+						codhtmlPracticas = codhtmlPracticas + '<br>' + arrayRespuesta[1][i]["descripcion"] + '<input data-theme="d" type="number" name="name" id="' +arrayRespuesta[1][i]["id"] + '"  value="' + arrayRespuesta[1][i]["porcentaje"]+'"<br>';
 					}
 				}else{
 					codhtmlPracticas = 'No hay Practicas';
@@ -62,7 +61,7 @@ function configuracionAsig(idAsignatura){
 				
 				if(arrayRespuesta[2].length != 0){
 					for(i = 0; i < arrayRespuesta[2].length;i++){
-						codhtmlTrabajos = codhtmlTrabajos + '<br>' + arrayRespuesta[2][i]["descripcion"] + '<input type="number" name="name" id="' +arrayRespuesta[2][i]["id"] + '"  value="' + arrayRespuesta[2][i]["porcentaje"]+'"<br>';
+						codhtmlTrabajos = codhtmlTrabajos + '<br>' + arrayRespuesta[2][i]["descripcion"] + '<input data-theme="d" type="number" name="name" id="' +arrayRespuesta[2][i]["id"] + '"  value="' + arrayRespuesta[2][i]["porcentaje"]+'"<br>';
 					}
 				}else{
 					codhtmlTrabajos = 'No hay Trabajos';
