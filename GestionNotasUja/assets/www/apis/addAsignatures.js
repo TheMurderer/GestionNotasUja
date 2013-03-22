@@ -198,7 +198,7 @@ function existeResponsableAsignatura(){
 			if (arrayRespuesta["ok"] == 0){
 				codhtml="<a href=\"#divDialogo\" data-role=\"button\" data-inline=\"true\" data-rel=\"dialog\" data-theme=\"b\" data-transition=\"flip\">Añadir</a>";
 			}else{
-				codhtml="<a href=\"#gruposImparteAsig\">Añadir</a>";
+				codhtml="<a href=\"javascript:introducirGrupoDisponibles()\">Añadir</a>";
 			}
 			
 			$('#btDialog').html(codhtml);
@@ -255,7 +255,7 @@ function almacenarInformacionResponsable(){
 			arrayRespuesta = eval(respuesta);
 			if (arrayRespuesta["ok"] != 0){
 				alert("Correcot");
-				location.href="#gruposImparteAsig";
+				introducirGrupoDisponibles();
 			}else{
 				alert("Error");
 			}
@@ -443,7 +443,7 @@ function EsResponsable(){
  *************************************************************************/
 function noEsResponsable(){
 	esResponsable = 0;
-	location.href="#gruposImparteAsig";
+	location.href="javascript:introducirGrupoDisponibles()";
 }
 
 
@@ -495,3 +495,50 @@ function limpiarAsignaturaCompleta(){
 	limpiarGruposTeoria();
 	limpiarGruposPracticas();
 }
+
+function introducirGrupoDisponibles(){
+	var cad = "[{\"idAsig\":\""+ idAsignaturaSeleccionada +"\"}]";
+	
+	$.ajax({
+		type: "GET",
+		url: p_url,
+		dataType: 'jsonp',
+		data: {
+			'm':'gruposAsignatura',
+			'datos':cad
+		},
+		contentType:'application/json; charset=utf-8',
+		success: function(respuesta){
+			//titulaciones
+			
+			arrayRespuesta = eval(respuesta);
+			if (arrayRespuesta["ok"] != 0){
+				
+				var codHtml='';
+				
+				alert("Correcot");
+				location.href="#gruposImparteAsig";
+			}else{
+				alert("Asignatura aún no creada. Consulte con el responsable de la asignatura.");
+			}
+
+		},
+		error: function(respuesta){
+			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+		},
+		beforeSend: function(){
+			$('#cargando2').show();
+			$('#listarAsignaturasTitulacion').hide();
+		},
+		complete: function(){
+			$('#cargando2').hide();
+			$('#listarAsignaturasTitulacion').show();
+		}
+	});
+	
+	
+
+	
+	
+}
+
