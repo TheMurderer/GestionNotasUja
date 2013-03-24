@@ -135,14 +135,14 @@
 			<h1>Opciones</h1>
 		</div>
 
-		<div data-role="content" align="center">
-			<ul data-role="listview" id="listaOpcionesAsignatura">
-				<li data-icon="plus"><a onclick="configuracionAsig(asignaturaSeleccionadaOpciones)">Materia</a></li>
+		<div data-role="content" align="center" id="contenidoOpAsig">
+			<!-- <ul data-role="listview" id="listaOpcionesAsignatura">
+				<li data-icon="plus"><a onclick="configuracionAsig(asignaturaSeleccionadaOpciones)">Añadir Materia</a></li>
 				<li data-icon="edit"><a href="#" >Grupos teroría</a></li>
-				<li data-icon="edit"><a href="#">Grupos prácticas</a></li>
-				<li data-icon="edit"><a href="#">Porcentajes</a></li>
-				<li data-icon="trash"><a href="#">Eliminar</a></li>
-			</ul>			
+				<li data-icon="edit"><a href="#">Inscripción en grupos</a></li>
+				<li data-icon="edit"><a href="#">Modificar Porcentajes</a></li>
+				<li data-icon="trash"><a href="#">Eliminar </a></li>
+			</ul>	 -->		
 		</div>
 	</div>
 
@@ -205,30 +205,39 @@
 		
 		<div data-role="content" id = "listaPorcentajesAsignatura">
 			<h3>Calificaciones</h3>
+			<form id="formPorcentajesAct">
+				<div id="porcentajesActualiz"></div>
+			</form>	
 			<form id="formPorcentajes">
-				<label for="textinput4">Porcentaje Teoria:</label> <div id="diTeoria"><input
-					type="number" name="porcentajeT" id="porcentajeT" value="" /></div>
-				<label for="textinput4">Puntuación mínima:</label> <div id="diTeoria"><input
-					type="number" name="porcentajeTMin" id="porcentajeTMin" value="0" /></div>
-				<hr>
-				<label for="textinput4">Porcentaje Práctica:</label> <div id="diPractica"><input
-					type="number" name="porcentajeP" id="porcentajeP" value="" /></div>
-				<label for="textinput4">Puntuación mínima:</label> <div id="diPractica"><input
-					type="number" name="porcentajePMin" id="porcentajePMin" value="0" /></div>
-				<hr>
-				<label for="textinput4">Porcentaje Asistencia:</label> <div id="diAsistencia"><input
-					type="number" name="porcentajeA" id="porcentajeA" value="" /></div>
-				<label for="textinput4">Puntuación mínima:</label> <div id="diAsistencia"><input
-					type="number" name="porcentajeAMin" id="porcentajeAMin" value="0" /></div>
-				<hr>
-				<label for="textinput5">Porcentaje Trabajos:</label> <div id="diTrabajos"><input
-					type="number" name="porcentajeTV" id="porcentajeTV" value="" /></div>
-				<label for="textinput5">Puntuación mínima:</label> <div id="diTrabajos"><input
-					type="number" name="porcentajeTVMin" id="porcentajeTVMin" value="0" /></div>	
+				<div id="porcentajesInsercc">
+					<label for="textinput4">Porcentaje Teoria:</label> <div id="diTeoria"><input
+						type="number" name="porcentajeT" id="porcentajeT" value="" /></div>
+					<label for="textinput4">Puntuación mínima:</label> <div id="diTeoria"><input
+						type="number" name="porcentajeTMin" id="porcentajeTMin" value="0" /></div>
+					<hr>
+					<label for="textinput4">Porcentaje Práctica:</label> <div id="diPractica"><input
+						type="number" name="porcentajeP" id="porcentajeP" value="" /></div>
+					<label for="textinput4">Puntuación mínima:</label> <div id="diPractica"><input
+						type="number" name="porcentajePMin" id="porcentajePMin" value="0" /></div>
+					<hr>
+					<label for="textinput4">Porcentaje Asistencia:</label> <div id="diAsistencia"><input
+						type="number" name="porcentajeA" id="porcentajeA" value="" /></div>
+					<label for="textinput4">Puntuación mínima:</label> <div id="diAsistencia"><input
+						type="number" name="porcentajeAMin" id="porcentajeAMin" value="0" /></div>
+					<hr>
+					<label for="textinput5">Porcentaje Trabajos:</label> <div id="diTrabajos"><input
+						type="number" name="porcentajeTV" id="porcentajeTV" value="" /></div>
+					<label for="textinput5">Puntuación mínima:</label> <div id="diTrabajos"><input
+						type="number" name="porcentajeTVMin" id="porcentajeTVMin" value="0" /></div>	
+				</div>
 			</form>	
 		</div>
 	
-		<div align = "center">
+		<div align = "center" id="btPorcActual">
+			<a href="javascript:actualizarPorcentajes()" data-role="button" data-inline="true" data-theme="b" >Actualizar</a>	
+		</div>
+		
+		<div align = "center" id="btPorcInserc">
 			<a href="#pageAddGruposTeoria" data-role="button" data-inline="true" data-theme="b" >Siguiente</a>	
 		</div>
 		
@@ -249,7 +258,7 @@
 			
 			<h1>Grupos Teoría</h1>
 			
-			<a href="javascript:addGruposTeoria()" data-icon="plus">Añadir</a>
+			<a href="javascript:addGruposTeoria('DivGruposTeoria','listaGruposTeoria')" data-icon="plus">Añadir</a>
 		</div>
 		
 		<div data-role="content" id = "listaGruposTeoria">
@@ -282,7 +291,7 @@
 			
 			<h1>Grupos Prácticas</h1>
 			
-			<a href="javascript:addGruposPracticas()" data-icon="plus">Añadir</a>
+			<a href="javascript:addGruposPracticas('DivGruposPracticas','listaGruposPracticas')" data-icon="plus">Añadir</a>
 		</div>
 		
 		<div data-role="content" id = "listaGruposPracticas">
@@ -316,24 +325,28 @@
 			<h1>Grupos Impartidos</h1>
 		</div>
 		
-		<div id="cargando8" class="capaCargando">
+		<div id="cargando9" class="capaCargando">
 			<img class="imagen" src="jquery.mobile/images/loading.gif">
 		</div>
 
-		<div data-role="content" id="listaAlumnos">
-			<div id="colTeoria" data-role="collapsible" data-theme="b" data-content-theme="d">
+		<div data-role="content" id="contenidoGruposAsig">
+				<div id="colTeoria" data-role="collapsible" data-theme="b" data-content-theme="d">
     			<h4>Teoría</h4>
-    			<div id="colConTeoria"></div>
+    			<form id="formGrupoPertenTeoria">
+	    			<div id="colConTeoria"></div>
+    			</form>
     		</div>
     		<div id="colPracticas" data-role="collapsible" data-theme="b" data-content-theme="d">
     			<h4>Prácticas</h4>
-    			<div id="colConPracticas"></div>
+    			<form id="formGrupoPertenPracticas">
+    				<div id="colConPracticas"></div>
+    			</form>
     		</div>
     		
 		</div>
 		
 		<div align = "center">
-			<a href="#" data-role="button" data-inline="true" data-theme="b" >Terminar</a>	
+			<a href="javascript:almacenarGruposImpartidos()" data-role="button" data-inline="true" data-theme="b" >Terminar</a>	
 		</div>
 
 		<div data-role="footer" data-position="fixed">
@@ -433,6 +446,72 @@
 
 		<div data-role="footer" data-position="fixed">
 			<h4>Pie de página</h4>
+		</div>
+	</div>
+	
+	<!--***********************************************************************-->
+	<!-- @page 		  : CONFIGURACION GRUPOS TEORÍA PARA ACTUALIZAR O MODIFICAR -->
+	<!-- @description : Permite configurar los grupos de tería que posee la asignatura -->
+	<!-- @pageBefore  : CONFIGURACION PORCENTAJES DE ASIGNTAURA -->
+	<!-- @pageAfter   : PAGINA DE ASIGNATURAS -->
+	<!--***********************************************************************-->
+	<div data-role="page" id="pageUpdGruposTeoria">
+		<div data-role="header" data-position="fixed">
+			<a href="#pageSignatures" data-icon="back">Atrás</a>
+			
+			<h1>Grupos Teoría</h1>
+			
+			<a href="javascript:addGruposTeoria('DivGruposTeoriaUpd','listaGruposTeoriaUpd')" data-icon="plus">Añadir</a>
+		</div>
+		
+		<div data-role="content" id = "listaGruposTeoriaUpd">
+			<h3>Grupos de Teoría</h3>
+			<form id="formGruposTeoriaUpd">
+				<div id="DivGruposTeoriaUpd">
+				
+				</div>
+			</form>
+		</div>
+	
+		<div align = "center">
+			<a href="#pageUpdGruposPracticas" onclick="numeroGrupos()" data-role="button" data-inline="true" data-theme="b" >Siguiente</a>	
+		</div>
+		
+		<div data-role="footer" data-position="fixed">
+			<h4>Gestor de Notas</h4>
+		</div>
+	</div>
+	
+	<!--***********************************************************************-->
+	<!-- @page 		  : CONFIGURACION GRUPOS PRÁCTICAS PARA ACTUALIZAR O MODIFICAR -->
+	<!-- @description : Permite configurar los grupos de prácticas que posee la asignatura -->
+	<!-- @pageBefore  : CONFIGURACION GRUPOS TEORÍA -->
+	<!-- @pageAfter   : PAGINA DE ASIGNATURAS -->
+	<!--***********************************************************************-->
+	<div data-role="page" id="pageUpdGruposPracticas">
+		<div data-role="header" data-position="fixed">
+			<a href="#pageSignatures" data-icon="back">Atrás</a>
+			
+			<h1>Grupos Prácticas</h1>
+			
+			<a href="javascript:addGruposPracticas('DivGruposPracticasUpd','listaGruposPracticasUpd')" data-icon="plus">Añadir</a>
+		</div>
+		
+		<div data-role="content" id = "listaGruposPracticasUpd">
+			<h3>Grupos de Prácticas</h3>
+			<form id="formGruposPracticasUpd">
+				<div id="DivGruposPracticasUpd">
+				
+				</div>
+			</form>
+		</div>
+	
+		<div align = "center">
+			<a href="javascript:almacenarInformacionResponsableUpd()" data-role="button" data-inline="true" data-theme="b" >Actualizar</a>	
+		</div>
+		
+		<div data-role="footer" data-position="fixed">
+			<h4>Gestor de Notas</h4>
 		</div>
 	</div>
 	

@@ -282,7 +282,7 @@ function almacenarInformacionResponsable(){
  ** @name 		 : almacenarInformacionResponsable
  ** @description : Petición json para almacenar el responsable de la asignatura
  *************************************************************************/
-function addGruposTeoria(){
+function addGruposTeoria(idContenedor1, idContenedor2){
 	var codhtml = '';
 	var nombre = "GrupoT" + numeroGruposTeoriaAnadidos;
 	
@@ -321,9 +321,10 @@ function addGruposTeoria(){
 	
 	
 	numeroGruposTeoriaAnadidos ++;
-	
-	$('#DivGruposTeoria').append(codhtml);
-	$('#listaGruposTeoria').trigger('create');
+	$('#'+idContenedor1).append(codhtml);
+	$('#'+idContenedor2).trigger('create');
+	//$('#DivGruposTeoria').append(codhtml);
+	//$('#listaGruposTeoria').trigger('create');
 }
 
 /*************************************************************************
@@ -341,7 +342,7 @@ function borrarGrupoTeoria(numero){
  ** @description : Petición json para almacenar el responsable de la 
  **                asignatura
  *************************************************************************/
-function addGruposPracticas(){
+function addGruposPracticas(idContenedor1, idContenedor2){
 	var codhtml = '';
 	var nombre = "GrupoP" + numeroGruposPracticasAnadidos;
 	
@@ -413,8 +414,10 @@ function addGruposPracticas(){
 	
 	numeroGruposPracticasAnadidos ++;
 	
-	$('#DivGruposPracticas').append(codhtml);
-	$('#listaGruposPracticas').trigger('create');
+	$('#'+idContenedor1).append(codhtml);
+	$('#'+idContenedor2).trigger('create');
+	//$('#DivGruposPracticas').append(codhtml);
+	//$('#listaGruposPracticas').trigger('create');
 }
 
 /*************************************************************************
@@ -435,6 +438,12 @@ function borrarGrupoPracticas(numero){
 function EsResponsable(){
 	esResponsable = 1;
 	location.href="#pageAddPorcentaje";
+	
+	$("#porcentajesActualiz").hide();
+	$("#porcentajesInsercc").show();
+	$("#btPorcActual").hide();
+	$("#btPorcInserc").show();
+	
 }
 
 /*************************************************************************
@@ -444,7 +453,8 @@ function EsResponsable(){
  *************************************************************************/
 function noEsResponsable(){
 	esResponsable = 0;
-	location.href="javascript:introducirGrupoDisponibles()";
+	alert("No ha sido creada la asignatura");
+	location.href="#pageAddSignature";
 }
 
 
@@ -499,7 +509,8 @@ function limpiarAsignaturaCompleta(){
 
 function introducirGrupoDisponibles(){
 	var cad = "[{\"idAsig\":\""+ idAsignaturaSeleccionada +"\"}]";
-	
+	location.href="#gruposImparteAsig";
+
 	$.ajax({
 		type: "GET",
 		url: p_url,
@@ -511,29 +522,170 @@ function introducirGrupoDisponibles(){
 		contentType:'application/json; charset=utf-8',
 		success: function(respuesta){
 			//titulaciones
-			
+			var i;
 			arrayRespuesta = eval(respuesta);
-			if (arrayRespuesta["ok"] != 0){
-				
-				//var codHtml='';
-				
-				alert("Correcot");
-				location.href="#gruposImparteAsig";
-			}else{
-				alert("Asignatura aún no creada. Consulte con el responsable de la asignatura.");
+
+			var codHtml='<fieldset data-role="controlgroup">';
+			var codHtmlPrac='<fieldset data-role="controlgroup">';
+			
+			for(i = 0; i < arrayRespuesta[0].length; i++){
+				if(arrayRespuesta[0][i]["inscrito"] == 1){
+					codHtml = codHtml + '<input type="checkbox" name="'+arrayRespuesta[0][i]["id"] +'" id="'+arrayRespuesta[0][i]["id"]+'" checked>';
+				}else{
+					codHtml = codHtml + '<input type="checkbox" name="'+arrayRespuesta[0][i]["id"] +'" id="'+arrayRespuesta[0][i]["id"]+'">';
+				}
+				codHtml = codHtml + '<label for="'+arrayRespuesta[0][i]["id"] +'">Grupo '+arrayRespuesta[0][i]["descripcion"]+' Turno: '+arrayRespuesta[0][i]["turno"]+'</label>';
 			}
+			
+			for(i = 0; i < arrayRespuesta[1].length; i++){
+				if(arrayRespuesta[1][i]["inscrito"] == 1){
+					codHtmlPrac = codHtmlPrac + '<input type="checkbox" name="'+arrayRespuesta[1][i]["id"] +'" id="'+arrayRespuesta[1][i]["id"]+'" checked>';
+				}else{
+					codHtmlPrac = codHtmlPrac + '<input type="checkbox" name="'+arrayRespuesta[1][i]["id"] +'" id="'+arrayRespuesta[1][i]["id"]+'" >';
+				}
+				codHtmlPrac = codHtmlPrac + '<label for="'+arrayRespuesta[1][i]["id"] +'">Grupo '+arrayRespuesta[1][i]["descripcion"]+' Horario: '+arrayRespuesta[1][i]["horaC"]+' - ' +arrayRespuesta[1][i]["horaF"] +'</label>';
+			}
+			
+			
+			codHtml=codHtml + '</fieldset>';
+			codHtmlPrac=codHtmlPrac + '</fieldset>';
+			
+			$('#colConTeoria').html(codHtml);
+			$('#colConPracticas').html(codHtmlPrac);
+			$('#contenidoGruposAsig').trigger('create');
+
 
 		},
 		error: function(respuesta){
 			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
 		},
 		beforeSend: function(){
-			$('#cargando2').show();
-			$('#listarAsignaturasTitulacion').hide();
+			$('#cargando9').show();
 		},
 		complete: function(){
-			$('#cargando2').hide();
-			$('#listarAsignaturasTitulacion').show();
+			$('#cargando9').hide();
+		}
+	});	
+}
+
+function introducirGrupoDisponible(idAsignatura){
+	var cad = "[{\"idAsig\":\""+ idAsignatura +"\"}]";
+	location.href="#gruposImparteAsig";
+
+	$.ajax({
+		type: "GET",
+		url: p_url,
+		dataType: 'jsonp',
+		data: {
+			'm':'gruposAsignatura',
+			'datos':cad
+		},
+		contentType:'application/json; charset=utf-8',
+		success: function(respuesta){
+			//titulaciones
+			var i;
+			arrayRespuesta = eval(respuesta);
+
+			var codHtml='<fieldset data-role="controlgroup">';
+			var codHtmlPrac='<fieldset data-role="controlgroup">';
+			
+			for(i = 0; i < arrayRespuesta[0].length; i++){
+				if(arrayRespuesta[0][i]["inscrito"] == 1){
+					codHtml = codHtml + '<input type="checkbox" name="'+arrayRespuesta[0][i]["id"] +'" id="'+arrayRespuesta[0][i]["id"]+'" checked>';
+				}else{
+					codHtml = codHtml + '<input type="checkbox" name="'+arrayRespuesta[0][i]["id"] +'" id="'+arrayRespuesta[0][i]["id"]+'">';
+				}
+				codHtml = codHtml + '<label for="'+arrayRespuesta[0][i]["id"] +'">Grupo '+arrayRespuesta[0][i]["descripcion"]+' Turno: '+arrayRespuesta[0][i]["turno"]+'</label>';
+			}
+			
+			for(i = 0; i < arrayRespuesta[1].length; i++){
+				if(arrayRespuesta[1][i]["inscrito"] == 1){
+					codHtmlPrac = codHtmlPrac + '<input type="checkbox" name="'+arrayRespuesta[1][i]["id"] +'" id="'+arrayRespuesta[1][i]["id"]+'" checked>';
+				}else{
+					codHtmlPrac = codHtmlPrac + '<input type="checkbox" name="'+arrayRespuesta[1][i]["id"] +'" id="'+arrayRespuesta[1][i]["id"]+'" >';
+				}
+				codHtmlPrac = codHtmlPrac + '<label for="'+arrayRespuesta[1][i]["id"] +'">Grupo '+arrayRespuesta[1][i]["descripcion"]+' Horario: '+arrayRespuesta[1][i]["horaC"]+' - ' +arrayRespuesta[1][i]["horaF"] +'</label>';
+			}
+			
+			
+			codHtml=codHtml + '</fieldset>';
+			codHtmlPrac=codHtmlPrac + '</fieldset>';
+			
+			$('#colConTeoria').html(codHtml);
+			$('#colConPracticas').html(codHtmlPrac);
+			$('#contenidoGruposAsig').trigger('create');
+
+
+		},
+		error: function(respuesta){
+			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+		},
+		beforeSend: function(){
+			$('#cargando9').show();
+		},
+		complete: function(){
+			$('#cargando9').hide();
+		}
+	});	
+}
+
+function almacenarGruposImpartidos(){
+	
+	
+	var c = document.getElementById("formGrupoPertenTeoria").getElementsByTagName('input');
+	var cadT='[{';
+    for (var i = 0; i < c.length; i++) {
+        if (c[i].type == 'checkbox') {
+        	cadT=cadT + '"' + c[i].name + '":"' + c[i].checked + '",';
+        }
+    }
+    cadT= cadT.substring(0,cadT.length-1);
+    cadT=cadT + '}]';
+    
+    var c = document.getElementById("formGrupoPertenPracticas").getElementsByTagName('input');
+	var cadP='[{';
+    for (var i = 0; i < c.length; i++) {
+        if (c[i].type == 'checkbox') {
+        	cadP=cadP + '"' + c[i].name + '":"' + c[i].checked + '",';
+        }
+    }
+    cadP= cadP.substring(0,cadP.length-1);
+    cadP=cadP + '}]';
+
+
+	var cad ="[[{\"idAsig\":\""+ idAsignaturaSeleccionada +"\"}]," + cadT;
+	cad = cad + "," + cadP +"]";
+	
+	alert(cad);
+	
+	
+	$.ajax({
+		type: "GET",
+		url: p_url,
+		dataType: 'jsonp',
+		data: {
+			'm':'almacenarGrupos',
+			'datos':cad
+		},
+		contentType:'application/json; charset=utf-8',
+		success: function(respuesta){
+			
+			arrayRespuesta = eval(respuesta);
+			if (arrayRespuesta["ok"] == 1){
+				location.href="#pageSignatures";
+				
+			}
+
+
+		},
+		error: function(respuesta){
+			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+		},
+		beforeSend: function(){
+			$('#cargando9').show();
+		},
+		complete: function(){
+			$('#cargando9').hide();
 		}
 	});	
 }
