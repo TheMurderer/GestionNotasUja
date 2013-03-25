@@ -298,13 +298,13 @@ function opcionesConfAsig(idAsignatura){
 				codhtml=codhtml + '<li data-icon="plus"><a onclick="configuracionAsig(asignaturaSeleccionadaOpciones)">Añadir Materia</a></li>';
 				codhtml=codhtml + '<li data-icon="edit"><a onclick="introducirGrupoDisponible('+idAsignatura+')">Inscripción en grupos</a></li>';
 				codhtml=codhtml + '<li data-icon="edit"><a onclick="introducirValoresPorcentajes('+idAsignatura+')">Modificar Porcentajes</a></li>';
-				codhtml=codhtml + '<li data-icon="trash"><a href="#">Eliminar </a></li>';
+				codhtml=codhtml + '<li data-icon="trash"><a onclick="eliminarAsigProfesor('+idAsignatura+')">Eliminar </a></li>';
 			}else{
 				codhtml=codhtml +'<li data-icon="plus"><a onclick="configuracionAsig(asignaturaSeleccionadaOpciones)">Añadir Materia</a></li>';
 				codhtml=codhtml + '<li data-icon="edit"><a onclick="actualizarGestionGrupos('+idAsignatura+')">Gestión de grupos</a></li>';
 				codhtml=codhtml + '<li data-icon="edit"><a onclick="introducirGrupoDisponible('+idAsignatura+')">Inscripción en grupos</a></li>';
 				codhtml=codhtml + '<li data-icon="edit"><a onclick="introducirValoresPorcentajes('+idAsignatura+')">Modificar Porcentajes</a></li>';
-				codhtml=codhtml + '<li data-icon="trash"><a href="#">Eliminar </a></li>';
+				codhtml=codhtml + '<li data-icon="trash"><a onclick="eliminarAsigProfesor('+idAsignatura+')">Eliminar </a></li>';
 			}
             codhtml = codhtml + '</ul>';
             $('#contenidoOpAsig').html(codhtml);
@@ -651,6 +651,42 @@ function borrarGrupoPracticasAlmac(idGrupo){
 			if (arrayRespuesta["ok"] != 0){
 				alert("Correcot");
 				
+			}
+
+		},
+		error: function(respuesta){
+			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+		},
+		beforeSend: function(){
+			$('#cargando2').show();
+			$('#listarAsignaturasTitulacion').hide();
+		},
+		complete: function(){
+			$('#cargando2').hide();
+			$('#listarAsignaturasTitulacion').show();
+		}
+	});
+}
+
+function eliminarAsigProfesor(idAsignatura){
+	var cad = "[{\"idAsig\":\"" + idAsignatura + "\"}]";
+	
+	$.ajax({
+		type: "GET",
+		url: p_url,
+		dataType: 'jsonp',
+		data: {
+			'm':'eliminarAsigProf',
+			'datos':cad
+		},
+		contentType:'application/json; charset=utf-8',
+		success: function(respuesta){
+			//titulaciones
+
+			arrayRespuesta = eval(respuesta);
+			if (arrayRespuesta["ok"] == 1){
+				peticionAsignaturas();
+				location.href="#pageSignatures";
 			}
 
 		},
