@@ -27,6 +27,8 @@
 <script type="text/javascript" charset="utf-8" src="apis/contentSignature.js"></script>
 <script type="text/javascript" charset="utf-8" src="apis/califications.js"></script>
 <script type="text/javascript" charset="utf-8" src="apis/validacion.js"></script>
+<script type="text/javascript" charset="utf-8" src="apis/request.js"></script>
+<script type="text/javascript" charset="utf-8" src="apis/attendance.js"></script>
 <!-- FIN -->
 
 <script src="jquery.mobile/json.min.js"></script>
@@ -43,7 +45,6 @@
 	<!--***********************************************************************-->
 	<div data-role="page" id="pageLogin">
 		<div data-role="header" data-position="fixed">
-			<a href="" data-icon="arrow-l">Salir</a>
 			<h1>Gestor de Notas</h1>
 			<a href="#pageRegister" data-icon="gear">Registro</a>
 		</div>
@@ -79,15 +80,11 @@
 
 		<div data-role="content" id="panel">
 			<form id="formRegister">
-				<p>Nombre:</p>
-				<input type="text" name="nombre" id="textinput2" value="" /> <br>
-				<p>Apellidos:</p>
-				<input type="text" name="apellidos" id="textinput3" value="" /> <br>
-				<p>DNI:</p>
-				<input type="text" name="dni" id="textinput3" value="" /> <br>
 				<p>Email:</p>
 				<input type="text" name="email" id="textinput3" value="" /> <br>
-				<p>Pass:</p>
+				<p>Pass antigua:</p>
+				<input type="password" name="passAnt" id="passwordAntiguainput" value="" />
+				<p>Nueva Pass:</p>
 				<input type="password" name="pass" id="passwordinput2" value="" />
 				<br>
 				<p>Confirmar Pass:</p>
@@ -191,6 +188,33 @@
 		</div>
 	</div>
 	
+	<!-- DIALOGO RESPONSABLE -->
+	<div data-role="page" id="divDialogoEliminacionGrupo">
+		<div data-role="header" data-position="fixed" id="cabeceraEliminacionGrupo">
+			<h1 id="asignatura">Eliminar grupo</h1>
+		</div>
+
+		<div data-role="content" id="dialogElGrupo" align="center">
+			<h3>¿Esta usted seguro de que desea eliminar el grupo?</h3>
+			<div id="btSiEliminar">
+				<a href="#" data-role="button" data-inline="true">Si</a>
+				<a href="#" data-role="button" data-inline="true">No</a>	
+			</div>	
+		</div>
+	</div>
+	
+	<!-- DIALOGO ELIMINACION ASIGNATURA -->
+	<div data-role="page" id="divDialogoEliminacionAsignatura">
+		<div data-role="header" data-position="fixed" id="cabeceraEliminacionAsignatura">
+			<h1 >Eliminar asignatura</h1>
+		</div>
+
+		<div data-role="content" id="dialogElGrupoAsig" align="center">
+			<h3>¿Esta usted seguro de que desea eliminar la asignatura?</h3>
+			<div id="btSiEliminarAsignatura"></div>	
+		</div>
+	</div>
+	
 	<!--***********************************************************************-->
 	<!-- @page 		  : CONFIGURACION PORCENTAJES DE ASIGNTAURA -->
 	<!-- @description : Permite configurar el porcentaje de teoría/prácticas/trabajos/asistencia -->
@@ -199,8 +223,8 @@
 	<!--***********************************************************************-->
 	<div data-role="page" id="pageAddPorcentaje">
 		<div data-role="header" data-position="fixed">
-			<a href="#pageAddSignature" data-icon="back">Atrás</a>
-			<h1>Porcenjates</h1>
+			<a href="#pageSignatures" data-icon="back">Atrás</a>
+			<h1>Porcentajes</h1>
 		</div>
 		
 		<div data-role="content" id = "listaPorcentajesAsignatura">
@@ -345,7 +369,7 @@
     		
 		</div>
 		
-		<div align = "center">
+		<div id="btgruposImpartido" align = "center">
 			<a href="javascript:almacenarGruposImpartidos()" data-role="button" data-inline="true" data-theme="b" >Terminar</a>	
 		</div>
 
@@ -365,12 +389,12 @@
 		<div data-role="header" data-position="fixed" id="cabeceraConfiguracion">
 			<a href="#pageSignatures" data-icon="back">Atrás</a>
 			<h1 id="asignatura">Asignatura</h1>
-		    <a href="#anadirMateriaAsignatura" data-icon="plus">Añadir</a>
+		    <a href="#anadirMateriaAsignatura" onclick="limpiarAnadirMateria()" data-icon="plus">Añadir</a>
 			<div data-role="navbar">
 				<ul>
-					<li><a href="" class="ui-btn-active" onClick="mostrarDIV('T')"> Teoria </a></li>
-					<li><a href="" onClick="mostrarDIV('P')"> Práticas </a></li>
-					<li><a href="" onClick="mostrarDIV('TV')"> Trabajos </a></li>
+					<li><a href="" id="pestanaTeoriaConf" class="ui-btn-active" onClick="mostrarDIV('T')"> Teoria </a></li>
+					<li><a href="" id="pestanaPracticasConf" onClick="mostrarDIV('P')"> Práticas </a></li>
+					<li><a href="" id="pestanaTrabajosConf" onClick="mostrarDIV('TV')"> Trabajos </a></li>
 				</ul>
 			</div>
 		</div>
@@ -436,12 +460,14 @@
 		<div data-role="header">
 			<a href="#pageSignatures" data-icon="back">Atrás</a>
 			<h1>Alumnos</h1>
+			<a href="#listadoAsistenciaAsignatura" onclick="mostrarAlumnosAsist();" data-icon="person">Nueva Asistencia</a>
 		</div>
 		
 		<div id="cargando3" class="capaCargando">
 			<img class="imagen" src="jquery.mobile/images/loading.gif">
 		</div>
 
+		<div id="divGrupoAlumno"></div>
 		<div data-role="content" id="listaAlumnos"></div>
 
 		<div data-role="footer" data-position="fixed">
@@ -523,14 +549,15 @@
 	<!--***********************************************************************-->
 	<div data-role="page" id="calificacionAlumnos">
 		<div data-role="header" data-position="fixed" id="cabeceraConfiguracionAlumnos">
-			<a href="#pageSignatures" data-icon="back">Atrás</a>
+			<a href="#mostrarListadoAlumnos" data-icon="back">Atrás</a>
 			<h1 id="asignatura">Alumno</h1>
 		    
 			<div data-role="navbar">
 				<ul>
-					<li><a href="" class="ui-btn-active" onClick="mostrarDIVAsig('T')"> Teoria </a></li>
-					<li><a href="" onClick="mostrarDIVAsig('P')"> Prácticas </a></li>
-					<li><a href="" onClick="mostrarDIVAsig('TV')"> Trabajos </a></li>
+					<li><a id="pestanaTeoriaCalificacion" href="" class="ui-btn-active" onClick="mostrarDIVAsig('T')"> Teoria </a></li>
+					<li><a id="pestanaPracticasCalificacion" href="" onClick="mostrarDIVAsig('P')"> Prácticas </a></li>
+					<li><a id="pestanaTrabajoCalificacion" href="" onClick="mostrarDIVAsig('TV')"> Trabajos </a></li>
+					<li><a id="pestanaAsistenciaCalificacion" href="" onClick="mostrarDIVAsig('A')"> Asistencia </a></li>
 				</ul>
 			</div>
 		</div>
@@ -549,6 +576,15 @@
 			<form id="formCalificAlumnoTrabajos">		
 				<div data-role="content" id="contDIVTrabajos"></div>
 			</form>
+				
+				<div data-role="content" id="contDIVAsistencia">
+					<div id="elegirGrupoModAsis"></div>
+					<br><br>
+					<form id="formCalificAlumnoAsistencia">	
+						<div id="ContenidoModificarAsis"></div>
+					</form>
+				</div>
+			
 			
 				<div align="center">
 						<a href="" data-role="button" data-inline="true" data-icon=""
@@ -560,6 +596,109 @@
 
 		<div data-role="footer" data-position="fixed">
 			<h4>Gestor de Notas</h4>
+		</div>
+	</div>
+	
+	
+	<!--***********************************************************************-->
+	<!-- @page 		  : PETICIONES ALUMNO_PROFESOR -->
+	<!-- @description : Muestra las peticiones pendientes del alumno y profesor -->
+	<!-- @pageBefore  : ASIGNATURAS DEL PROFESOR -->
+	<!-- @pageAfter   : *** -->
+	<!--***********************************************************************-->
+	<div data-role="page" id="pagePeticiones">
+		<div data-role="header" data-position="fixed" id="cabeceraPeticiones">
+			<a href="#pageSignatures" data-icon="back">Atrás</a>
+			<h1 id="asignatura">Peticiones</h1>
+			<div data-role="navbar">
+				<ul>
+					<li><a id="profePeticion" href="" class="ui-btn-active" onClick="mostrarDIVPet('P')">Profesor</a></li>
+					<li><a id="alumnoPeticion" href="" onClick="mostrarDIVPet('A')">Alumno</a></li>
+				</ul>
+			</div>
+		</div>
+		<div id="cargando10" class="capaCargando">
+			<img class="imagen" src="jquery.mobile/images/loading.gif">
+		</div>
+		<div data-role="content" id="panelConfiguracionAsignatura" >
+			<form id="formProfesor">
+				<div data-role="content" id="petDIVProfesor"></div>
+			</form>
+			
+			<form id="formAlumno">
+				<div data-role="content" id="petDIVAlumno"> </div>
+			</form>
+
+			 <div align="center" id="btPetic">
+				<a href="javascript:aceptarPeticiones()" data-role="button" data-inline="true" data-theme="d" data-icon="plus" onclick="">Aceptar</a>
+			</div>
+			
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+			<h4>Gestor de Notas</h4>
+		</div>
+	</div>
+	
+	<!--***********************************************************************-->
+	<!-- @page 		  : PETICIONES ALUMNO -->
+	<!-- @description : Muestra las peticiones pendientes del alumno y profesor -->
+	<!-- @pageBefore  : ASIGNATURAS DEL PROFESOR -->
+	<!-- @pageAfter   : *** -->
+	<!--***********************************************************************-->
+	<div data-role="page" id="pagePeticionesAlumno">
+		<div data-role="header" data-position="fixed" id="cabeceraPeticiones">
+			<a href="#pageSignatures" data-icon="back">Atrás</a>
+			<h1 id="asignatura">Peticiones</h1>
+
+		</div>
+		<div id="cargando11" class="capaCargando">
+			<img class="imagen" src="jquery.mobile/images/loading.gif">
+		</div>
+		<div data-role="content" id="panelConfiguracionAsignatura" >
+
+			
+			<form id="formAlumnoPetAlumno">
+				<div data-role="content" id="petDIVAlAlumno"> </div>
+			</form>
+
+			 <div align="center" id="btPeticAlumno">
+				<a href="javascript:aceptarPeticionesAl()" data-role="button" data-inline="true" data-theme="d" data-icon="plus" onclick="">Aceptar</a>
+			</div>
+			
+		</div>
+
+		<div data-role="footer" data-position="fixed">
+			<h4>Gestor de Notas</h4>
+		</div>
+	</div>
+	
+	<!--***********************************************************************-->
+	<!-- @page 		  : LISTADO DE ALUMNOS DE UNA ASIGNATURA PARA PASAR LISTA -->
+	<!-- @description : Lista los alumnos de la asignatura  -->
+	<!-- @pageBefore  : ASIGNATURAS DEL PROFESOR -->
+	<!-- @pageAfter   : *** -->
+	<!--***********************************************************************-->
+ 	<div data-role="page" id="listadoAsistenciaAsignatura">
+		
+		<div data-role="header">
+			<a href="#mostrarListadoAlumnos" data-icon="back">Atrás</a>
+			<h1>Lista de asistencia</h1>
+		</div>
+		
+		<div id="cargando12" class="capaCargando">
+			<img class="imagen" src="jquery.mobile/images/loading.gif">
+		</div>
+		
+		<div id="divGrupoAlumnoAsist"></div>
+		
+		<form id="formListaAluAsistencia">
+			<div data-role="content" id="listaAlumnosAsistencia"></div>
+		</form>
+		
+		<div id="btNuevAsist" align="center"></div>
+		<div data-role="footer" data-position="fixed">
+			<h4>Pie de página</h4>
 		</div>
 	</div>
 

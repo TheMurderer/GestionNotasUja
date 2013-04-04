@@ -27,7 +27,7 @@ function calificarAlumno(dniAlumno, idAsignatura){
 		},
 		contentType:'application/json; charset=utf-8',
 		success: function(respuesta){
-			
+			mostrarDIVAsig('T');
 			location.href = "#calificacionAlumnos";
 			
 			//Asignaturas pertenecientes a una titulación
@@ -44,8 +44,8 @@ function calificarAlumno(dniAlumno, idAsignatura){
 							codhtmlTeoria = codhtmlTeoria + '<br><b>' + arrayRespuesta[0][i]["descripcion"] + '</b> Maxima puntuacion: '+ arrayRespuesta[0][i]["porcentaje"]+ ' <input type="text" class="numbersOnly" onkeyup="javascript:soloNumeros(this,0,'+arrayRespuesta[0][i]["porcentaje"]+');" name="' +arrayRespuesta[0][i]["id"] + '" id="' +arrayRespuesta[0][i]["id"] + '"  value="' + arrayRespuesta[0][i]["valor"]+'" /><br>';
 						}else{
 							codhtmlTeoria = codhtmlTeoria + '<br><b>' + arrayRespuesta[0][i]["descripcion"] + '</b> Maxima puntuacion: '+ arrayRespuesta[0][i]["porcentaje"]+ ' <input type="text" class="numbersOnly" onkeyup="javascript:soloNumeros(this,0,'+arrayRespuesta[0][i]["porcentaje"]+');" name="' +arrayRespuesta[0][i]["id"] + '" id="' +arrayRespuesta[0][i]["id"] + '"  value="" /><br>';
-
 						}
+						codhtmlTeoria = codhtmlTeoria + '	<label for="textarea">Observaciones: </label><textarea cols="40" rows="12" name="o'+arrayRespuesta[0][i]["id"] +'" id="o'+arrayRespuesta[0][i]["id"] +'">'+ arrayRespuesta[0][i]["observaciones"]+ '</textarea>';
 					}
 				}else{
 					codhtmlTeoria = 'No hay Teoria';
@@ -58,6 +58,7 @@ function calificarAlumno(dniAlumno, idAsignatura){
 						}else{
 							codhtmlPracticas = codhtmlPracticas + '<br><b>' + arrayRespuesta[1][i]["descripcion"] + '</b> Maxima puntuacion: '+ arrayRespuesta[1][i]["porcentaje"] + ' <input type="text" class="numbersOnly" onkeyup="javascript:soloNumeros(this,0,'+arrayRespuesta[1][i]["porcentaje"]+');" name="' +arrayRespuesta[1][i]["id"] + '" id="' +arrayRespuesta[1][i]["id"] + '"  value="" /><br>';
 						}
+						codhtmlPracticas = codhtmlPracticas + '	<label for="textarea">Observaciones: </label><textarea cols="40" rows="12" name="o'+arrayRespuesta[1][i]["id"] +'" id="o'+arrayRespuesta[1][i]["id"] +'">'+ arrayRespuesta[1][i]["observaciones"]+ '</textarea>';
 					}
 				}else{
 					codhtmlPracticas = 'No hay Practicas';
@@ -69,8 +70,9 @@ function calificarAlumno(dniAlumno, idAsignatura){
 							codhtmlTrabajos = codhtmlTrabajos + '<br> <b>' + arrayRespuesta[2][i]["descripcion"] + '</b> Maxima puntuacion: '+ arrayRespuesta[2][i]["porcentaje"] + ' <input type="text" class="numbersOnly" onkeyup="javascript:soloNumeros(this,0,'+arrayRespuesta[2][i]["porcentaje"]+');" name="' +arrayRespuesta[2][i]["id"] + '" id="' +arrayRespuesta[2][i]["id"] + '"  value="' + arrayRespuesta[2][i]["valor"]+'" /><br>';
 						}else{
 							codhtmlTrabajos = codhtmlTrabajos + '<br><b>' + arrayRespuesta[2][i]["descripcion"] + '</b> Maxima puntuacion: '+ arrayRespuesta[2][i]["porcentaje"] + ' <input type="text" class="numbersOnly" onkeyup="javascript:soloNumeros(this,0,'+arrayRespuesta[2][i]["porcentaje"]+');" name="' +arrayRespuesta[2][i]["id"] + '" id="' +arrayRespuesta[2][i]["id"] + '"  value="" /><br>';
-
 						}
+						codhtmlTrabajos = codhtmlTrabajos + '<label for="textarea">Observaciones: </label><textarea cols="40" rows="12" name="o'+arrayRespuesta[2][i]["id"] +'" id="o'+arrayRespuesta[2][i]["id"] +'">'+ arrayRespuesta[2][i]["observaciones"]+ '</textarea>';
+
 					}
 				}else{
 					codhtmlTrabajos = 'No hay Trabajos';
@@ -81,7 +83,7 @@ function calificarAlumno(dniAlumno, idAsignatura){
 				$('#contDIVPractica').html(codhtmlPracticas);
 				$('#contDIVTrabajos').html(codhtmlTrabajos);
 				
-				mostrarDIVAsig('T');
+				
 				$('#panelContenidoAsignaturaAlum').trigger('create');
 				
 			
@@ -91,6 +93,7 @@ function calificarAlumno(dniAlumno, idAsignatura){
 		},
 		beforeSend: function(){
 			$('#cargando4').show();
+			
 			
 		},
 		complete: function(){
@@ -105,40 +108,44 @@ function calificarAlumno(dniAlumno, idAsignatura){
  ** @description : Petición json para actualizar las notas de un alumno
  *************************************************************************/
 function actualizarDatos(){
-	var cad;
-	if(pestanaSeleccionada =='T'){
-		cad ="[" +"[{\"id\":\"" +idAsignaturaSel + "\", \"dni\":\"" +dni +"\", \"tipo\":\""+"T" +"\"}],[" +JSON.stringify($("#formCalificAlumnoTeoria").serializeObject()) + "]]";
-	}else if(pestanaSeleccionada == 'P'){
-		cad ="[" +"[{\"id\":\"" +idAsignaturaSel + "\", \"dni\":\"" +dni +"\", \"tipo\":\""+"P" +"\"}],[" +JSON.stringify($("#formCalificAlumnoPracticas").serializeObject()) + "]]";
+	if(pestanaSeleccionada =='A'){
+		actualizarAsistencia();
 	}else{
-		cad ="[" +"[{\"id\":\"" +idAsignaturaSel + "\", \"dni\":\"" +dni +"\", \"tipo\":\""+"TV" +"\"}],[" +JSON.stringify($("#formCalificAlumnoTrabajos").serializeObject()) + "]]";
-	}
-
-	alert(cad);
-	
-	$.ajax({
-		type: "GET",
-		url: p_url,
-		dataType: 'jsonp',
-		data: {
-			'm':'updCalAlu',
-			'datos':cad
-		},
-		contentType:'application/json; charset=utf-8',
-		success: function(respuesta){
-			arrayRespuesta = eval(respuesta);
-			
-			if (arrayRespuesta["ok"] == 1){
-				alert("Datos actualizados correctamente");
-			}else{
-				alert("Incorrecto");
-			}
-            
-		},
-		error: function(respuesta){
-			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+		var cad;
+		if(pestanaSeleccionada =='T'){
+			cad ="[" +"[{\"id\":\"" +idAsignaturaSel + "\", \"dni\":\"" +dni +"\", \"tipo\":\""+"T" +"\"}],[" +JSON.stringify($("#formCalificAlumnoTeoria").serializeObject()) + "]]";
+		}else if(pestanaSeleccionada == 'P'){
+			cad ="[" +"[{\"id\":\"" +idAsignaturaSel + "\", \"dni\":\"" +dni +"\", \"tipo\":\""+"P" +"\"}],[" +JSON.stringify($("#formCalificAlumnoPracticas").serializeObject()) + "]]";
+		}else{
+			cad ="[" +"[{\"id\":\"" +idAsignaturaSel + "\", \"dni\":\"" +dni +"\", \"tipo\":\""+"TV" +"\"}],[" +JSON.stringify($("#formCalificAlumnoTrabajos").serializeObject()) + "]]";
 		}
-	});
+	
+		alert(cad);
+		
+		$.ajax({
+			type: "GET",
+			url: p_url,
+			dataType: 'jsonp',
+			data: {
+				'm':'updCalAlu',
+				'datos':cad
+			},
+			contentType:'application/json; charset=utf-8',
+			success: function(respuesta){
+				arrayRespuesta = eval(respuesta);
+				
+				if (arrayRespuesta["ok"] == 1){
+					alert("Datos actualizados correctamente");
+				}else{
+					alert("Incorrecto");
+				}
+	            
+			},
+			error: function(respuesta){
+				alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+			}
+		});
+	}
 	
 }
 
@@ -155,20 +162,37 @@ function mostrarDIVAsig(valor){
 	if(valor == 'T'){
 		pestanaSeleccionada = 'T';
 		
+		$('#pestanaTeoriaCalificacion').addClass("ui-btn-active");
+		$('#pestanaPracticasCalificacion').removeClass("ui-btn-active");
+		$('#pestanaTrabajoCalificacion').removeClass("ui-btn-active");
+		$('#pestanaAsistenciaCalificacion').removeClass("ui-btn-active");
+		
 		$('#contDIVTeoria').show();
 		$('#contDIVPractica').hide();
 		$('#contDIVTrabajos').hide();
+		$('#contDIVAsistencia').hide();
 	}else if (valor == 'P'){
 		pestanaSeleccionada = 'P';
 		
 		$('#contDIVTeoria').hide();
 		$('#contDIVPractica').show();
 		$('#contDIVTrabajos').hide();
-	}else{
+		$('#contDIVAsistencia').hide();
+	}else if(valor == 'TV'){
 		pestanaSeleccionada = 'TV';
 		
 		$('#contDIVTeoria').hide();
 		$('#contDIVPractica').hide();
 		$('#contDIVTrabajos').show();
+		$('#contDIVAsistencia').hide();
+	}else if(valor == 'A'){
+		pestanaSeleccionada = 'A';
+		
+		$('#contDIVTeoria').hide();
+		$('#contDIVPractica').hide();
+		$('#contDIVTrabajos').hide();
+		$('#contDIVAsistencia').show();
+
+		mostrarListaGruposModAsistencia(idAsignaturaSel);
 	}
 }

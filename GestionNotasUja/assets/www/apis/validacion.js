@@ -51,5 +51,5 @@ function comprobarPorcentajes(){
  ** @param idGrupo : id del elmento a comprobar
  *************************************************************************/
 function numeroGrupos(){
-	alert($("#DivGruposTeoria a").size());
+	//alert($("#DivGruposTeoria a").size());
 }

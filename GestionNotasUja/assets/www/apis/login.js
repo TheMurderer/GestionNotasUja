@@ -25,7 +25,6 @@ function peticionLogin(){
 				navigator.notification.alert('Acceso incorrecto',null,'Login', 'Aceptar');
 			}else{
 				//Guardamos el Id de la sessión
-				alert("Correcto");
 				idSesion = arrayRespuesta["sesion"];
 				peticionAsignaturas(); //Lista de asignaturas del profesor
 				location.href = "#pageSignatures";

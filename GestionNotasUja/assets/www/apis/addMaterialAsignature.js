@@ -5,12 +5,12 @@
  ** @param tipo			 : T-Teroría | P-Prácticas | TV-Trabajos volutarios
  *************************************************************************/
 function addMaterial(idAsignatura,tipo){
-	alert("ID: " + idAsignatura + " Tipo: " + tipo);
+
 	var puntuacion = $("#puntuacionParcial").val();
 	var descripcion = $("#descripcionParcial").val();
 	var cad = "[" +
 	          "{" +
-	               " \"id\":\"" + idAsignatura + "\"," +
+	               " \"id\":\"" + idAsignaturaSeleccionada + "\"," +
 	               " \"tipo\":\""+"P"+ tipo+"\"," +
 	               " \"punt\":"+$("#puntuacionParcial").val()+"," +
 	               " \"desc\":\""+$("#descripcionParcial").val()+"\"" +
@@ -43,4 +43,10 @@ function addMaterial(idAsignatura,tipo){
 		}
 	});
 	
+}
+
+function limpiarAnadirMateria(){
+	$('#descripcionParcial').val("");
+	$('#puntuacionParcial').val("");
+
 }

@@ -17,11 +17,10 @@ function peticionRegistro(){
 		success: function(respuesta){
 			arrayRespuesta = eval(respuesta);
             if (arrayRespuesta["ok"] == 0){
-				alert('Usuario existente');
-				navigator.notification.alert('Usuario existente',null,'Registro', 'Aceptar');
+				alert('Registro incorrecto');
+				navigator.notification.alert('Registro incorrecto',null,'Registro', 'Aceptar');
 			}else{
-			alert('Registro correcto');
-				navigator.notification.alert('Registro correcto',null,'Registro', 'Aceptar');
+				location.href='#pageLogin';
 			}
 		},
 		error: function(respuesta){

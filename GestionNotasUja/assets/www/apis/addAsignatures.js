@@ -15,8 +15,7 @@ var numeroGruposPracticasAnadidos = 1;
  *************************************************************************/
 function peticionAnadirAsignatura(){
 	var cad = "[" + JSON.stringify($("#formAnadeAsignatura").serializeObject()) + "]";
-	alert(cad);
-	
+
 	$.ajax({
 		type: "GET",
 		url: p_url,
@@ -34,7 +33,7 @@ function peticionAnadirAsignatura(){
 				navigator.notification.alert('Error al crear asignatura',null,'Nueva asignatura', 'Aceptar');
 			}else{
 				//Guardamos el Id de la sessión
-				alert("Correcto");
+				//alert("Correcto");
 				//Cargamos de nuevo la lista de asignaturas
 				peticionAsignaturas(); //Lista de asignaturas del profesor
 				location.href = "#pageSignatures";
@@ -67,7 +66,7 @@ function peticionTitulaciones(){
 		},
 		contentType:'application/json; charset=utf-8',
 		success: function(respuesta){
-			alert(respuesta);
+
 			//titulaciones
 			
 			arrayRespuesta = eval(respuesta);
@@ -134,7 +133,6 @@ function peticionAsignaturasTitulacion(idTitulacion){
 		},
 		contentType:'application/json; charset=utf-8',
 		success: function(respuesta){
-			alert(idTitulacion);
 
 			
 			//Asignaturas pertenecientes a una titulación
@@ -238,9 +236,9 @@ function almacenarInformacionResponsable(){
 	cad=cad + codT +"],[";
 
 	var codP = JSON.stringify($("#formGruposPracticas").serializeObject());
-	alert(codP);
+
 	cad = cad + codP +"]]";
-	alert(cad);
+
 	$.ajax({
 		type: "GET",
 		url: p_url,
@@ -255,7 +253,7 @@ function almacenarInformacionResponsable(){
 
 			arrayRespuesta = eval(respuesta);
 			if (arrayRespuesta["ok"] != 0){
-				alert("Correcot");
+
 				introducirGrupoDisponibles();
 			}else{
 				alert("Error");
@@ -561,9 +559,13 @@ function introducirGrupoDisponibles(){
 		},
 		beforeSend: function(){
 			$('#cargando9').show();
+			$('#contenidoGruposAsig').hide();
+			$('#btgruposImpartido').hide();
 		},
 		complete: function(){
 			$('#cargando9').hide();
+			$('#contenidoGruposAsig').show();
+			$('#btgruposImpartido').show();
 		}
 	});	
 }
@@ -622,9 +624,13 @@ function introducirGrupoDisponible(idAsignatura){
 		},
 		beforeSend: function(){
 			$('#cargando9').show();
+			$('#contenidoGruposAsig').hide();
+			$('#btgruposImpartido').hide();
 		},
 		complete: function(){
 			$('#cargando9').hide();
+			$('#contenidoGruposAsig').show();
+			$('#btgruposImpartido').show();
 		}
 	});	
 }
@@ -656,9 +662,6 @@ function almacenarGruposImpartidos(){
 	var cad ="[[{\"idAsig\":\""+ idAsignaturaSeleccionada +"\"}]," + cadT;
 	cad = cad + "," + cadP +"]";
 	
-	alert(cad);
-	
-	
 	$.ajax({
 		type: "GET",
 		url: p_url,
@@ -672,6 +675,7 @@ function almacenarGruposImpartidos(){
 			
 			arrayRespuesta = eval(respuesta);
 			if (arrayRespuesta["ok"] == 1){
+				peticionAsignaturas();
 				location.href="#pageSignatures";
 				
 			}
@@ -683,9 +687,13 @@ function almacenarGruposImpartidos(){
 		},
 		beforeSend: function(){
 			$('#cargando9').show();
+			$('#contenidoGruposAsig').hide();
+			$('#btgruposImpartido').hide();
 		},
 		complete: function(){
 			$('#cargando9').hide();
+//			$('#contenidoGruposAsig').show();
+//			$('#btgruposImpartido').show();
 		}
 	});	
 }

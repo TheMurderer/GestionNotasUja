@@ -8,6 +8,8 @@ var numeroParcialPractica = 1;
 var numeroParcialTrabajos = 1;
 
 var asignaturaConfi='';
+var idGrupoBorrarTeoria='';
+var idGrupoBorrarPractica='';
 
 
 /*----------- PETICIONES JSON -----------*/
@@ -21,7 +23,7 @@ var asignaturaConfi='';
 function configuracionAsig(idAsignatura){
 	ocultarTodosDIV();
 	var cad = "[{\"id\":\"" + idAsignatura + "\"}]";
-	
+
 	idAsignaturaSeleccionada = idAsignatura;
 
 	$.ajax({
@@ -103,7 +105,7 @@ function configuracionAsig(idAsignatura){
 function modificarConfAsignatura(){
 	var cad = "[{\"id\":\"" + idAsignaturaSeleccionada + "\"}]";
 	var code="";
-	alert(cad);
+
 	$.ajax({
 		type: "GET",
 		url: p_url,
@@ -158,7 +160,6 @@ function actualizarConfiguracion(idAsignatura){
 	var cad ="[" + JSON.stringify($("#formAnadeAsignatura").serializeObject());
 	cad = cad.replace("}","");
 	cad = cad +",\"id\":\""+idAsignatura+"\"}]";
-	alert(cad);
 	
 	$.ajax({
 		type: "GET",
@@ -244,6 +245,7 @@ function mostrarDIV(valor){
 		$('#confDIVTeoria').show();
 		$('#confDIVPractica').hide();
 		$('#confDIVTrabajos').hide();
+		
 		$('#panelConfiguracionAsignatura').refresh();
 	}else if (valor == 'P'){
 		pestanaSeleccionada = 'P';
@@ -251,6 +253,7 @@ function mostrarDIV(valor){
 		$('#confDIVTeoria').hide();
 		$('#confDIVPractica').show();
 		$('#confDIVTrabajos').hide();
+
 		$('#panelConfiguracionAsignatura').refresh();
 	}else{
 		pestanaSeleccionada = 'TV';
@@ -258,6 +261,7 @@ function mostrarDIV(valor){
 		$('#confDIVTeoria').hide();
 		$('#confDIVPractica').hide();
 		$('#confDIVTrabajos').show();
+
 		$('#panelConfiguracionAsignatura').refresh();
 	}
 }
@@ -270,6 +274,9 @@ function mostrarDIV(valor){
  *************************************************************************/
 function ocultarTodosDIV(){
 	pestanaSeleccionada = 'T';
+	$('#pestanaTeoriaConf').addClass("ui-btn-active");
+	$('#pestanaPracticasConf').removeClass('ui-btn-active');
+	$('#pestanaTrabajosConf').removeClass('ui-btn-active');
 	
 	$('#confDIVTeoria').show();
 	$('#confDIVPractica').hide();
@@ -281,6 +288,9 @@ function opcionesConfAsig(idAsignatura){
 	var cad = "[{\"id\":\"" + idAsignatura + "\"}]";
 	var codhtml='';
 
+	idAsignaturaSeleccionada = idAsignatura;
+	
+	
 	$.ajax({
 		type: "GET",
 		url: p_url,
@@ -295,16 +305,18 @@ function opcionesConfAsig(idAsignatura){
 			codhtml='<ul data-role="listview" id="listaOpcionesAsignatura">';
 
             if (arrayRespuesta["ok"] == 0){
-				codhtml=codhtml + '<li data-icon="plus"><a onclick="configuracionAsig(asignaturaSeleccionadaOpciones)">Añadir Materia</a></li>';
-				codhtml=codhtml + '<li data-icon="edit"><a onclick="introducirGrupoDisponible('+idAsignatura+')">Inscripción en grupos</a></li>';
+				codhtml=codhtml + '<li data-icon="plus"><a onclick="configuracionAsig('+idAsignatura+')">A\xf1adir Materia</a></li>';
+				codhtml=codhtml + '<li data-icon="edit"><a onclick="introducirGrupoDisponible('+idAsignatura+')">Inscripci\xf3n en grupos</a></li>';
 				codhtml=codhtml + '<li data-icon="edit"><a onclick="introducirValoresPorcentajes('+idAsignatura+')">Modificar Porcentajes</a></li>';
-				codhtml=codhtml + '<li data-icon="trash"><a onclick="eliminarAsigProfesor('+idAsignatura+')">Eliminar </a></li>';
-			}else{
-				codhtml=codhtml +'<li data-icon="plus"><a onclick="configuracionAsig(asignaturaSeleccionadaOpciones)">Añadir Materia</a></li>';
-				codhtml=codhtml + '<li data-icon="edit"><a onclick="actualizarGestionGrupos('+idAsignatura+')">Gestión de grupos</a></li>';
-				codhtml=codhtml + '<li data-icon="edit"><a onclick="introducirGrupoDisponible('+idAsignatura+')">Inscripción en grupos</a></li>';
+				codhtml=codhtml + '<li data-icon="edit"><a onclick="mostrarPeticionesAlumno('+idAsignatura+')">Peticiones<span class="ui-li-count">'+arrayRespuesta["total"]+'</span></a></li>';
+				codhtml=codhtml + '<li data-icon="trash"><a href="#divDialogoEliminacionAsignatura" data-rel="dialog" onclick="eliminarAsignaturaProf('+ idAsignatura +');">Eliminar</a></li>';
+            }else{
+				codhtml=codhtml +'<li data-icon="plus"><a onclick="configuracionAsig('+idAsignatura+')">A\xf1adir Materia</a></li>';
+				codhtml=codhtml + '<li data-icon="edit"><a onclick="actualizarGestionGrupos('+idAsignatura+')">Gesti\xf3n de grupos</a></li>';
+				codhtml=codhtml + '<li data-icon="edit"><a onclick="introducirGrupoDisponible('+idAsignatura+')">Inscripci\xf3n en grupos</a></li>';
 				codhtml=codhtml + '<li data-icon="edit"><a onclick="introducirValoresPorcentajes('+idAsignatura+')">Modificar Porcentajes</a></li>';
-				codhtml=codhtml + '<li data-icon="trash"><a onclick="eliminarAsigProfesor('+idAsignatura+')">Eliminar </a></li>';
+				codhtml=codhtml + '<li data-icon="edit"><a onclick="mostrarPeticiones('+idAsignatura+')">Peticiones<span class="ui-li-count">'+arrayRespuesta["total"]+'</span></a></li>';
+				codhtml=codhtml + '<li data-icon="trash"><a href="#divDialogoEliminacionAsignatura" data-rel="dialog" onclick="eliminarAsignaturaProf('+ idAsignatura +');">Eliminar</a></li>';
 			}
             codhtml = codhtml + '</ul>';
             $('#contenidoOpAsig').html(codhtml);
@@ -337,25 +349,25 @@ function introducirValoresPorcentajes(idAsignatura){
 			
 			codhtml= '<label for="textinput4">Porcentaje Teoria:</label> <div id="diTeoria">';
 			codhtml=codhtml+ '<input type="number" name="'+ arrayRespuesta[0]["id"]+ '" id="porcentajeT" value="'+ arrayRespuesta[0]["porcentaje"]+ '" /></div>';
-			codhtml=codhtml+ '<label for="textinput4">Puntuación mínima:</label> <div id="diTeoria">';
+			codhtml=codhtml+ '<label for="textinput4">Puntuaci\xf3n m\xednima:</label> <div id="diTeoria">';
 			codhtml=codhtml+ '<input type="number" name="M'+ arrayRespuesta[0]["id"]+ '" id="porcentajeTMin" value="'+ arrayRespuesta[0]["minimo"] +'" /></div>';
 			
 			codhtml=codhtml+ '<hr>';
-			codhtml=codhtml+ '<label for="textinput4">Porcentaje Práctica:</label> <div id="diPractica">';
+			codhtml=codhtml+ '<label for="textinput4">Porcentaje Pr\xe1ctica:</label> <div id="diPractica">';
 			codhtml=codhtml+ '<input type="number" name="'+ arrayRespuesta[1]["id"]+ '" id="porcentajeP" value="'+ arrayRespuesta[1]["porcentaje"]+ '" /></div>';
-			codhtml=codhtml+ '<label for="textinput4">Puntuación mínima:</label> <div id="diPractica">';
+			codhtml=codhtml+ '<label for="textinput4">Puntuaci\xf3n m\xednima:</label> <div id="diPractica">';
 			codhtml=codhtml+ '<input type="number" name="M'+ arrayRespuesta[1]["id"]+ '" id="porcentajePMin" value="'+ arrayRespuesta[1]["minimo"]+ '" /></div>';
 			
 			codhtml=codhtml+ '<hr>';
 			codhtml=codhtml+ '<label for="textinput4">Porcentaje Asistencia:</label> <div id="diAsistencia">';
 			codhtml=codhtml+ '<input type="number" name="'+ arrayRespuesta[2]["id"]+ '" id="porcentajeA" value="'+ arrayRespuesta[2]["porcentaje"]+ '" /></div>';
-			codhtml=codhtml+ '<label for="textinput4">Puntuación mínima:</label> <div id="diAsistencia">';
+			codhtml=codhtml+ '<label for="textinput4">Puntuaci\xf3n m\xednima:</label> <div id="diAsistencia">';
 			codhtml=codhtml+ '<input type="number" name="M'+ arrayRespuesta[2]["id"]+ '" id="porcentajeAMin" value="'+ arrayRespuesta[2]["minimo"]+ '" /></div>';
 			
 			codhtml=codhtml+ '<hr>';
 			codhtml=codhtml+ '<label for="textinput5">Porcentaje Trabajos:</label> <div id="diTrabajos">';
 			codhtml=codhtml+ '<input type="number" name="'+ arrayRespuesta[3]["id"]+ '" id="porcentajeTV" value="'+ arrayRespuesta[3]["porcentaje"]+ '" /></div>';
-			codhtml=codhtml+ '<label for="textinput5">Puntuación mínima:</label> <div id="diTrabajos">';
+			codhtml=codhtml+ '<label for="textinput5">Puntuaci\xf3n m\xednima:</label> <div id="diTrabajos">';
 			codhtml=codhtml+ '<input type="number" name="M'+ arrayRespuesta[3]["id"]+ '" id="porcentajeTVMin" value="'+ arrayRespuesta[3]["minimo"]+ '" /></div>';
 
             
@@ -410,6 +422,8 @@ function actualizarGestionGrupos(idAsignatura){
 	$('#DivGruposTeoriaUpd').empty();
 	$('#DivGruposPracticasUpd').empty();
 	location.href='#pageUpdGruposTeoria';
+	$('#DivGruposTeoriaUpd').empty();
+	$('#DivGruposPracticasUpd').empty();
 	var i;
 
 	$.ajax({
@@ -424,9 +438,9 @@ function actualizarGestionGrupos(idAsignatura){
 		success: function(respuesta){
 			arrayRespuesta = eval(respuesta);
 			
-			
+
 			for(i = 0; i < arrayRespuesta[0].length;i++){
-				alert("entra");
+				codhtmlT = '';
 				codhtmlT = codhtmlT + '<div align="center" class="'+ arrayRespuesta[0][i]["idGrupo"] +'">';
 				
 				codhtmlT = codhtmlT + '<div data-role="controlgroup">';
@@ -455,11 +469,10 @@ function actualizarGestionGrupos(idAsignatura){
 				
 				codhtmlT = codhtmlT + '</div>';
 				
-				codhtmlT = codhtmlT + '<a href="#" data-inline="true" data-role="button" onclick="javascript:borrarGrupoTeoriaAlmac('+ arrayRespuesta[0][i]["idGrupo"] +');">Borrar</a>';
+				codhtmlT = codhtmlT + '<a href="#divDialogoEliminacionGrupo" data-inline="true" data-role="button" data-rel="dialog" onclick="javascript:modificiarBtSiGrupoTeoriaAlmac('+ arrayRespuesta[0][i]["idGrupo"] +');">Borrar</a>';
 				
 				codhtmlT = codhtmlT + '</div> <br>';
-				
-				
+	
 				$('#DivGruposTeoriaUpd').append(codhtmlT);
 				$("#T"+ arrayRespuesta[0][i]["idGrupo"] +" option[value="+ arrayRespuesta[0][i]["Turno"] +"]").attr("selected",true);
 				$("#D"+ arrayRespuesta[0][i]["idGrupo"] +" option[value="+ arrayRespuesta[0][i]["Descripcion"] +"]").attr("selected",true);
@@ -469,6 +482,7 @@ function actualizarGestionGrupos(idAsignatura){
 			
 			//Parte de practicas
 			for(i = 0; i < arrayRespuesta[1].length;i++){
+				codhtmlP = '';
 				codhtmlP = codhtmlP + '<div align="center" class="'+ arrayRespuesta[1][i]["idGrupo"] +'">';
 				
 				codhtmlP = codhtmlP + '<div data-role="controlgroup">';
@@ -529,7 +543,7 @@ function actualizarGestionGrupos(idAsignatura){
 				
 				codhtmlP = codhtmlP + '</div>';
 				
-				codhtmlP = codhtmlP + '<a href="#" data-inline="true" data-role="button" onclick="javascript:borrarGrupoPracticasAlmac('+ arrayRespuesta[1][i]["idGrupo"] +');">Borrar</a>';
+				codhtmlP = codhtmlP + '<a href="#divDialogoEliminacionGrupo" data-inline="true" data-role="button" data-rel="dialog" onclick="javascript:modificarBtSiGrupoPracticasAlmac('+ arrayRespuesta[1][i]["idGrupo"] +');">Borrar</a>';
 				
 				codhtmlP = codhtmlP + '</div><br>';
 
@@ -556,8 +570,6 @@ function almacenarInformacionResponsableUpd(){
 	codT ="["+ cad +",["+ JSON.stringify($("#formGruposTeoriaUpd").serializeObject())+"],[";
 
 	codT = codT + JSON.stringify($("#formGruposPracticasUpd").serializeObject())+"]]";
-	alert(codT);
-
 	
 	$.ajax({
 		type: "GET",
@@ -591,7 +603,26 @@ function almacenarInformacionResponsableUpd(){
 	});
 }
 
+function modificiarBtSiGrupoTeoriaAlmac(idGrupo){
+	var codhtml = '<a id="btSi" href="javascript:borrarGrupoTeoriaAlmac('+idGrupo+')" data-role="button" data-inline="true" >Si</a>';
+	codhtml = codhtml + '<a id="btNo" href="" data-role="button" data-inline="true" data-rel="back">No</a>';
+	$('#btSiEliminar').html(codhtml);
+	$("#btSi").button();
+	$("#btNo").button();
+
+
+}
+
+function modificarBtSiGrupoPracticasAlmac(idGrupo){
+	var codhtml = '<a id="btSiPrac" href="javascript:borrarGrupoPracticasAlmac('+idGrupo+')" data-role="button" data-inline="true" >Si</a>';
+	codhtml = codhtml + '<a id="btNoPrac" href="" data-role="button" data-inline="true" data-rel="back">No</a>';
+	$('#btSiEliminar').html(codhtml);
+	$("#btSiPrac").button();
+	$("#btNoPrac").button();
+}
+
 function borrarGrupoTeoriaAlmac(idGrupo){
+
 	var cad = "[{\"idGrupo\":\"" + idGrupo + "\"}]";
 	$("div."+idGrupo).remove();
 	$('#pageUpdGruposTeoria').trigger('create');
@@ -610,7 +641,7 @@ function borrarGrupoTeoriaAlmac(idGrupo){
 
 			arrayRespuesta = eval(respuesta);
 			if (arrayRespuesta["ok"] != 0){
-				alert("Correcot");
+				location.href='#pageUpdGruposTeoria';
 				
 			}
 
@@ -627,7 +658,6 @@ function borrarGrupoTeoriaAlmac(idGrupo){
 			$('#listarAsignaturasTitulacion').show();
 		}
 	});
-	
 }
 
 function borrarGrupoPracticasAlmac(idGrupo){
@@ -649,7 +679,7 @@ function borrarGrupoPracticasAlmac(idGrupo){
 
 			arrayRespuesta = eval(respuesta);
 			if (arrayRespuesta["ok"] != 0){
-				alert("Correcot");
+				location.href='#pageUpdGruposPracticas';
 				
 			}
 
@@ -702,4 +732,14 @@ function eliminarAsigProfesor(idAsignatura){
 			$('#listarAsignaturasTitulacion').show();
 		}
 	});
+}
+
+function eliminarAsignaturaProf(idAsignatura){
+
+	var codhtml = '<a id="btSisi" href="javascript:eliminarAsigProfesor('+idAsignatura+')" data-role="button" data-inline="true" >Si</a>';
+	codhtml = codhtml + '<a id="btNono" href="" data-role="button" data-inline="true" data-rel="back">No</a>';
+	$('#btSiEliminarAsignatura').html(codhtml);
+	$("#btSisi").button();
+	$("#btNono").button();
+
 }
