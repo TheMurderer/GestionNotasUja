@@ -53,3 +53,10 @@ function comprobarPorcentajes(){
 function numeroGrupos(){
 	//alert($("#DivGruposTeoria a").size());
 }
+
+function validarFormulario(identificador){
+	var id = '#' + identificador; 
+	$(id).validate();
+}
+
+
