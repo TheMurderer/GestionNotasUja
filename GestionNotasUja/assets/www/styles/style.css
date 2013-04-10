@@ -15,8 +15,36 @@
 
 label.error { 
 	float: left; 
-	color: red; 
+	color: #CC0000; 
 	padding-top: .5em; 
 	vertical-align: top; 
-	font-weight:bold
+	font-weight:bold;
+	
+	background-color: #DDDDDD;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	padding: 4px;
+	margin: 4px;
+	
+	font-family: 'Jacques Francois', serif;
+	font-size: 80%;
+}
+
+.letraDocumento{
+	font:bold;
+	font-family: 'Jacques Francois', serif;
+}
+
+.agrupacionElementos{
+	background-color: #EEEEEE;
+	border: 1px solid #EEEEEE;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	padding: 10px;
+	margin: 10px;
+}
+
+.estiloH3{
+	font:bold;
+	font-family: 'Jacques Francois', serif;
 }

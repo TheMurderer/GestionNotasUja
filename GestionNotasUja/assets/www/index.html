@@ -9,6 +9,8 @@
 
 <link rel="stylesheet"  href="jquery.mobile/jqm-icon-pack-2.0-original.css" />
 
+<link href='http://fonts.googleapis.com/css?family=Jacques+Francois' rel='stylesheet' type='text/css'>
+
 <script src="jquery.mobile/jquery-1.7.2.min"></script>
 <script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
 <script src="jquery.mobile/jquery.validate.js"></script>
@@ -36,7 +38,7 @@
 <!-- <script src="http://code.jquery.com/jquery-1.5.min.js" type="text/javascript"></script>-->
 </head>
 
-<body onload="validarFormulario('formLogin');validarFormulario('formRegister')">
+<body onload="validarFormulario('formLogin');validarFormulario('formRegister');">
 
 	<!--***********************************************************************-->
 	<!-- @page 		  : LOGIN de usario -->
@@ -51,11 +53,17 @@
 		</div>
 		<div data-role="content">
 			<form id="formLogin" action="javascript:peticionLogin()">
-				<p>Usuario:</p>
-				<input type="email" name="email" id="textinput" value="" placeholder="email" class="required email" minlength="5"/> <br>
-				<p>Contraseña:</p>
-				<input type="password" name="pass" id="passwordinput" value="" placeholder="pass" class="required" minlength="5"/>
-				<br><br>
+				<div class="agrupacionElementos">
+					<p class="letraDocumento" >Usuario:</p>
+					<input type="email" name="email" id="textinput" value="" placeholder="email" class="required email" minlength="5"/>
+					<br>
+				</div>
+				<div class="agrupacionElementos">
+					<p class="letraDocumento" >Contraseña:</p>
+					<input type="password" name="pass" id="passwordinput" value="" placeholder="pass" class="required" minlength="5"/>
+					<br>
+				</div>
+				
 				<div align="center">
 					<input id="btLogin" value="Entrar" type="submit" data-inline="true" >
 				</div>
@@ -80,16 +88,26 @@
 
 		<div data-role="content" id="panel">
 			<form id="formRegister" action="javascript:peticionRegistro()">
-				<p>Email:</p>
-				<input type="email" name="email" id="textinput3" value="" class="required email" minlength="5" /> <br>
-				<p>Pass antigua:</p>
-				<input type="password" name="passAnt" id="passwordAntiguainput" value="" class="required" minlength="5" /> <br>
-				<p>Nueva Pass:</p>
-				<input type="password" name="pass" id="passwordinput1" value="" class="required" minlength="5" /> <br>
-				<p>Confirmar Pass:</p>
-				<input type="password" name="" id="passwordinput2" value="" class="required" minlength="5" /> 
-				<br>
-				<br>
+				<div class="agrupacionElementos">
+					<p class="letraDocumento" >Email:</p>
+					<input type="email" name="email" id="textinput3" value="" class="required email" minlength="5" />
+					<br>
+				</div>
+				<div class="agrupacionElementos">
+					<p class="letraDocumento" >Pass antigua:</p>
+					<input type="password" name="passAnt" id="passwordAntiguainput" value="" class="required" minlength="5" />
+					<br>
+				</div>
+				<div class="agrupacionElementos">
+					<p class="letraDocumento" >Nueva Pass:</p>
+					<input type="password" name="pass" id="passwordinput1" value="" class="required" minlength="5" />
+					<br>
+				</div>
+				<div class="agrupacionElementos">
+					<p class="letraDocumento" >Confirmar Pass:</p>
+					<input type="password" name="" id="passwordinput2" value="" class="required" minlength="5" /> 
+					<br>
+				</div>
 				<div align="center">
 					<input data-role="button" type="submit" data-inline="true" data-icon="" value="Registrarse">
 				</div>
@@ -182,7 +200,7 @@
 		</div>
 
 		<div data-role="content" id="" align="center">
-			<h3>¿Es usted el responsable de la asignatura?</h3>
+			<h3 class="estiloH3" >¿Es usted el responsable de la asignatura?</h3>
 			<a href="javascript:EsResponsable()" data-role="button" data-inline="true">Si</a>
 			<a href="javascript:noEsResponsable()" data-role="button" data-inline="true">No</a>		
 		</div>
@@ -195,7 +213,7 @@
 		</div>
 
 		<div data-role="content" id="dialogElGrupo" align="center">
-			<h3>¿Esta usted seguro de que desea eliminar el grupo?</h3>
+			<h3 class="estiloH3">¿Esta usted seguro de que desea eliminar el grupo?</h3>
 			<div id="btSiEliminar">
 				<a href="#" data-role="button" data-inline="true">Si</a>
 				<a href="#" data-role="button" data-inline="true">No</a>	
@@ -210,7 +228,7 @@
 		</div>
 
 		<div data-role="content" id="dialogElGrupoAsig" align="center">
-			<h3>¿Esta usted seguro de que desea eliminar la asignatura?</h3>
+			<h3 class="estiloH3" >¿Esta usted seguro de que desea eliminar la asignatura?</h3>
 			<div id="btSiEliminarAsignatura"></div>	
 		</div>
 	</div>
@@ -228,41 +246,46 @@
 		</div>
 		
 		<div data-role="content" id = "listaPorcentajesAsignatura">
-			<h3>Calificaciones</h3>
+			<h3 class="estiloH3" >Calificaciones</h3>
 			<form id="formPorcentajesAct">
 				<div id="porcentajesActualiz"></div>
 			</form>	
 			<form id="formPorcentajes">
 				<div id="porcentajesInsercc">
-					<label for="textinput4">Porcentaje Teoria:</label> <div id="diTeoria"><input
-						type="number" name="porcentajeT" id="porcentajeT" value="" /></div>
-					<label for="textinput4">Puntuación mínima:</label> <div id="diTeoria"><input
-						type="number" name="porcentajeTMin" id="porcentajeTMin" value="0" /></div>
-					<hr>
-					<label for="textinput4">Porcentaje Práctica:</label> <div id="diPractica"><input
-						type="number" name="porcentajeP" id="porcentajeP" value="" /></div>
-					<label for="textinput4">Puntuación mínima:</label> <div id="diPractica"><input
-						type="number" name="porcentajePMin" id="porcentajePMin" value="0" /></div>
-					<hr>
-					<label for="textinput4">Porcentaje Asistencia:</label> <div id="diAsistencia"><input
-						type="number" name="porcentajeA" id="porcentajeA" value="" /></div>
-					<label for="textinput4">Puntuación mínima:</label> <div id="diAsistencia"><input
-						type="number" name="porcentajeAMin" id="porcentajeAMin" value="0" /></div>
-					<hr>
-					<label for="textinput5">Porcentaje Trabajos:</label> <div id="diTrabajos"><input
-						type="number" name="porcentajeTV" id="porcentajeTV" value="" /></div>
-					<label for="textinput5">Puntuación mínima:</label> <div id="diTrabajos"><input
-						type="number" name="porcentajeTVMin" id="porcentajeTVMin" value="0" /></div>	
+					<div class="agrupacionElementos">
+						<label class="letraDocumento" for="textinput4">Porcentaje Teoria:</label> <div id="diTeoria">
+						<input minlength="0" type="number" name="porcentajeT" id="porcentajeT" value="0" /></div>
+						<label class="letraDocumento" for="textinput4">Puntuación mínima:</label> <div id="diTeoria">
+						<input minlength="0" type="number" name="porcentajeTMin" id="porcentajeTMin" value="0" /></div>
+					</div>
+					<div class="agrupacionElementos">
+						<label class="letraDocumento" for="textinput4">Porcentaje Práctica:</label> <div id="diPractica">
+						<input minlength="0" type="number" name="porcentajeP" id="porcentajeP" value="0" /></div>
+						<label class="letraDocumento" for="textinput4">Puntuación mínima:</label> <div id="diPractica">
+						<input minlength="0" class="required" type="number" name="porcentajePMin" id="porcentajePMin" value="0" /></div>
+					</div>
+					<div class="agrupacionElementos">
+						<label class="letraDocumento" for="textinput4">Porcentaje Asistencia:</label> <div id="diAsistencia">
+						<input minlength="0" type="number" name="porcentajeA" id="porcentajeA" value="0" /></div>
+						<label class="letraDocumento" for="textinput4">Puntuación mínima:</label> <div id="diAsistencia">
+						<input minlength="0" type="number" name="porcentajeAMin" id="porcentajeAMin" value="0" /></div>
+					</div>
+					<div class="agrupacionElementos">
+						<label class="letraDocumento" for="textinput5">Porcentaje Trabajos:</label> <div id="diTrabajos">
+						<input minlength="0" type="number" name="porcentajeTV" id="porcentajeTV" value="0" /></div>
+						<label class="letraDocumento" for="textinput5">Puntuación mínima:</label> <div id="diTrabajos">
+						<input minlength="0" type="number" name="porcentajeTVMin" id="porcentajeTVMin" value="0" /></div>	
+					</div>
 				</div>
 			</form>	
 		</div>
 	
 		<div align = "center" id="btPorcActual">
-			<a href="javascript:actualizarPorcentajes()" data-role="button" data-inline="true" data-theme="b" >Actualizar</a>	
+			<a href="javascript:actualizarPorcentajes()" data-role="button" data-inline="true" data-theme="d" >Actualizar</a>	
 		</div>
 		
 		<div align = "center" id="btPorcInserc">
-			<a href="#pageAddGruposTeoria" data-role="button" data-inline="true" data-theme="b" >Siguiente</a>	
+			<a onclick="comprobarPorcentajes()" data-role="button" data-inline="true" data-theme="d" >Siguiente</a>	
 		</div>
 		
 		<div data-role="footer" data-position="fixed">
@@ -286,7 +309,7 @@
 		</div>
 		
 		<div data-role="content" id = "listaGruposTeoria">
-			<h3>Grupos de Teoría</h3>
+			<h3 class="estiloH3" >Grupos de Teoría</h3>
 			<form id="formFruposTeoria">
 				<div id="DivGruposTeoria">
 				
@@ -295,7 +318,7 @@
 		</div>
 	
 		<div align = "center">
-			<a href="#pageAddGruposPracticas" onclick="numeroGrupos()" data-role="button" data-inline="true" data-theme="b" >Siguiente</a>	
+			<a href="#pageAddGruposPracticas" onclick="numeroGrupos()" data-role="button" data-inline="true" data-theme="d" >Siguiente</a>	
 		</div>
 		
 		<div data-role="footer" data-position="fixed">
@@ -319,7 +342,7 @@
 		</div>
 		
 		<div data-role="content" id = "listaGruposPracticas">
-			<h3>Grupos de Prácticas</h3>
+			<h3 class="estiloH3" >Grupos de Prácticas</h3>
 			<form id="formGruposPracticas">
 				<div id="DivGruposPracticas">
 				
@@ -328,7 +351,7 @@
 		</div>
 	
 		<div align = "center">
-			<a href="javascript:almacenarInformacionResponsable()" data-role="button" data-inline="true" data-theme="b" >Siguiente</a>	
+			<a href="javascript:almacenarInformacionResponsable()" data-role="button" data-inline="true" data-theme="d" >Siguiente</a>	
 		</div>
 		
 		<div data-role="footer" data-position="fixed">
@@ -354,14 +377,14 @@
 		</div>
 
 		<div data-role="content" id="contenidoGruposAsig">
-				<div id="colTeoria" data-role="collapsible" data-theme="b" data-content-theme="d">
-    			<h4>Teoría</h4>
+				<div id="colTeoria" data-role="collapsible" data-theme="d" data-content-theme="d">
+    			<h3 class="estiloH3" >Teoría</h3>
     			<form id="formGrupoPertenTeoria">
 	    			<div id="colConTeoria"></div>
     			</form>
     		</div>
-    		<div id="colPracticas" data-role="collapsible" data-theme="b" data-content-theme="d">
-    			<h4>Prácticas</h4>
+    		<div id="colPracticas" data-role="collapsible" data-theme="d" data-content-theme="d">
+    			<h3 class="estiloH3" >Prácticas</h3>
     			<form id="formGrupoPertenPracticas">
     				<div id="colConPracticas"></div>
     			</form>
@@ -370,7 +393,7 @@
 		</div>
 		
 		<div id="btgruposImpartido" align = "center">
-			<a href="javascript:almacenarGruposImpartidos()" data-role="button" data-inline="true" data-theme="b" >Terminar</a>	
+			<a href="javascript:almacenarGruposImpartidos()" data-role="button" data-inline="true" data-theme="d" >Terminar</a>	
 		</div>
 
 		<div data-role="footer" data-position="fixed">
@@ -431,15 +454,23 @@
 		</div>
 		<div data-role="content">
 		<form id="formRegister">
-				<p>Descripción:</p>
-				<input type="text" id="descripcionParcial" name="descripcion" placeholder="Titulo del material"> <br>
-				<p>Puntuación:</p>
-				<input type="text" id="puntuacionParcial" name="puntuacion" placeholder="Punciación máxima"> <br>
-				<div align="center">
-					<a href="#pageConfigurationSignature" data-role="button" data-inline="true" data-icon=""
-						onclick="addMaterial(idAsignaturaSeleccionada,pestanaSeleccionada)">Añadir</a>
-				</div>
-			</form>
+			<div class="agrupacionElementos" >		
+				<p class="letraDocumento" >Descripción</p>
+				<input type="text" id="descripcionParcial" name="descripcion" placeholder="Título del material">
+				<br>
+			</div>
+			
+			<div class="agrupacionElementos" >
+				<p class="letraDocumento" >Puntuación</p>
+				<input type="text" id="puntuacionParcial" name="puntuacion" placeholder="Puntuación máxima">
+				<br>
+			</div>
+
+			<div align="center">
+				<a href="#pageConfigurationSignature" data-role="button" data-inline="true" data-icon=""
+					onclick="addMaterial(idAsignaturaSeleccionada,pestanaSeleccionada)">Añadir</a>
+			</div>
+		</form>
 		
 		
 		</div>
@@ -484,14 +515,12 @@
 	<div data-role="page" id="pageUpdGruposTeoria">
 		<div data-role="header" data-position="fixed">
 			<a href="#pageSignatures" data-icon="back">Atrás</a>
-			
 			<h1>Grupos Teoría</h1>
-			
 			<a href="javascript:addGruposTeoria('DivGruposTeoriaUpd','listaGruposTeoriaUpd')" data-icon="plus">Añadir</a>
 		</div>
 		
 		<div data-role="content" id = "listaGruposTeoriaUpd">
-			<h3>Grupos de Teoría</h3>
+			<h3 class="estiloH3" >Grupos de Teoría</h3>
 			<form id="formGruposTeoriaUpd">
 				<div id="DivGruposTeoriaUpd">
 				
@@ -500,7 +529,7 @@
 		</div>
 	
 		<div align = "center">
-			<a href="#pageUpdGruposPracticas" onclick="numeroGrupos()" data-role="button" data-inline="true" data-theme="b" >Siguiente</a>	
+			<a href="#pageUpdGruposPracticas" onclick="numeroGrupos()" data-role="button" data-inline="true" data-theme="d" >Siguiente</a>	
 		</div>
 		
 		<div data-role="footer" data-position="fixed">
@@ -524,7 +553,7 @@
 		</div>
 		
 		<div data-role="content" id = "listaGruposPracticasUpd">
-			<h3>Grupos de Prácticas</h3>
+			<h3 class="estiloH3" >Grupos de Prácticas</h3>
 			<form id="formGruposPracticasUpd">
 				<div id="DivGruposPracticasUpd">
 				
@@ -533,7 +562,7 @@
 		</div>
 	
 		<div align = "center">
-			<a href="javascript:almacenarInformacionResponsableUpd()" data-role="button" data-inline="true" data-theme="b" >Actualizar</a>	
+			<a href="javascript:almacenarInformacionResponsableUpd()" data-role="button" data-inline="true" data-theme="d" >Actualizar</a>	
 		</div>
 		
 		<div data-role="footer" data-position="fixed">

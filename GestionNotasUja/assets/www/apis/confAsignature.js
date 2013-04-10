@@ -47,28 +47,34 @@ function configuracionAsig(idAsignatura){
 			
 				if(arrayRespuesta[0].length != 0){
 					for(i = 0; i < arrayRespuesta[0].length;i++){
+						codhtmlTeoria = codhtmlTeoria + '<div class="agrupacionElementos" >';
 						codhtmlTeoria = codhtmlTeoria + '<br>' + arrayRespuesta[0][i]["descripcion"] + '<input data-theme="d" type="number" name="name" id="' +arrayRespuesta[0][i]["id"] + '"  value="' + arrayRespuesta[0][i]["porcentaje"]+'"<br>';
+						codhtmlTeoria = codhtmlTeoria + '</div>';
 					}
 				}else{
-					codhtmlTeoria = 'No hay Teoria';
+					codhtmlTeoria = '<p class="letraDocumento" >No hay Teoria</p>';
 					numeroParcialTeoria = 0;
 				}
 				
 				if(arrayRespuesta[1].length != 0){
 					for(i = 0; i < arrayRespuesta[1].length;i++){
+						codhtmlPracticas = codhtmlPracticas + '<div class="agrupacionElementos" >';
 						codhtmlPracticas = codhtmlPracticas + '<br>' + arrayRespuesta[1][i]["descripcion"] + '<input data-theme="d" type="number" name="name" id="' +arrayRespuesta[1][i]["id"] + '"  value="' + arrayRespuesta[1][i]["porcentaje"]+'"<br>';
+						codhtmlPracticas = codhtmlPracticas + '</div>';
 					}
 				}else{
-					codhtmlPracticas = 'No hay Practicas';
+					codhtmlPracticas = '<p letraDocumento>No hay Practicas</p>';
 					numeroParcialPractica = 0;
 				}
 				
 				if(arrayRespuesta[2].length != 0){
 					for(i = 0; i < arrayRespuesta[2].length;i++){
+						codhtmlTrabajos = codhtmlTrabajos + '<div class="agrupacionElementos" >';
 						codhtmlTrabajos = codhtmlTrabajos + '<br>' + arrayRespuesta[2][i]["descripcion"] + '<input data-theme="d" type="number" name="name" id="' +arrayRespuesta[2][i]["id"] + '"  value="' + arrayRespuesta[2][i]["porcentaje"]+'"<br>';
+						codhtmlTrabajos = codhtmlTrabajos + '</div>';
 					}
 				}else{
-					codhtmlTrabajos = 'No hay Trabajos';
+					codhtmlTrabajos = '<p letraDocumento>No hay Trabajos</p>';
 					numeroParcialTrabajos = 0;
 				}
 				
@@ -347,29 +353,33 @@ function introducirValoresPorcentajes(idAsignatura){
 		success: function(respuesta){
 			arrayRespuesta = eval(respuesta);
 			
-			codhtml= '<label for="textinput4">Porcentaje Teoria:</label> <div id="diTeoria">';
+			codhtml= '<div class="agrupacionElementos">';
+			codhtml=codhtml+ '<label class="letraDocumento" for="textinput4">Porcentaje Teoria:</label> <div id="diTeoria">';
 			codhtml=codhtml+ '<input type="number" name="'+ arrayRespuesta[0]["id"]+ '" id="porcentajeT" value="'+ arrayRespuesta[0]["porcentaje"]+ '" /></div>';
 			codhtml=codhtml+ '<label for="textinput4">Puntuaci\xf3n m\xednima:</label> <div id="diTeoria">';
-			codhtml=codhtml+ '<input type="number" name="M'+ arrayRespuesta[0]["id"]+ '" id="porcentajeTMin" value="'+ arrayRespuesta[0]["minimo"] +'" /></div>';
+			codhtml=codhtml+ '<input class="letraDocumento" type="number" name="M'+ arrayRespuesta[0]["id"]+ '" id="porcentajeTMin" value="'+ arrayRespuesta[0]["minimo"] +'" /></div>';
+			codhtml=codhtml+ '</div>';
 			
-			codhtml=codhtml+ '<hr>';
-			codhtml=codhtml+ '<label for="textinput4">Porcentaje Pr\xe1ctica:</label> <div id="diPractica">';
+			codhtml=codhtml+ '<div class="agrupacionElementos">';
+			codhtml=codhtml+ '<label class="letraDocumento" for="textinput4">Porcentaje Pr\xe1ctica:</label> <div id="diPractica">';
 			codhtml=codhtml+ '<input type="number" name="'+ arrayRespuesta[1]["id"]+ '" id="porcentajeP" value="'+ arrayRespuesta[1]["porcentaje"]+ '" /></div>';
-			codhtml=codhtml+ '<label for="textinput4">Puntuaci\xf3n m\xednima:</label> <div id="diPractica">';
+			codhtml=codhtml+ '<label class="letraDocumento" for="textinput4">Puntuaci\xf3n m\xednima:</label> <div id="diPractica">';
 			codhtml=codhtml+ '<input type="number" name="M'+ arrayRespuesta[1]["id"]+ '" id="porcentajePMin" value="'+ arrayRespuesta[1]["minimo"]+ '" /></div>';
+			codhtml=codhtml+ '</div>';
 			
-			codhtml=codhtml+ '<hr>';
-			codhtml=codhtml+ '<label for="textinput4">Porcentaje Asistencia:</label> <div id="diAsistencia">';
+			codhtml=codhtml+ '<div class="agrupacionElementos">';
+			codhtml=codhtml+ '<label class="letraDocumento" for="textinput4">Porcentaje Asistencia:</label> <div id="diAsistencia">';
 			codhtml=codhtml+ '<input type="number" name="'+ arrayRespuesta[2]["id"]+ '" id="porcentajeA" value="'+ arrayRespuesta[2]["porcentaje"]+ '" /></div>';
-			codhtml=codhtml+ '<label for="textinput4">Puntuaci\xf3n m\xednima:</label> <div id="diAsistencia">';
+			codhtml=codhtml+ '<label class="letraDocumento" for="textinput4">Puntuaci\xf3n m\xednima:</label> <div id="diAsistencia">';
 			codhtml=codhtml+ '<input type="number" name="M'+ arrayRespuesta[2]["id"]+ '" id="porcentajeAMin" value="'+ arrayRespuesta[2]["minimo"]+ '" /></div>';
+			codhtml=codhtml+ '</div>';
 			
-			codhtml=codhtml+ '<hr>';
-			codhtml=codhtml+ '<label for="textinput5">Porcentaje Trabajos:</label> <div id="diTrabajos">';
+			codhtml=codhtml+ '<div class="agrupacionElementos">';
+			codhtml=codhtml+ '<label class="letraDocumento" for="textinput5">Porcentaje Trabajos:</label> <div id="diTrabajos">';
 			codhtml=codhtml+ '<input type="number" name="'+ arrayRespuesta[3]["id"]+ '" id="porcentajeTV" value="'+ arrayRespuesta[3]["porcentaje"]+ '" /></div>';
-			codhtml=codhtml+ '<label for="textinput5">Puntuaci\xf3n m\xednima:</label> <div id="diTrabajos">';
+			codhtml=codhtml+ '<label class="letraDocumento" for="textinput5">Puntuaci\xf3n m\xednima:</label> <div id="diTrabajos">';
 			codhtml=codhtml+ '<input type="number" name="M'+ arrayRespuesta[3]["id"]+ '" id="porcentajeTVMin" value="'+ arrayRespuesta[3]["minimo"]+ '" /></div>';
-
+			codhtml=codhtml+ '</div>';
             
 			$('#porcentajesActualiz').html(codhtml);
 			$('#porcentajesActualiz').show();
@@ -441,7 +451,7 @@ function actualizarGestionGrupos(idAsignatura){
 
 			for(i = 0; i < arrayRespuesta[0].length;i++){
 				codhtmlT = '';
-				codhtmlT = codhtmlT + '<div align="center" class="'+ arrayRespuesta[0][i]["idGrupo"] +'">';
+				codhtmlT = codhtmlT + '<div align="center" class="'+ arrayRespuesta[0][i]["idGrupo"] + ' agrupacionElementos' +'">';
 				
 				codhtmlT = codhtmlT + '<div data-role="controlgroup">';
 
@@ -471,7 +481,7 @@ function actualizarGestionGrupos(idAsignatura){
 				
 				codhtmlT = codhtmlT + '<a href="#divDialogoEliminacionGrupo" data-inline="true" data-role="button" data-rel="dialog" onclick="javascript:modificiarBtSiGrupoTeoriaAlmac('+ arrayRespuesta[0][i]["idGrupo"] +');">Borrar</a>';
 				
-				codhtmlT = codhtmlT + '</div> <br>';
+				codhtmlT = codhtmlT + '</div>';
 	
 				$('#DivGruposTeoriaUpd').append(codhtmlT);
 				$("#T"+ arrayRespuesta[0][i]["idGrupo"] +" option[value="+ arrayRespuesta[0][i]["Turno"] +"]").attr("selected",true);
@@ -483,7 +493,7 @@ function actualizarGestionGrupos(idAsignatura){
 			//Parte de practicas
 			for(i = 0; i < arrayRespuesta[1].length;i++){
 				codhtmlP = '';
-				codhtmlP = codhtmlP + '<div align="center" class="'+ arrayRespuesta[1][i]["idGrupo"] +'">';
+				codhtmlP = codhtmlP + '<div align="center" class="'+ arrayRespuesta[1][i]["idGrupo"] + ' agrupacionElementos' +'">';
 				
 				codhtmlP = codhtmlP + '<div data-role="controlgroup">';
 				
@@ -545,7 +555,7 @@ function actualizarGestionGrupos(idAsignatura){
 				
 				codhtmlP = codhtmlP + '<a href="#divDialogoEliminacionGrupo" data-inline="true" data-role="button" data-rel="dialog" onclick="javascript:modificarBtSiGrupoPracticasAlmac('+ arrayRespuesta[1][i]["idGrupo"] +');">Borrar</a>';
 				
-				codhtmlP = codhtmlP + '</div><br>';
+				codhtmlP = codhtmlP + '</div>';
 
 				$('#DivGruposPracticasUpd').append(codhtmlP);
 				$("#D"+ arrayRespuesta[1][i]["idGrupo"] +" option[value="+ arrayRespuesta[1][i]["Descripcion"] +"]").attr("selected",true);

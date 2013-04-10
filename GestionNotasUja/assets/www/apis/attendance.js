@@ -104,7 +104,7 @@ function motrarListaAlumnosAsist(id){
 				$('#listadoAsistenciaAsignatura').trigger('create');
 				
 			}else{
-				$('#listaAlumnos').html("<h3>No se hay ningún alumno todavia</h3>");
+				$('#listaAlumnos').html("<h3 class='estiloH3' >No se hay ning\xFAn alumno todav\xEDa</h3>");
 			}
         },
 		error: function(respuesta){
@@ -248,7 +248,7 @@ function motrarListaAlumnosAsistMod(idGrupo){
 				$('#calificacionAlumnos').trigger('create');
 				
 			}else{
-				$('#ContenidoModificarAsis').html("<h3>No se hay ninguna asistencia todavia</h3>");
+				$('#ContenidoModificarAsis').html("<h3 class='estiloH3' >No se hay ninguna asistencia todav\xEDa</h3>");
 			}
         },
 		error: function(respuesta){

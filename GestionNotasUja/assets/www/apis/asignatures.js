@@ -36,7 +36,7 @@ function peticionAsignaturas(){
 				$('#lista').listview();
 				
 			}else{
-				$('#listaAsignaturas').html("<h3>No se ha agredago ninguna asignatura</h3>");
+				$('#listaAsignaturas').html("<h3 class='estiloH3' >No se ha agredago ninguna asignatura</h3>");
 			}
 		},
 		error: function(respuesta){

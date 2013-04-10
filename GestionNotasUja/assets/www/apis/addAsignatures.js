@@ -72,14 +72,17 @@ function peticionTitulaciones(){
 			arrayRespuesta = eval(respuesta);
 
 			var i;
-			//var codeButton = "";
-			var codhtml = '<p>Titulacion</p>'; 
+			var codhtml = '<div class="agrupacionElementos" >'; 
+			
+			codhtml = codhtml + '<p class="letraDocumento" >Titulaci\xF3n</p>'; 
 			codhtml = codhtml + '<select id="menuTitulaciones" name="titulacion" >';
+			
 			if(arrayRespuesta.length != 0){
 				for(i = 0; i < arrayRespuesta.length; i++){
 					codhtml = codhtml + '<option value="'+ arrayRespuesta[i]["id"] +'">'+ arrayRespuesta[i]["nombre"] +'</option>';
 				}
 				codhtml = codhtml + '</select>';
+				codhtml = codhtml + '<br></div>';
 				
 				//codeButton = "<a href=\"#\" data-role=\"button\" data-inline=\"true\" data-icon=\"\" onclick=\"peticionAnadirAsignatura()\"> Añadir </a>";
 				
@@ -139,15 +142,19 @@ function peticionAsignaturasTitulacion(idTitulacion){
 			arrayRespuesta = eval(respuesta);
 
 			var i;
-			var codhtml = '<p>Asignaturas</p>';
+			var codhtml = '<div class="agrupacionElementos" >';
+			
+			codhtml = codhtml + '<p class="letraDocumento" >Asignaturas</p>';
+			
 			if(arrayRespuesta.length != 0){
 				codhtml = codhtml + '<select id="menuAsigntauras" name="asignaturaTitulacion" >';
 				for(i = 0; i < arrayRespuesta.length; i++){
 					codhtml = codhtml + '<option value="'+ arrayRespuesta[i]["id"] +'">'+ arrayRespuesta[i]["nombre"] +'</option>';
 				}
 				codhtml = codhtml + '</select>';
+				codhtml = codhtml + '<br></div>';
 			}else{
-				codhtml = "<p>No hay asignaturas</p>";
+				codhtml = "<p class='letraDocumento'>No hay asignaturas</p>";
 			}
 			
 			$('#asignaturaElegida').html(codhtml);
@@ -202,9 +209,6 @@ function existeResponsableAsignatura(){
 			
 			$('#btDialog').html(codhtml);
 			$('#btDialog').trigger('create');
-			
-			
-			//$('#botonAnadirAsignatura').button();
 		},
 		error: function(respuesta){
 			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
@@ -284,7 +288,7 @@ function addGruposTeoria(idContenedor1, idContenedor2){
 	var codhtml = '';
 	var nombre = "GrupoT" + numeroGruposTeoriaAnadidos;
 	
-	codhtml = codhtml + '<div align="center" class="'+ nombre +'">';
+	codhtml = codhtml + '<div align="center" class="'+ nombre +' agrupacionElementos'+'">';
 	
 	codhtml = codhtml + '<div data-role="controlgroup">';
 
@@ -315,7 +319,7 @@ function addGruposTeoria(idContenedor1, idContenedor2){
 	
 	codhtml = codhtml + '<a href="#" data-inline="true" data-role="button" onclick="javascript:borrarGrupoTeoria('+numeroGruposTeoriaAnadidos+');">Borrar</a>';
 	
-	codhtml = codhtml + '</div> <br>';
+	codhtml = codhtml + '</div>';
 	
 	
 	numeroGruposTeoriaAnadidos ++;
@@ -344,7 +348,7 @@ function addGruposPracticas(idContenedor1, idContenedor2){
 	var codhtml = '';
 	var nombre = "GrupoP" + numeroGruposPracticasAnadidos;
 	
-	codhtml = codhtml + '<div align="center" class="'+ nombre +'">';
+	codhtml = codhtml + '<div align="center" class="'+ nombre +' agrupacionElementos'+'">';
 	
 	codhtml = codhtml + '<div data-role="controlgroup">';
 	
@@ -408,7 +412,7 @@ function addGruposPracticas(idContenedor1, idContenedor2){
 	
 	codhtml = codhtml + '<a href="#" data-inline="true" data-role="button" onclick="javascript:borrarGrupoPracticas('+numeroGruposPracticasAnadidos+');">Borrar</a>';
 	
-	codhtml = codhtml + '</div><br>';
+	codhtml = codhtml + '</div>';
 	
 	numeroGruposPracticasAnadidos ++;
 	

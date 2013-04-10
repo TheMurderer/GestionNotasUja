@@ -33,12 +33,15 @@ function comprobarPorcentajes(){
 	
 	if( (teoria + practica + trabajos + asistencia) != 100 ){
 		alert(teoria + practica + trabajos + asistencia);
+		alert("Los porcentajes deben sumar 100%!");
 		return false;
 	}else{
 		if(teoriaM <= teoria/10 && practicaM <= practica/10 && trabajosM <= trabajos/10 
 				&& asistenciaM <= asistencia/10){
+			document.location.href ="#pageAddGruposTeoria";
 			return true;
 		}else{
+			alert("Las puntuaciones minimas incorrectas!");
 			return false;
 		}
 	}
