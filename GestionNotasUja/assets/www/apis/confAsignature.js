@@ -52,7 +52,7 @@ function configuracionAsig(idAsignatura){
 						codhtmlTeoria = codhtmlTeoria + '</div>';
 					}
 				}else{
-					codhtmlTeoria = '<p class="letraDocumento" >No hay Teoria</p>';
+					codhtmlTeoria = '<p class="letraDocumento" >No hay teoria</p>';
 					numeroParcialTeoria = 0;
 				}
 				
@@ -63,7 +63,7 @@ function configuracionAsig(idAsignatura){
 						codhtmlPracticas = codhtmlPracticas + '</div>';
 					}
 				}else{
-					codhtmlPracticas = '<p letraDocumento>No hay Practicas</p>';
+					codhtmlPracticas = '<p class="letraDocumento" >No hay pr\xE1cticas</p>';
 					numeroParcialPractica = 0;
 				}
 				
@@ -74,7 +74,7 @@ function configuracionAsig(idAsignatura){
 						codhtmlTrabajos = codhtmlTrabajos + '</div>';
 					}
 				}else{
-					codhtmlTrabajos = '<p letraDocumento>No hay Trabajos</p>';
+					codhtmlTrabajos = '<p class="letraDocumento" >No hay trabajos</p>';
 					numeroParcialTrabajos = 0;
 				}
 				
@@ -355,30 +355,38 @@ function introducirValoresPorcentajes(idAsignatura){
 			
 			codhtml= '<div class="agrupacionElementos">';
 			codhtml=codhtml+ '<label class="letraDocumento" for="textinput4">Porcentaje Teoria:</label> <div id="diTeoria">';
-			codhtml=codhtml+ '<input type="number" name="'+ arrayRespuesta[0]["id"]+ '" id="porcentajeT" value="'+ arrayRespuesta[0]["porcentaje"]+ '" /></div>';
+			codhtml=codhtml+ '<input class="required porcentajesSuma rangoPorcentajes" type="number" name="'+ arrayRespuesta[0]["id"]+ '" id="porcentajeT" value="'+ arrayRespuesta[0]["porcentaje"]+ '" /></div>';
+			codhtml=codhtml+ '<br><br>';
 			codhtml=codhtml+ '<label for="textinput4">Puntuaci\xf3n m\xednima:</label> <div id="diTeoria">';
-			codhtml=codhtml+ '<input class="letraDocumento" type="number" name="M'+ arrayRespuesta[0]["id"]+ '" id="porcentajeTMin" value="'+ arrayRespuesta[0]["minimo"] +'" /></div>';
+			codhtml=codhtml+ '<input class="required minimaPuntuacionTeoria rangoPuntuacion" class="letraDocumento" type="number" name="M'+ arrayRespuesta[0]["id"]+ '" id="porcentajeTMin" value="'+ arrayRespuesta[0]["minimo"] +'" /></div>';
+			codhtml=codhtml+ '<br>';
 			codhtml=codhtml+ '</div>';
 			
 			codhtml=codhtml+ '<div class="agrupacionElementos">';
 			codhtml=codhtml+ '<label class="letraDocumento" for="textinput4">Porcentaje Pr\xe1ctica:</label> <div id="diPractica">';
-			codhtml=codhtml+ '<input type="number" name="'+ arrayRespuesta[1]["id"]+ '" id="porcentajeP" value="'+ arrayRespuesta[1]["porcentaje"]+ '" /></div>';
+			codhtml=codhtml+ '<input class="required porcentajesSuma rangoPorcentajes" type="number" name="'+ arrayRespuesta[1]["id"]+ '" id="porcentajeP" value="'+ arrayRespuesta[1]["porcentaje"]+ '" /></div>';
+			codhtml=codhtml+ '<br><br>';
 			codhtml=codhtml+ '<label class="letraDocumento" for="textinput4">Puntuaci\xf3n m\xednima:</label> <div id="diPractica">';
-			codhtml=codhtml+ '<input type="number" name="M'+ arrayRespuesta[1]["id"]+ '" id="porcentajePMin" value="'+ arrayRespuesta[1]["minimo"]+ '" /></div>';
+			codhtml=codhtml+ '<input class="required minimaPuntuacionTeoria rangoPuntuacion" type="number" name="M'+ arrayRespuesta[1]["id"]+ '" id="porcentajePMin" value="'+ arrayRespuesta[1]["minimo"]+ '" /></div>';
+			codhtml=codhtml+ '<br>';
 			codhtml=codhtml+ '</div>';
 			
 			codhtml=codhtml+ '<div class="agrupacionElementos">';
 			codhtml=codhtml+ '<label class="letraDocumento" for="textinput4">Porcentaje Asistencia:</label> <div id="diAsistencia">';
-			codhtml=codhtml+ '<input type="number" name="'+ arrayRespuesta[2]["id"]+ '" id="porcentajeA" value="'+ arrayRespuesta[2]["porcentaje"]+ '" /></div>';
+			codhtml=codhtml+ '<input class="required porcentajesSuma rangoPorcentajes" type="number" name="'+ arrayRespuesta[2]["id"]+ '" id="porcentajeA" value="'+ arrayRespuesta[2]["porcentaje"]+ '" /></div>';
+			codhtml=codhtml+ '<br><br>';
 			codhtml=codhtml+ '<label class="letraDocumento" for="textinput4">Puntuaci\xf3n m\xednima:</label> <div id="diAsistencia">';
-			codhtml=codhtml+ '<input type="number" name="M'+ arrayRespuesta[2]["id"]+ '" id="porcentajeAMin" value="'+ arrayRespuesta[2]["minimo"]+ '" /></div>';
+			codhtml=codhtml+ '<input class="required minimaPuntuacionTeoria rangoPuntuacion" type="number" name="M'+ arrayRespuesta[2]["id"]+ '" id="porcentajeAMin" value="'+ arrayRespuesta[2]["minimo"]+ '" /></div>';
+			codhtml=codhtml+ '<br>';
 			codhtml=codhtml+ '</div>';
 			
 			codhtml=codhtml+ '<div class="agrupacionElementos">';
 			codhtml=codhtml+ '<label class="letraDocumento" for="textinput5">Porcentaje Trabajos:</label> <div id="diTrabajos">';
-			codhtml=codhtml+ '<input type="number" name="'+ arrayRespuesta[3]["id"]+ '" id="porcentajeTV" value="'+ arrayRespuesta[3]["porcentaje"]+ '" /></div>';
+			codhtml=codhtml+ '<input class="required porcentajesSuma rangoPorcentajes" type="number" name="'+ arrayRespuesta[3]["id"]+ '" id="porcentajeTV" value="'+ arrayRespuesta[3]["porcentaje"]+ '" /></div>';
+			codhtml=codhtml+ '<br><br>';
 			codhtml=codhtml+ '<label class="letraDocumento" for="textinput5">Puntuaci\xf3n m\xednima:</label> <div id="diTrabajos">';
-			codhtml=codhtml+ '<input type="number" name="M'+ arrayRespuesta[3]["id"]+ '" id="porcentajeTVMin" value="'+ arrayRespuesta[3]["minimo"]+ '" /></div>';
+			codhtml=codhtml+ '<input class="required minimaPuntuacionTeoria rangoPuntuacion" type="number" name="M'+ arrayRespuesta[3]["id"]+ '" id="porcentajeTVMin" value="'+ arrayRespuesta[3]["minimo"]+ '" /></div>';
+			codhtml=codhtml+ '<br>';
 			codhtml=codhtml+ '</div>';
             
 			$('#porcentajesActualiz').html(codhtml);

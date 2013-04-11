@@ -26,15 +26,11 @@ function peticionAnadirAsignatura(){
 		},
 		contentType:'application/json; charset=utf-8',
 		success: function(respuesta){
-			//alert(respuesta);
 			arrayRespuesta = eval(respuesta);
             if (arrayRespuesta["ok"] == 0){
 				alert('Creación de asignatura incorrecta');
 				navigator.notification.alert('Error al crear asignatura',null,'Nueva asignatura', 'Aceptar');
 			}else{
-				//Guardamos el Id de la sessión
-				//alert("Correcto");
-				//Cargamos de nuevo la lista de asignaturas
 				peticionAsignaturas(); //Lista de asignaturas del profesor
 				location.href = "#pageSignatures";
 			}
@@ -78,20 +74,17 @@ function peticionTitulaciones(){
 			codhtml = codhtml + '<select id="menuTitulaciones" name="titulacion" >';
 			
 			if(arrayRespuesta.length != 0){
+				//Opción por defecto
+				codhtml = codhtml + '<option value="" disabled="disabled" selected>'+ "Eliga una titulaci\xF3n" +'</option>';
 				for(i = 0; i < arrayRespuesta.length; i++){
 					codhtml = codhtml + '<option value="'+ arrayRespuesta[i]["id"] +'">'+ arrayRespuesta[i]["nombre"] +'</option>';
 				}
 				codhtml = codhtml + '</select>';
 				codhtml = codhtml + '<br></div>';
 				
-				//codeButton = "<a href=\"#\" data-role=\"button\" data-inline=\"true\" data-icon=\"\" onclick=\"peticionAnadirAsignatura()\"> Añadir </a>";
-				
 				$('#titulaciones').html(codhtml);
 				$('#menuTitulaciones').selectmenu();
 				$('#TitulaAsign').show();
-				//$('#botonConf').html(codeButton);
-				
-				//$('#botonConf').trigger('create');
 			}
 			
 			$('#menuTitulaciones').change(function() {
@@ -148,6 +141,8 @@ function peticionAsignaturasTitulacion(idTitulacion){
 			
 			if(arrayRespuesta.length != 0){
 				codhtml = codhtml + '<select id="menuAsigntauras" name="asignaturaTitulacion" >';
+				//Opción por defecto
+				codhtml = codhtml + '<option value="" disabled="disabled" selected>'+ "Eliga una asignatura" +'</option>';
 				for(i = 0; i < arrayRespuesta.length; i++){
 					codhtml = codhtml + '<option value="'+ arrayRespuesta[i]["id"] +'">'+ arrayRespuesta[i]["nombre"] +'</option>';
 				}
