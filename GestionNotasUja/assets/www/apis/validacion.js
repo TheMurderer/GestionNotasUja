@@ -15,48 +15,95 @@ function soloNumeros(texto,min,max){
 	}
 }
 
-/*************************************************************************
- ** @name 		 : comprobarPorcentajes
- ** @description : Función que comprueba si los porcentajes introduccidos
- **				   son correctos
- *************************************************************************/
-//function comprobarPorcentajes(){
-//	var teoria = Number($('#porcentajeT').val());
-//	var practica = Number($('#porcentajeP').val());
-//	var trabajos = Number($('#porcentajeTV').val());
-//	var asistencia = Number($('#porcentajeA').val());
-//	
-//	var teoriaM = Number($('#porcentajeTMin').val());
-//	var practicaM = Number($('#porcentajePMin').val());
-//	var trabajosM = Number($('#porcentajeTVMin').val());
-//	var asistenciaM = Number($('#porcentajeAMin').val());
-//	
-//	if( (teoria + practica + trabajos + asistencia) != 100 ){
-//		alert(teoria + practica + trabajos + asistencia);
-//		alert("Los porcentajes deben sumar 100%!");
-//		return false;
-//	}else{
-//		if(teoriaM <= teoria/10 && practicaM <= practica/10 && trabajosM <= trabajos/10 
-//				&& asistenciaM <= asistencia/10){
-//			document.location.href ="#pageAddGruposTeoria";
-//			return true;
-//		}else{
-//			alert("Las puntuaciones minimas incorrectas!");
-//			return false;
-//		}
-//	}
-//}
+/*******************************************************************************
+ * @name 		: eliminaDuplicados
+ * @description : Elimina los elementos duplicados de un array
+ * @returns     : El array sin elementos duplicados
+ ******************************************************************************/
+function eliminaDuplicados(arr) {
+	var i, len = arr.length, out = [], obj = {};
 
-/*************************************************************************
- ** @name 		   : numeroGrupos
- ** @description   : Función que comprueba si los porcentajes introduccidos
- **				     son correctos
- ** @param idGrupo : id del elmento a comprobar
- *************************************************************************/
-function numeroGrupos(){
-	//alert($("#DivGruposTeoria a").size());
+	for (i = 0; i < len; i++) {
+		obj[arr[i]] = 0;
+	}
+	for (i in obj) {
+		out.push(i);
+	}
+	return out;
 }
 
+/*******************************************************************************
+ * @name 		: compruebaGruposTeoria
+ * @description : Comprueba si los nombres de los grupos de teoría están repetidos
+ * @param idFormulario : Id del formulario acomprobar 
+ * @returns     : True si no hay grupos repetidos y False en caso contrario
+ ******************************************************************************/
+function compruebaGruposTeoria(idFormulario,idDestino) {
+	var c = document.getElementById(idFormulario)
+			.getElementsByTagName('select');
+	var destino = '#' + idDestino;
+	var cadena = new Array();
+	var long2;
+	
+	for ( var i = 0; i < c.length; i++) {
+		if (i % 2 == 0) {
+			cadena.push(c[i].value);
+		}
+	}
+	
+	long2 = eliminaDuplicados(cadena);
+	
+	if(cadena.length == long2.length){
+		//return true;
+		$('.errorGrupoRepetido').hide();
+		document.location.href= destino;
+	}else{
+		//return false;
+		//alert("Existen grupos repetidos");
+		$('.errorGrupoRepetido').show();
+	}
+}
+
+/*******************************************************************************
+ * @name 			   : compruebaGruposPractica
+ * @description 	   : Comprueba si los nombres de los grupos de prácticas están repetidos
+ * @param idFormulario : Id del formulario acomprobar 
+ * @returns     	   : True si no hay grupos repetidos y False en caso contrario
+ ******************************************************************************/
+function compruebaGruposPractica(idFormulario, actualiza) {
+	var c = document.getElementById(idFormulario)
+			.getElementsByTagName('select');
+	var cadena = new Array();
+	var long2;
+	
+	for ( var i = 0; i < c.length; i++) {
+		if (i % 3 == 0) {
+			cadena.push(c[i].value);
+		}
+	}
+	
+	long2 = eliminaDuplicados(cadena);
+		
+	if(cadena.length == long2.length){
+		//return true;
+		$('.errorGrupoRepetido').hide();
+		if(actualiza == 'true'){
+			almacenarInformacionResponsableUpd();
+		}else{
+			almacenarInformacionResponsable();
+		}	
+	}else{
+		//return false;
+		//alert("Existen grupos repetidos");
+		$('.errorGrupoRepetido').show();
+	}
+}
+
+/*************************************************************************
+ ** @name 		   		 : validarFormulario
+ ** @description   		 : Función que realiza la validación de los formularios
+ ** @param identificador : Id del formulario a comprobar
+ *************************************************************************/
 function validarFormulario(identificador){
 	var id = '#' + identificador;
 	

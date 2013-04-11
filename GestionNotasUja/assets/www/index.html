@@ -213,7 +213,7 @@
 		</div>
 
 		<div data-role="content" align="center">
-			<h3 class="estiloH3">¿Est\xE1 usted seguro de que desea eliminar el grupo?</h3>
+			<h3 class="estiloH3">¿Está usted seguro de que desea eliminar el grupo?</h3>
 			<div id="btSiEliminar">
 				<a href="#" data-role="button" data-inline="true" data-theme="d" >Si</a>
 				<a href="#" data-role="button" data-inline="true" data-theme="d" >No</a>	
@@ -228,7 +228,7 @@
 		</div>
 
 		<div data-role="content" id="dialogElGrupoAsig" align="center">
-			<h3 class="estiloH3" >¿Esta usted seguro de que desea eliminar la asignatura?</h3>
+			<h3 class="estiloH3" >¿Está usted seguro de que desea eliminar la asignatura?</h3>
 			<div id="btSiEliminarAsignatura"></div>	
 		</div>
 	</div>
@@ -325,14 +325,14 @@
 		<div data-role="content" id = "listaGruposTeoria">
 			<h3 class="estiloH3" >Grupos de Teoría</h3>
 			<form id="formFruposTeoria">
-				<div id="DivGruposTeoria">
-				
-				</div>
+				<div id="DivGruposTeoria"></div>
 			</form>
+			
+			<label class="error errorGrupoRepetido">Grupos repetidos</label>
 		</div>
 	
 		<div align = "center">
-			<a href="#pageAddGruposPracticas" onclick="numeroGrupos()" data-role="button" data-inline="true" data-theme="d" >Siguiente</a>	
+			<a href="" onclick="compruebaGruposTeoria('formFruposTeoria','pageAddGruposPracticas')" data-role="button" data-inline="true" data-theme="d" >Siguiente</a>	
 		</div>
 		
 		<div data-role="footer" data-position="fixed">
@@ -358,14 +358,14 @@
 		<div data-role="content" id = "listaGruposPracticas">
 			<h3 class="estiloH3" >Grupos de Prácticas</h3>
 			<form id="formGruposPracticas">
-				<div id="DivGruposPracticas">
-				
-				</div>
+				<div id="DivGruposPracticas"></div>
 			</form>
+			
+			<label class="error errorGrupoRepetido">Grupos repetidos</label>
 		</div>
 	
 		<div align = "center">
-			<a href="javascript:almacenarInformacionResponsable()" data-role="button" data-inline="true" data-theme="d" >Siguiente</a>	
+			<a href="" onclick="compruebaGruposPractica('formGruposPracticas','false')" data-role="button" data-inline="true" data-theme="d" >Siguiente</a>	
 		</div>
 		
 		<div data-role="footer" data-position="fixed">
@@ -536,14 +536,14 @@
 		<div data-role="content" id = "listaGruposTeoriaUpd">
 			<h3 class="estiloH3" >Grupos de Teoría</h3>
 			<form id="formGruposTeoriaUpd">
-				<div id="DivGruposTeoriaUpd">
-				
-				</div>
+				<div id="DivGruposTeoriaUpd"></div>
 			</form>
+			
+			<label class="error errorGrupoRepetido">Grupos repetidos</label>
 		</div>
 	
 		<div align = "center">
-			<a href="#pageUpdGruposPracticas" onclick="numeroGrupos()" data-role="button" data-inline="true" data-theme="d" >Siguiente</a>	
+			<a href="" onclick="compruebaGruposTeoria('formGruposTeoriaUpd','pageUpdGruposPracticas')" data-role="button" data-inline="true" data-theme="d" >Siguiente</a>	
 		</div>
 		
 		<div data-role="footer" data-position="fixed">
@@ -559,7 +559,7 @@
 	<!--***********************************************************************-->
 	<div data-role="page" id="pageUpdGruposPracticas">
 		<div data-role="header" data-position="fixed">
-			<a href="#pageSignatures" data-icon="back">Atrás</a>
+			<a href="#pageUpdGruposTeoria" data-icon="back">Atrás</a>
 			
 			<h1>Grupos Prácticas</h1>
 			
@@ -569,14 +569,14 @@
 		<div data-role="content" id = "listaGruposPracticasUpd">
 			<h3 class="estiloH3" >Grupos de Prácticas</h3>
 			<form id="formGruposPracticasUpd">
-				<div id="DivGruposPracticasUpd">
-				
-				</div>
+				<div id="DivGruposPracticasUpd"></div>
 			</form>
+			
+			<label class="error errorGrupoRepetido">Grupos repetidos</label>
 		</div>
 	
 		<div align = "center">
-			<a href="javascript:almacenarInformacionResponsableUpd()" data-role="button" data-inline="true" data-theme="d" >Actualizar</a>	
+			<a href="" onclick="compruebaGruposPractica('formGruposPracticasUpd','true')" data-role="button" data-inline="true" data-theme="d" >Actualizar</a>	
 		</div>
 		
 		<div data-role="footer" data-position="fixed">
