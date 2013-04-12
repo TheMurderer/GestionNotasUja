@@ -263,6 +263,8 @@ function almacenarInformacionResponsable() {
 	var codP = JSON.stringify($("#formGruposPracticas").serializeObject());
 
 	cad = cad + codP + "]]";
+	
+	alert(cad);
 
 	$.ajax({
 		type : "GET",
