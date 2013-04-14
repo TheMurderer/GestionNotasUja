@@ -366,6 +366,7 @@ function borrarGrupoTeoria(numero) {
  * @description : Añade un nuevo grupo de prácticas a los ya existentes
  ******************************************************************************/
 function addGruposPracticas(idContenedor1, idContenedor2) {
+	var horaInicial,horaFinal;
 	var codhtml = '';
 	var nombre = "GrupoP" + numeroGruposPracticasAnadidos;
 
@@ -390,9 +391,9 @@ function addGruposPracticas(idContenedor1, idContenedor2) {
 	nombre = "TurnoPE" + numeroGruposPracticasAnadidos;
 	codhtml = codhtml + '</select>';
 
-	codhtml = codhtml + '<select name="' + nombre + '" >';
+	codhtml = codhtml + '<select id="'+nombre +'" name="' + nombre + '" >';
 
-	codhtml = codhtml + '<option value="9:30">9:30</option>';
+	codhtml = codhtml + '<option selected value="9:30" >9:30</option>';
 	codhtml = codhtml + '<option value="10:30">10:30</option>';
 	codhtml = codhtml + '<option value="11:30">11:30</option>';
 	codhtml = codhtml + '<option value="12:30">12:30</option>';
@@ -410,9 +411,9 @@ function addGruposPracticas(idContenedor1, idContenedor2) {
 
 	nombre = "TurnoPT" + numeroGruposPracticasAnadidos;
 
-	codhtml = codhtml + '<select name="' + nombre + '" >';
+	codhtml = codhtml + '<select id="'+nombre +'" name="' + nombre + '" >';
 
-	codhtml = codhtml + '<option value="9:30">9:30</option>';
+	codhtml = codhtml + '<option selected value="9:30">9:30</option>';
 	codhtml = codhtml + '<option value="10:30">10:30</option>';
 	codhtml = codhtml + '<option value="11:30">11:30</option>';
 	codhtml = codhtml + '<option value="12:30">12:30</option>';
@@ -434,12 +435,47 @@ function addGruposPracticas(idContenedor1, idContenedor2) {
 			+ '<a href="#" data-inline="true" data-role="button" onclick="javascript:borrarGrupoPracticas('
 			+ numeroGruposPracticasAnadidos + ');">Borrar</a>';
 
-	codhtml = codhtml + '</div>';
-
-	numeroGruposPracticasAnadidos++;
+	codhtml = codhtml + ' <div><label class="error errorHorasMal">Horarios incorrectos.</label></div></div>';
+	
+	
 
 	$('#' + idContenedor1).append(codhtml);
 	$('#' + idContenedor2).trigger('create');
+	$('.errorHorasMal').show();
+	nombre= '#' + nombre;
+	var nombrePE = "#TurnoPE" + numeroGruposPracticasAnadidos;
+	
+	
+	$(nombrePE).change(function() {;
+		horaInicial = $(nombrePE).val();
+		horaFinal = $(nombre).val();
+	
+		horaInicial = horaInicial.substring(0, horaInicial.indexOf(':'));
+		horaFinal = horaFinal.substring(0, horaFinal.indexOf(':'));
+	
+		if(parseInt(horaInicial) >= parseInt(horaFinal)){
+			$('.errorHorasMal').show();
+		}else{
+			$('.errorHorasMal').hide();
+		}
+	});
+	$(nombre).change(function() {;
+		horaInicial = $(nombrePE).val();
+		horaFinal = $(nombre).val();
+
+		horaInicial = horaInicial.substring(0, horaInicial.indexOf(':'));
+		horaFinal = horaFinal.substring(0, horaFinal.indexOf(':'));
+
+		if(parseInt(horaInicial) >= parseInt(horaFinal)){
+			$('.errorHorasMal').show();
+		}else{
+			$('.errorHorasMal').hide();
+		}
+	});
+	
+	
+	numeroGruposPracticasAnadidos++;
+
 }
 
 /*******************************************************************************

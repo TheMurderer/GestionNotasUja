@@ -9,6 +9,8 @@ function peticionLogin(){
     console.log($('#formLogin').serialize());
 	
 	var cad = "[" + JSON.stringify($("#formLogin").serializeObject()) + "]";
+	cad= cad.substring(0, cad.lastIndexOf(":"));
+	cad = cad + ':"' + hex_sha1($('#passwordinput').val()) + '"}]';
 	$.ajax({
 		type: "GET",
 		url: p_url,

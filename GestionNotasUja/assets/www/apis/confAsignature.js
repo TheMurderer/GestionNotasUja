@@ -315,6 +315,8 @@ function opcionesConfAsig(idAsignatura){
 				codhtml=codhtml + '<li data-icon="edit"><a onclick="introducirGrupoDisponible('+idAsignatura+')">Inscripci\xf3n en grupos</a></li>';
 				codhtml=codhtml + '<li data-icon="edit"><a onclick="introducirValoresPorcentajes('+idAsignatura+')">Modificar Porcentajes</a></li>';
 				codhtml=codhtml + '<li data-icon="edit"><a onclick="mostrarPeticionesAlumno('+idAsignatura+')">Peticiones<span class="ui-li-count">'+arrayRespuesta["total"]+'</span></a></li>';
+				codhtml=codhtml + '<li data-icon="edit"><a onclick="exportacionPDFCalif('+idAsignatura+')">Exportar calificicaciones (PDF)</a></li>';
+				codhtml=codhtml + '<li data-icon="edit"><a onclick="exportacionCSVCalif('+idAsignatura+')">Exportar calificicaciones (CSV)</a></li>';
 				codhtml=codhtml + '<li data-icon="delete"><a href="#divDialogoEliminacionAsignatura" data-rel="dialog" onclick="salirAsignaturaProf('+ idAsignatura +');">Salir</a></li>';
             }else{
 				codhtml=codhtml +'<li data-icon="plus"><a onclick="configuracionAsig('+idAsignatura+')">A\xf1adir Materia</a></li>';
@@ -322,6 +324,8 @@ function opcionesConfAsig(idAsignatura){
 				codhtml=codhtml + '<li data-icon="edit"><a onclick="introducirGrupoDisponible('+idAsignatura+')">Inscripci\xf3n en grupos</a></li>';
 				codhtml=codhtml + '<li data-icon="edit"><a onclick="introducirValoresPorcentajes('+idAsignatura+')">Modificar Porcentajes</a></li>';
 				codhtml=codhtml + '<li data-icon="edit"><a onclick="mostrarPeticiones('+idAsignatura+')">Peticiones<span class="ui-li-count">'+arrayRespuesta["total"]+'</span></a></li>';
+				codhtml=codhtml + '<li data-icon="edit"><a onclick="exportacionPDFCalif('+idAsignatura+')">Exportar calificicaciones (PDF)</a></li>';
+				codhtml=codhtml + '<li data-icon="edit"><a onclick="exportacionCSVCalif('+idAsignatura+')">Exportar calificicaciones (CSV)</a></li>';
 				codhtml=codhtml + '<li data-icon="trash"><a href="#divDialogoEliminacionAsignatura" data-rel="dialog" onclick="eliminarAsignaturaProf('+ idAsignatura +');">Eliminar</a></li>';
 			}
             codhtml = codhtml + '</ul>';
@@ -806,4 +810,16 @@ function eliminarAsignaturaProf(idAsignatura){
 	$("#btSisi").button();
 	$("#btNono").button();
 
+}
+
+function exportacionPDFCalif(idAsignatura){
+	
+	location.href=p_url + '?m=generacionInformesPDF&datos=[{"idAsig":"'+idAsignatura+'"}]';
+
+	
+}
+
+function exportacionCSVCalif(idAsignatura){
+	
+	location.href=p_url + '?m=generacionInformesCSV&datos=[{"idAsig":"'+idAsignatura+'"}]';
 }

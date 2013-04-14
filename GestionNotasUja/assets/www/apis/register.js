@@ -4,6 +4,10 @@
  *************************************************************************/
 function peticionRegistro(){
 	var cad = "[" + JSON.stringify($("#formRegister").serializeObject()) + "]";
+	cad = cad.substring(0, cad.indexOf('passAnt'));
+	cad = cad + 'passAnt":"' + hex_sha1($('#passwordAntiguainput').val())+'","pass":"';
+	cad = cad + hex_sha1($('#password2').val()) + '"}]';
+	alert(cad);
 
 	$.ajax({
 		type: "GET",
