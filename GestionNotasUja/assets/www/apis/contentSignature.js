@@ -100,7 +100,7 @@ function obtenerGruposAsignatura(){
 			$('#mostrarListadoAlumnos').trigger('create');
 			
 			$('#cbGruposAl').change(function() {
-				idTitulacionSeleccionada = $('#cbGruposAl').val();
+				//idTitulacionSeleccionada = $('#cbGruposAl').val();
 				motrarListaAlumnos($('#cbGruposAl').val());
 			});
 			
@@ -142,7 +142,7 @@ function motrarListaAlumnos(id){
 			if(arrayRespuesta.length != 0){
 				
 				for(i = 0; i < arrayRespuesta.length; i++){
-					codhtml = codhtml + '<li><a href="javascript:calificarAlumno(\''+ arrayRespuesta[i]["dni"] + '\',' +id+');" onclick="" >'+ arrayRespuesta[i]["apellidos"] + ', ' + arrayRespuesta[i]["nombre"] +'</a></li>';
+					codhtml = codhtml + '<li><a href="javascript:calificarAlumno(\''+ arrayRespuesta[i]["dni"] + '\',' +idAsignaturaSeleccionada+');" onclick="" >'+ arrayRespuesta[i]["apellidos"] + ', ' + arrayRespuesta[i]["nombre"] +'</a></li>';
 				}
 				codhtml = codhtml + '</ul>';
 

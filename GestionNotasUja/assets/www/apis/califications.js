@@ -13,7 +13,6 @@ var idAsignaturaSel = '';
  *************************************************************************/
 function calificarAlumno(dniAlumno, idAsignatura){
 	var cad = "[{\"dni\":\""+ dniAlumno +"\", \"idAsig\":\"" +idAsignatura +"\"}]";
-	
 	dni = dniAlumno;
 	idAsignaturaSel = idAsignatura;
 	
@@ -129,7 +128,6 @@ function actualizarDatos(){
 			cad ="[" +"[{\"id\":\"" +idAsignaturaSel + "\", \"dni\":\"" +dni +"\", \"tipo\":\""+"TV" +"\"}],[" +JSON.stringify($("#formCalificAlumnoTrabajos").serializeObject()) + "]]";
 		}
 	
-		alert(cad);
 		
 		$.ajax({
 			type: "GET",

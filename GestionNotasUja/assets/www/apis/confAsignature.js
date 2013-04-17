@@ -411,7 +411,6 @@ function introducirValoresPorcentajes(idAsignatura){
 
 function actualizarPorcentajes(){
 	var cad = "[" + JSON.stringify($("#formPorcentajesAct").serializeObject()) + "]";
-	alert(cad);
 	
 	$.ajax({
 		type: "GET",

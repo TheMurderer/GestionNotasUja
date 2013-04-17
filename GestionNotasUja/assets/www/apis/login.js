@@ -1,6 +1,43 @@
 /*----------- PETICIONES JSON -----------*/
 
 
+function setCookie(name, value, expires, path, domain, secure) {
+document.cookie = name + "=" + escape(value) +
+((expires == null) ? "" : "; expires=" + expires.toGMTString()) +
+((path == null) ? "" : "; path=" + path) +
+((domain == null) ? "" : "; domain=" + domain) +
+((secure == null) ? "" : "; secure");
+}
+
+function getCookie(name){
+	var cname = name + "=";
+	var dc = document.cookie;
+	if (dc.length > 0) {
+	begin = dc.indexOf(cname);
+	if (begin != -1) {
+	begin += cname.length;
+	end = dc.indexOf(";", begin);
+	if (end == -1) end = dc.length;
+	return unescape(dc.substring(begin, end));
+	}
+	}
+	return null;
+}
+
+function refresco(){
+	if(getCookie("validar") == "true"){
+
+		location.href='#pageSignatures';
+		peticionAsignaturas();
+		
+	}else{
+		location.href="#pageLogin";
+	}
+}
+
+function guardarCookie(nombre,valor) {
+    document.cookie = nombre+"="+valor+";";
+    }
 /*************************************************************************
  ** @name 		 : peticionLogin
  ** @description : Petición json de login
@@ -27,6 +64,7 @@ function peticionLogin(){
 				navigator.notification.alert('Acceso incorrecto',null,'Login', 'Aceptar');
 			}else{
 				//Guardamos el Id de la sessión
+				document.cookie= "validar=true";
 				idSesion = arrayRespuesta["sesion"];
 				peticionAsignaturas(); //Lista de asignaturas del profesor
 				location.href = "#pageSignatures";
@@ -37,4 +75,6 @@ function peticionLogin(){
 		}
 	});
 }
+
+
 
