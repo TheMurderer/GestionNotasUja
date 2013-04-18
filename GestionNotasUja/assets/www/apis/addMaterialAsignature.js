@@ -39,7 +39,7 @@ function addMaterial(idAsignatura,tipo){
 			}
         },
 		error: function(respuesta){
-			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
 		}
 	});
 	

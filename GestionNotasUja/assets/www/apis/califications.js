@@ -2,6 +2,9 @@
 var pestanaSeleccionada = '';
 var dni = '';
 var idAsignaturaSel = '';
+var contenidoTeoria='';
+var contenidoPracticas='';
+var contenidoTrabajos='';
 
 /*----------- PETICIONES JSON -----------*/
 
@@ -48,9 +51,11 @@ function calificarAlumno(dniAlumno, idAsignatura){
 						codhtmlTeoria = codhtmlTeoria + '	<label class="letraDocumento" for="textarea">Observaciones: </label><textarea cols="40" rows="12" name="o'+arrayRespuesta[0][i]["id"] +'" id="o'+arrayRespuesta[0][i]["id"] +'">'+ arrayRespuesta[0][i]["observaciones"]+ '</textarea>';
 						
 						codhtmlTeoria = codhtmlTeoria + '</div>';
+						contenidoTeoria=1;
 					}
 				}else{
 					codhtmlTeoria = '<p class="letraDocumento" >No hay Teoria</p>';
+					contenidoTeoria=0;
 				}
 				
 				if(arrayRespuesta[1].length != 0){
@@ -64,9 +69,11 @@ function calificarAlumno(dniAlumno, idAsignatura){
 						
 						codhtmlPracticas = codhtmlPracticas + '	<label class="letraDocumento" for="textarea">Observaciones: </label><textarea cols="40" rows="12" name="o'+arrayRespuesta[1][i]["id"] +'" id="o'+arrayRespuesta[1][i]["id"] +'">'+ arrayRespuesta[1][i]["observaciones"]+ '</textarea>';
 						codhtmlPracticas = codhtmlPracticas + '</div>';
+						contenidoPracticas=1;
 					}
 				}else{
 					codhtmlPracticas = '<p class="letraDocumento" >No hay Practicas</p>';
+					contenidoPracticas=0;
 				}
 				
 				if(arrayRespuesta[2].length != 0){
@@ -81,9 +88,11 @@ function calificarAlumno(dniAlumno, idAsignatura){
 						codhtmlTrabajos = codhtmlTrabajos + '<label for="textarea">Observaciones: </label><textarea cols="40" rows="12" name="o'+arrayRespuesta[2][i]["id"] +'" id="o'+arrayRespuesta[2][i]["id"] +'">'+ arrayRespuesta[2][i]["observaciones"]+ '</textarea>';
 						
 						codhtmlTrabajos = codhtmlTrabajos + '</div>';
+						contenidoTrabajos=1;
 					}
 				}else{
 					codhtmlTrabajos = '<p class="letraDocumento" >No hay Trabajos</p>';
+					contenidoTrabajos=0;
 				}
 				
 				
@@ -97,7 +106,7 @@ function calificarAlumno(dniAlumno, idAsignatura){
 			
 		},
 		error: function(respuesta){
-			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
 		},
 		beforeSend: function(){
 			$('#cargando4').show();
@@ -149,7 +158,7 @@ function actualizarDatos(){
 	            
 			},
 			error: function(respuesta){
-				alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+				alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
 			}
 		});
 	}
@@ -166,6 +175,8 @@ function actualizarDatos(){
  ** @param valor : T-Teoría | P-Práctica | T-Trabajos voluntarios
  *************************************************************************/
 function mostrarDIVAsig(valor){
+
+	
 	if(valor == 'T'){
 		pestanaSeleccionada = 'T';
 		
@@ -178,6 +189,12 @@ function mostrarDIVAsig(valor){
 		$('#contDIVPractica').hide();
 		$('#contDIVTrabajos').hide();
 		$('#contDIVAsistencia').hide();
+		
+		if(contenidoTeoria==1){
+			$('#btUpdAsistencia').show();	
+		}else{
+			$('#btUpdAsistencia').hide();
+		}
 	}else if (valor == 'P'){
 		pestanaSeleccionada = 'P';
 		
@@ -185,6 +202,12 @@ function mostrarDIVAsig(valor){
 		$('#contDIVPractica').show();
 		$('#contDIVTrabajos').hide();
 		$('#contDIVAsistencia').hide();
+		
+		if(contenidoPracticas==1){
+			$('#btUpdAsistencia').show();	
+		}else{
+			$('#btUpdAsistencia').hide();
+		}
 	}else if(valor == 'TV'){
 		pestanaSeleccionada = 'TV';
 		
@@ -192,8 +215,16 @@ function mostrarDIVAsig(valor){
 		$('#contDIVPractica').hide();
 		$('#contDIVTrabajos').show();
 		$('#contDIVAsistencia').hide();
+		
+		if(contenidoTrabajos==1){
+			$('#btUpdAsistencia').show();	
+		}else{
+			$('#btUpdAsistencia').hide();
+		}
 	}else if(valor == 'A'){
 		pestanaSeleccionada = 'A';
+		$('#ContenidoModificarAsis').empty();
+		$('#btUpdAsistencia').hide();
 		
 		$('#contDIVTeoria').hide();
 		$('#contDIVPractica').hide();

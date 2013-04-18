@@ -146,11 +146,11 @@ function validarFormulario(identificador){
 	
 	//Validación de minimos en los porcentajes TEORÍA
 	$.validator.addMethod("minimaPuntuacionTeoria", function(value) {
-		var teoria = Number($('#porcentajeT').val());
+//		var teoria = Number($('#porcentajeT').val());
 		
 		var teoriaM = Number($('#porcentajeTMin').val());
 		
-		if(teoriaM <= teoria/10){
+		if(teoriaM <= 10){
 			return true;
 		}else{
 			return false;
@@ -160,11 +160,11 @@ function validarFormulario(identificador){
 	
 	//Validación de minimos en los porcentajes PRÁCTICAS
 	$.validator.addMethod("minimaPuntuacionPractica", function(value) {
-		var practica = Number($('#porcentajeP').val());
+//		var practica = Number($('#porcentajeP').val());
 		
 		var practicaM = Number($('#porcentajePMin').val());
 		
-		if(practicaM <= practica/10){
+		if(practicaM <= 10){
 			return true;
 		}else{
 			return false;
@@ -174,11 +174,11 @@ function validarFormulario(identificador){
 	
 	//Validación de minimos en los porcentajes TRABAJOS
 	$.validator.addMethod("minimaPuntuacionTrabajo", function(value) {
-		var trabajo = Number($('#porcentajeTV').val());
+//		var trabajo = Number($('#porcentajeTV').val());
 		
 		var trabajoM = Number($('#porcentajeTVMin').val());
 		
-		if(trabajoM <= trabajo/10){
+		if(trabajoM <= 10){
 			return true;
 		}else{
 			return false;
@@ -188,11 +188,11 @@ function validarFormulario(identificador){
 	
 	//Validación de minimos en los porcentajes TRABAJOS
 	$.validator.addMethod("minimaPuntuacionAsistencia", function(value) {
-		var asistencia = Number($('#porcentajeA').val());
+//		var asistencia = Number($('#porcentajeA').val());
 		
 		var asistenciaM = Number($('#porcentajeAMin').val());
 		
-		if(asistenciaM <= asistencia/10){
+		if(asistenciaM <= 10){
 			return true;
 		}else{
 			return false;
@@ -202,4 +202,8 @@ function validarFormulario(identificador){
 	
 	$(id).validate();
 }
+
+//function comprobarTiempo(){
+//	getTime - 
+//}
 

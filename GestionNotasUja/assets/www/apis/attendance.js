@@ -2,7 +2,8 @@ var dniMod;
 var grupoSel;
 
 function mostrarAlumnosAsist(){
-	
+	$('#listaAlumnosAsistencia').empty();
+	$('#btNuevAsist').hide();
 	var cad = "[{\"id\":\"" + idAsignaturaSeleccionada + "\"}]";
 	
 	$.ajax({
@@ -25,10 +26,10 @@ function mostrarAlumnosAsist(){
 			
 			if(arrayRespuesta[0].length != 0){
 				
-				codhtml = codhtml + '<optgroup label="Teoría">';
+				codhtml = codhtml + '<optgroup label="Teor\xeda">';
 				for(i = 0; i < arrayRespuesta[0].length; i++){
 					if(arrayRespuesta[0][i]["Turno"]=='M'){
-						codhtml = codhtml + '<option value="'+arrayRespuesta[0][i]["idGrupo"]+'">Grupo '+arrayRespuesta[0][i]["Descripcion"]+' - Turno Mañana</option>';
+						codhtml = codhtml + '<option value="'+arrayRespuesta[0][i]["idGrupo"]+'">Grupo '+arrayRespuesta[0][i]["Descripcion"]+' - Turno Ma\xf1ana</option>';
 					}else{
 						codhtml = codhtml + '<option value="'+arrayRespuesta[0][i]["idGrupo"]+'">Grupo '+arrayRespuesta[0][i]["Descripcion"]+' - Turno Tarde</option>';
 					}
@@ -38,7 +39,7 @@ function mostrarAlumnosAsist(){
 			}
 
 			if(arrayRespuesta[1].length != 0){
-				codhtml = codhtml + '<optgroup label="Prácticas">';
+				codhtml = codhtml + '<optgroup label="Pr\xe1cticas">';
 				for(i = 0; i < arrayRespuesta[1].length; i++){
 						codhtml = codhtml + '<option value="'+arrayRespuesta[1][i]["idGrupo"]+'">Grupo '+arrayRespuesta[1][i]["Descripcion"]+' Horario: '+ arrayRespuesta[1][i]["hora_comienzo"] +' - ' + arrayRespuesta[1][i]["hora_fin"]+'</option>';	
 				}
@@ -56,7 +57,7 @@ function mostrarAlumnosAsist(){
 			
         },
 		error: function(respuesta){
-			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
 		},
 		beforeSend: function(){
 			$('#cargando12').show();
@@ -97,18 +98,19 @@ function motrarListaAlumnosAsist(id){
 				}
 				codhtml = codhtml + '</ul>';
 				
-				var codeButton = "<a href=\"#\" data-role=\"button\" data-inline=\"true\" data-icon=\"\" onclick=\"almacenarNuevaAsistencia("+id+")\"> Añadir </a>";
+				var codeButton = "<a href=\"#\" data-role=\"button\" data-inline=\"true\" data-icon=\"\" onclick=\"almacenarNuevaAsistencia("+id+")\"> A\xf1adir </a>";
 
 				$('#btNuevAsist').html(codeButton);
+				$('#btNuevAsist').show();
 				$('#listaAlumnosAsistencia').html(codhtml);
 				$('#listadoAsistenciaAsignatura').trigger('create');
 				
 			}else{
-				$('#listaAlumnos').html("<h3 class='estiloH3' >No se hay ning\xFAn alumno todav\xEDa</h3>");
+				$('#listaAlumnos').html("<h3 class='estiloH3' >No existe ning\xFAn alumno todav\xEDa</h3>");
 			}
         },
 		error: function(respuesta){
-			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
 		}
 	});
 }
@@ -133,7 +135,7 @@ function almacenarNuevaAsistencia(idGrupo){
 			
         },
 		error: function(respuesta){
-			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
 		}
 	});
 	
@@ -165,10 +167,10 @@ function mostrarListaGruposModAsistencia(idAsignaturaSel){
 			
 			if(arrayRespuesta[0].length != 0){
 				
-				codhtml = codhtml + '<optgroup label="Teoría">';
+				codhtml = codhtml + '<optgroup label="Teor\xeda">';
 				for(i = 0; i < arrayRespuesta[0].length; i++){
 					if(arrayRespuesta[0][i]["Turno"]=='M'){
-						codhtml = codhtml + '<option value="'+arrayRespuesta[0][i]["idGrupo"]+'">Grupo '+arrayRespuesta[0][i]["Descripcion"]+' - Turno Mañana</option>';
+						codhtml = codhtml + '<option value="'+arrayRespuesta[0][i]["idGrupo"]+'">Grupo '+arrayRespuesta[0][i]["Descripcion"]+' - Turno Ma\xf1ana</option>';
 					}else{
 						codhtml = codhtml + '<option value="'+arrayRespuesta[0][i]["idGrupo"]+'">Grupo '+arrayRespuesta[0][i]["Descripcion"]+' - Turno Tarde</option>';
 					}
@@ -178,7 +180,7 @@ function mostrarListaGruposModAsistencia(idAsignaturaSel){
 			}
 
 			if(arrayRespuesta[1].length != 0){
-				codhtml = codhtml + '<optgroup label="Prácticas">';
+				codhtml = codhtml + '<optgroup label="Pr\xe1cticas">';
 				for(i = 0; i < arrayRespuesta[1].length; i++){
 						codhtml = codhtml + '<option value="'+arrayRespuesta[1][i]["idGrupo"]+'">Grupo '+arrayRespuesta[1][i]["Descripcion"]+' Horario: '+ arrayRespuesta[1][i]["hora_comienzo"] +' - ' + arrayRespuesta[1][i]["hora_fin"]+'</option>';	
 				}
@@ -196,7 +198,7 @@ function mostrarListaGruposModAsistencia(idAsignaturaSel){
 			
         },
 		error: function(respuesta){
-			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
 		},
 		beforeSend: function(){
 			$('#cargando4').show();
@@ -224,14 +226,14 @@ function motrarListaAlumnosAsistMod(idGrupo){
 		},
 		contentType:'application/json; charset=utf-8',
 		success: function(respuesta){
-
+			
 			arrayRespuesta = eval(respuesta);
 			
 			var i;
 			var codhtml = '<fieldset data-role="controlgroup">';
 
 			if(arrayRespuesta.length != 0){
-				
+				$('#btUpdAsistencia').show();
 				for(i = 0; i < arrayRespuesta.length; i++){
 					if(arrayRespuesta[i]["asistencia"] == 1){
 						codhtml = codhtml + '<input type="checkbox" name="'+ arrayRespuesta[i]["id_RecuentoAsist"] +'" id="'+ arrayRespuesta[i]["id_RecuentoAsist"] +'" checked>';
@@ -248,11 +250,12 @@ function motrarListaAlumnosAsistMod(idGrupo){
 				$('#calificacionAlumnos').trigger('create');
 				
 			}else{
-				$('#ContenidoModificarAsis').html("<h3 class='estiloH3' >No se hay ninguna asistencia todav\xEDa</h3>");
+				$('#btUpdAsistencia').hide();
+				$('#ContenidoModificarAsis').html("<h3 class='estiloH3' >No existe ninguna asistencia todav\xEDa</h3>");
 			}
         },
 		error: function(respuesta){
-			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
 		}
 	});
 }
@@ -277,7 +280,7 @@ function actualizarAsistencia(){
 		
         },
 		error: function(respuesta){
-			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
 		}
 	});
 	

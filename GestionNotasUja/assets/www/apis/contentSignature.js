@@ -33,7 +33,7 @@ function mostrarListaAlumnos(idAsignatura){
 			arrayRespuesta = eval(respuesta);
 			
 			var i;
-			var codhtml = '<ul data-role="listview" data-filter="true" id="listadoAlumnos">';
+			var codhtml = '<ul data-role="listview" data-filter="true" data-filter-placeholder="Filtrar alumnos..." id="listadoAlumnos">';
 			if(arrayRespuesta.length != 0){
 				for(i = 0; i < arrayRespuesta.length; i++){
 					codhtml = codhtml + '<li><a href="javascript:calificarAlumno(\''+ arrayRespuesta[i]["dni"] + '\',' +idAsignatura +');" onclick="" >'+ arrayRespuesta[i]["apellidos"] + ', ' + arrayRespuesta[i]["nombre"] +'</a></li>';
@@ -48,7 +48,7 @@ function mostrarListaAlumnos(idAsignatura){
 			}
         },
 		error: function(respuesta){
-			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
 		}
 	});
 }
@@ -75,10 +75,10 @@ function obtenerGruposAsignatura(){
 			codhtml= codhtml + '<option value="0" disabled selected> Seleccione grupo</option>';
 			if(arrayRespuesta[0].length != 0){
 				
-				codhtml = codhtml + '<optgroup label="Teoría">';
+				codhtml = codhtml + '<optgroup label="Teor\xeda">';
 				for(i = 0; i < arrayRespuesta[0].length; i++){
 					if(arrayRespuesta[0][i]["Turno"]=='M'){
-						codhtml = codhtml + '<option value="'+arrayRespuesta[0][i]["idGrupo"]+'">Grupo '+arrayRespuesta[0][i]["Descripcion"]+' - Turno Mañana</option>';
+						codhtml = codhtml + '<option value="'+arrayRespuesta[0][i]["idGrupo"]+'">Grupo '+arrayRespuesta[0][i]["Descripcion"]+' - Turno Ma\xf1ana</option>';
 					}else{
 						codhtml = codhtml + '<option value="'+arrayRespuesta[0][i]["idGrupo"]+'">Grupo '+arrayRespuesta[0][i]["Descripcion"]+' - Turno Tarde</option>';
 					}
@@ -88,7 +88,7 @@ function obtenerGruposAsignatura(){
 			}
 
 			if(arrayRespuesta[1].length != 0){
-				codhtml = codhtml + '<optgroup label="Prácticas">';
+				codhtml = codhtml + '<optgroup label="Pr\xe1cticas">';
 				for(i = 0; i < arrayRespuesta[1].length; i++){
 						codhtml = codhtml + '<option value="'+arrayRespuesta[1][i]["idGrupo"]+'">Grupo '+arrayRespuesta[1][i]["Descripcion"]+' Horario: '+ arrayRespuesta[1][i]["hora_comienzo"] +' - ' + arrayRespuesta[1][i]["hora_fin"]+'</option>';	
 				}
@@ -106,7 +106,7 @@ function obtenerGruposAsignatura(){
 			
         },
 		error: function(respuesta){
-			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
 		},
 		beforeSend: function(){
 			$('#cargando3').show();
@@ -137,7 +137,7 @@ function motrarListaAlumnos(id){
 			arrayRespuesta = eval(respuesta);
 			
 			var i;
-			var codhtml = '<ul data-role="listview" data-filter="true" id="listadoAlumnos">';
+			var codhtml = '<ul  data-role="listview" id="listadoAlumnos" data-filter="true" data-filter-placeholder="Filtrar alumnos...">';
 
 			if(arrayRespuesta.length != 0){
 				
@@ -154,7 +154,7 @@ function motrarListaAlumnos(id){
 			}
         },
 		error: function(respuesta){
-			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
 		},
 		beforeSend: function(){
 			$('#cargando3').show();

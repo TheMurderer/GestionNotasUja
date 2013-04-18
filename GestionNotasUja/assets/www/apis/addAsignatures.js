@@ -39,7 +39,9 @@ function peticionAnadirAsignatura() {
 			}
 		},
 		error : function(respuesta) {
-			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");
+			document.cookie= "";
+			location.href="#pageLogin";
 		}
 	});
 
@@ -106,7 +108,9 @@ function peticionTitulaciones() {
 			// $('#botonAnadirAsignatura').button();
 		},
 		error : function(respuesta) {
-			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");
+			document.cookie= "";
+			location.href="#pageLogin";
 		},
 		beforeSend : function() {
 			$('#cargando2').show();
@@ -179,7 +183,9 @@ function peticionAsignaturasTitulacion(idTitulacion) {
 					});
 				},
 				error : function(respuesta) {
-					alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+					alert("Su sesi\xf3n se ha cerrado automaticamente.");
+					document.cookie= "";
+					location.href="#pageLogin";
 				},
 				beforeSend : function() {
 					$('#cargando2').show();
@@ -230,7 +236,7 @@ function existeResponsableAsignatura() {
 					$('#btDialog').trigger('create');
 				},
 				error : function(respuesta) {
-					alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+					alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
 				},
 				beforeSend : function() {
 					$('#cargando2').show();
@@ -288,7 +294,7 @@ function almacenarInformacionResponsable() {
 
 		},
 		error : function(respuesta) {
-			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
 		},
 		beforeSend : function() {
 			$('#cargando2').show();
@@ -626,7 +632,7 @@ function introducirGrupoDisponibles() {
 
 		},
 		error : function(respuesta) {
-			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
 		},
 		beforeSend : function() {
 			$('#cargando9').show();
@@ -704,7 +710,7 @@ function introducirGrupoDisponible(idAsignatura) {
 
 		},
 		error : function(respuesta) {
-			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
 		},
 		beforeSend : function() {
 			$('#cargando9').show();
@@ -766,7 +772,7 @@ function almacenarGruposImpartidos() {
 
 		},
 		error : function(respuesta) {
-			alert("ERROR, YO NO ENTIENDO PUR KÉ...");
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
 		},
 		beforeSend : function() {
 			$('#cargando9').show();
