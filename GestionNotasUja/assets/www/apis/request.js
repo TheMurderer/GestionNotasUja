@@ -61,7 +61,7 @@ function mostrarPeticiones(idAsignatura){
             //$('#listaOpcionesAsignatura').listview();
 		},
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		},
 		beforeSend: function(){
 			$('#cargando10').show();
@@ -132,7 +132,7 @@ function aceptarPeticiones(){
 				
 			},
 			error: function(respuesta){
-				alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+				alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 			}
 		});
 		
@@ -156,7 +156,7 @@ function aceptarPeticiones(){
 				
 			},
 			error: function(respuesta){
-				alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+				alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 			}
 		});
 	}
@@ -197,7 +197,7 @@ function mostrarPeticionesAlumno(idAsignatura){
             $('#pagePeticionesAlumno').trigger('create');
 		},
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		},
 		beforeSend: function(){
 			$('#cargando11').show();
@@ -236,7 +236,7 @@ function aceptarPeticionesAl(){
 			
 		},
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		}
 	});
 	

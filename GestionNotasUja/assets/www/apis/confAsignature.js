@@ -88,7 +88,7 @@ function configuracionAsig(idAsignatura){
 			
             },
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		},
 		beforeSend: function(){
 			$('#cargando').show();
@@ -150,7 +150,7 @@ function modificarConfAsignatura(){
 		//location.href = "#pageConfigurationSignature";
 		},
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		}
 		});	
 }
@@ -188,7 +188,7 @@ function actualizarConfiguracion(idAsignatura){
 			}
 		},
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		}
 	});
 }
@@ -334,7 +334,7 @@ function opcionesConfAsig(idAsignatura){
             //$('#listaOpcionesAsignatura').listview();
 		},
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		}
 	});
 }
@@ -403,7 +403,7 @@ function introducirValoresPorcentajes(idAsignatura){
 
 		},
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		}
 	});
 	
@@ -429,7 +429,7 @@ function actualizarPorcentajes(){
 			
 		},
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		}
 	});
 }
@@ -579,7 +579,7 @@ function actualizarGestionGrupos(idAsignatura){
 
 		},
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		}
 	});
 	
@@ -611,7 +611,7 @@ function almacenarInformacionResponsableUpd(){
 
 		},
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		},
 		beforeSend: function(){
 			$('#cargando2').show();
@@ -668,7 +668,7 @@ function borrarGrupoTeoriaAlmac(idGrupo){
 
 		},
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		},
 		beforeSend: function(){
 			$('#cargando2').show();
@@ -706,7 +706,7 @@ function borrarGrupoPracticasAlmac(idGrupo){
 
 		},
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		},
 		beforeSend: function(){
 			$('#cargando2').show();
@@ -742,7 +742,7 @@ function salirAsigProfesor(idAsignatura){
 
 		},
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		},
 		beforeSend: function(){
 			$('#cargando2').show();
@@ -788,7 +788,7 @@ function eliminarAsigProfesor(idAsignatura){
 
 		},
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		},
 		beforeSend: function(){
 			$('#cargando2').show();

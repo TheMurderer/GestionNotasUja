@@ -57,7 +57,7 @@ function mostrarAlumnosAsist(){
 			
         },
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		},
 		beforeSend: function(){
 			$('#cargando12').show();
@@ -110,7 +110,7 @@ function motrarListaAlumnosAsist(id){
 			}
         },
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		}
 	});
 }
@@ -135,7 +135,7 @@ function almacenarNuevaAsistencia(idGrupo){
 			
         },
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		}
 	});
 	
@@ -192,13 +192,13 @@ function mostrarListaGruposModAsistencia(idAsignaturaSel){
 			$('#calificacionAlumnos').trigger('create');
 			
 			$('#cbGruposAlModAsis').change(function() {
-				idTitulacionSeleccionada = $('#cbGruposAlModAsis').val();
+				//idTitulacionSeleccionada = $('#cbGruposAlModAsis').val();
 				motrarListaAlumnosAsistMod($('#cbGruposAlModAsis').val());
 			});
 			
         },
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		},
 		beforeSend: function(){
 			$('#cargando4').show();
@@ -255,7 +255,7 @@ function motrarListaAlumnosAsistMod(idGrupo){
 			}
         },
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		}
 	});
 }
@@ -280,7 +280,7 @@ function actualizarAsistencia(){
 		
         },
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		}
 	});
 	

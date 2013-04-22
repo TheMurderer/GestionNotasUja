@@ -7,7 +7,6 @@ function peticionRegistro(){
 	cad = cad.substring(0, cad.indexOf('passAnt'));
 	cad = cad + 'passAnt":"' + hex_sha1($('#passwordAntiguainput').val())+'","pass":"';
 	cad = cad + hex_sha1($('#password2').val()) + '"}]';
-	alert(cad);
 
 	$.ajax({
 		type: "GET",
@@ -28,7 +27,7 @@ function peticionRegistro(){
 			}
 		},
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		}
 	});
 }

@@ -37,7 +37,7 @@ function peticionLogin(){
 			}
 		},
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		}
 	});
 }

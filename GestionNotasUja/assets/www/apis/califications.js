@@ -106,7 +106,7 @@ function calificarAlumno(dniAlumno, idAsignatura){
 			
 		},
 		error: function(respuesta){
-			alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+			alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 		},
 		beforeSend: function(){
 			$('#cargando4').show();
@@ -158,7 +158,7 @@ function actualizarDatos(){
 	            
 			},
 			error: function(respuesta){
-				alert("Su sesi\xf3n se ha cerrado automaticamente.");document.cookie= "";location.href="#pageLogin";
+				alert("Su sesi\xf3n se ha cerrado automaticamente.");delCookie("validar");location.href="#pageLogin";
 			}
 		});
 	}
