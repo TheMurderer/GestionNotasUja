@@ -270,7 +270,7 @@ function almacenarInformacionResponsable() {
 
 	cad = cad + codP + "]]";
 	
-	alert(cad);
+	
 
 	$.ajax({
 		type : "GET",

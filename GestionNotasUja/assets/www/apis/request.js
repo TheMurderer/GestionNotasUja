@@ -24,32 +24,34 @@ function mostrarPeticiones(idAsignatura){
 		success: function(respuesta){
 			var i;
 			arrayRespuesta = eval(respuesta);
-			var codPetAlumno='<fieldset data-role="controlgroup">';
-			var codPetProfesor='<fieldset data-role="controlgroup">';
+			var codPetAlumno='';
+			var codPetProfesor='';
+			
 			
 			numPetProfesor = arrayRespuesta[0].length;
 			if(arrayRespuesta[0].length != 0){
+				codPetProfesor='<div class="agrupacionElementos"><fieldset data-role="controlgroup">';
 				for(i = 0; i < arrayRespuesta[0].length;i++){
-					codPetProfesor = codPetProfesor + '<div class="agrupacionElementos">';
+					
 					codPetProfesor = codPetProfesor + '<input type="checkbox" name="'+arrayRespuesta[0][i]["idPeticion"] +'" id="'+arrayRespuesta[0][i]["idPeticion"]+'">';
 					codPetProfesor = codPetProfesor + '<label for="'+arrayRespuesta[0][i]["idPeticion"] +'">' + arrayRespuesta[0][i]["nombre"] + ' ' + arrayRespuesta[0][i]["apellidos"] + ' Grupo: ' + arrayRespuesta[0][i]["Descripcion"]+' </label>';
-					codPetProfesor = codPetProfesor + '</div>';
+					
 				}
+				codPetProfesor = codPetProfesor + '</fieldset></div>';
 			}else{
 				codPetProfesor = codPetProfesor + '<p class="letraDocumento" >No hay peticiones de profesores</p>';
 			}
 			
 			numPetAlumno = arrayRespuesta[1].length;
 			if(arrayRespuesta[1].length != 0){
+				codPetAlumno='<div class="agrupacionElementos"><fieldset data-role="controlgroup">';
 				for(i = 0; i < arrayRespuesta[1].length;i++){
 					var nomUsuario = arrayRespuesta[1][i]["correo"];
 					nomUsuario = nomUsuario.substring(0,nomUsuario.lastIndexOf('@'));
-					
-					codPetAlumno = codPetAlumno + '<div class="agrupacionElementos">';
 					codPetAlumno = codPetAlumno + '<input type="checkbox" name="'+arrayRespuesta[1][i]["idPeticion"] +'" id="'+arrayRespuesta[1][i]["idPeticion"]+'">';
-					codPetAlumno = codPetAlumno + '<label for="'+arrayRespuesta[1][i]["idPeticion"] +'">' + arrayRespuesta[1][i]["nombre"] + ' ' + arrayRespuesta[1][i]["apellidos"] +' (' + nomUsuario +') Grupo: ' + arrayRespuesta[1][i]["Descripcion"]+' </label>';
-					codPetAlumno = codPetAlumno + '</div>';
+					codPetAlumno = codPetAlumno + '<label for="'+arrayRespuesta[1][i]["idPeticion"] +'">' + arrayRespuesta[1][i]["nombre"] + ' ' + arrayRespuesta[1][i]["apellidos"] +' (' + nomUsuario +') Grupo: ' + arrayRespuesta[1][i]["Descripcion"]+' </label>';		
 				}
+				codPetAlumno = codPetAlumno + '</fieldset></div>';
 			}else{
 				codPetAlumno = codPetAlumno + '<p class="letraDocumento">No hay peticiones de alumnos</p>';
 			}
@@ -181,16 +183,18 @@ function mostrarPeticionesAlumno(idAsignatura){
 		success: function(respuesta){
 			var i;
 			arrayRespuesta = eval(respuesta);
-			var codPetAlumno='<fieldset data-role="controlgroup">';
+			var codPetAlumno='';
 
 			numPetAlumno = arrayRespuesta[1].length;
 			if(arrayRespuesta[1].length != 0){
+				codPetAlumno='<div class="agrupacionElementos"><fieldset data-role="controlgroup">';
 				for(i = 0; i < arrayRespuesta[1].length;i++){
 					var nomUsuario = arrayRespuesta[1][i]["correo"];
 					nomUsuario = nomUsuario.substring(0,nomUsuario.lastIndexOf('@'));
 					codPetAlumno = codPetAlumno + '<input type="checkbox" name="'+arrayRespuesta[1][i]["idPeticion"] +'" id="'+arrayRespuesta[1][i]["idPeticion"]+'">';
 					codPetAlumno = codPetAlumno + '<label for="'+arrayRespuesta[1][i]["idPeticion"] +'">' + arrayRespuesta[1][i]["nombre"] + ' ' + arrayRespuesta[1][i]["apellidos"] +' (' + nomUsuario +') Grupo: ' + arrayRespuesta[1][i]["Descripcion"]+' </label>';
 				}
+				codPetAlumno = codPetAlumno + '</fieldset></div>';
 			}
 			$('#petDIVAlAlumno').html(codPetAlumno);
 
