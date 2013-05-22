@@ -625,10 +625,23 @@ function introducirGrupoDisponibles() {
 
 			codHtml = codHtml + '</fieldset>';
 			codHtmlPrac = codHtmlPrac + '</fieldset>';
-
+			
+			$('#btTerminarGr').addClass("ui-disabled");
+			$('#btTerminarGr').removeClass("ui-enabled");
+			
 			$('#colConTeoria').html(codHtml);
 			$('#colConPracticas').html(codHtmlPrac);
 			$('#contenidoGruposAsig').trigger('create');
+			$('#colConTeoria').change(function(){
+				$('#btTerminarGr').removeClass("ui-disabled");
+				$('#btTerminarGr').addClass("ui-enabled");
+
+			});
+			
+			$('#colConPracticas').change(function(){
+				$('#btTerminarGr').removeClass("ui-disabled");
+				$('#btTerminarGr').addClass("ui-enabled");
+			});
 
 		},
 		error : function(respuesta) {
@@ -703,10 +716,23 @@ function introducirGrupoDisponible(idAsignatura) {
 
 			codHtml = codHtml + '</fieldset>';
 			codHtmlPrac = codHtmlPrac + '</fieldset>';
-
+			
+			$('#btTerminarGr').addClass("ui-disabled");
+			$('#btTerminarGr').removeClass("ui-enabled");
+			
 			$('#colConTeoria').html(codHtml);
 			$('#colConPracticas').html(codHtmlPrac);
 			$('#contenidoGruposAsig').trigger('create');
+			$('#colConTeoria').change(function(){
+				$('#btTerminarGr').removeClass("ui-disabled");
+				$('#btTerminarGr').addClass("ui-enabled");
+
+			});
+			
+			$('#colConPracticas').change(function(){
+				$('#btTerminarGr').removeClass("ui-disabled");
+				$('#btTerminarGr').addClass("ui-enabled");
+			});
 
 		},
 		error : function(respuesta) {

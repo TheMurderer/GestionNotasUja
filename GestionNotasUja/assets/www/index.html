@@ -39,9 +39,10 @@
 
 <script src="jquery.mobile/json.min.js"></script>
 <!-- <script src="http://code.jquery.com/jquery-1.5.min.js" type="text/javascript"></script>-->
+<script type="text/javascript" charset="utf-8">document.addEventListener("deviceready", leerDatosUsuario, false);</script>
 </head>
 
-<body onload="resetTimer();refresco(); validarFormulario('formLogin');validarFormulario('formRegister');validarFormulario('formPorcentajes');validarFormulario('formPorcentajesAct');">
+<body onload="leerDatosUsuario();resetTimer();refresco(); validarFormulario('formLogin');validarFormulario('formRegister');validarFormulario('formPorcentajes');validarFormulario('formPorcentajesAct');">
 
 	<!--***********************************************************************-->
 	<!-- @page 		  : LOGIN de usario -->
@@ -66,14 +67,16 @@
 					<input type="password" name="pass" id="passwordinput" value="" placeholder="Pass" class="required" minlength="5"/>
 					<br>
 				</div>
-				
+				<div class="agrupacionElementos">
+					<label><input type="checkbox" name="Recuerdame" id='checkRec'/>Recuerdame </label>
+				</div> 
 				<div align="center">
 					<input id="btLogin" value="Entrar" type="submit" data-inline="true" >
 				</div>
 			</form>
 		</div>
 		<div data-role="footer" data-position="fixed">
-			<h4>Uja</h4>
+			<h4>Gestor de Notas</h4>
 		</div>
 	</div>
 
@@ -410,11 +413,11 @@
 		</div>
 		
 		<div id="btgruposImpartido" align = "center">
-			<a href="javascript:almacenarGruposImpartidos()" data-role="button" data-inline="true" data-theme="d" >Terminar</a>	
+			<a href="javascript:almacenarGruposImpartidos()" data-role="button" data-inline="true" data-theme="d" id="btTerminarGr" class="ui-disabled">Terminar</a>	
 		</div>
 
 		<div data-role="footer" data-position="fixed">
-			<h4>Pie de página</h4>
+			<h4>Gestor de Notas</h4>
 		</div>
 	</div>
 
@@ -492,7 +495,7 @@
 		
 		</div>
 		<div data-role="footer" data-position="fixed">
-			<h4>Pie de página</h4>
+			<h4>Gestor de Notas</h4>
 		</div>
 	</div>
 	
@@ -519,7 +522,7 @@
 		<div data-role="content" id="listaAlumnos"></div>
 
 		<div data-role="footer" data-position="fixed">
-			<h4>Pie de página</h4>
+			<h4>Gestor de Notas</h4>
 		</div>
 	</div>
 	
@@ -744,7 +747,7 @@
 		
 		<div id="btNuevAsist" align="center"></div>
 		<div data-role="footer" data-position="fixed">
-			<h4>Pie de página</h4>
+			<h4>Gestor de Notas</h4>
 		</div>
 	</div>
 

@@ -28,7 +28,11 @@ function peticionAsignaturas(){
 			var codhtml = '<ul data-role="listview" id="lista" data-filter="true" data-filter-placeholder="Filtrar asignaturas...">';
 			if(arrayRespuesta.length != 0){
 				for(i = 0; i < arrayRespuesta.length; i++){
-					codhtml = codhtml + '<li data-icon="gear" ><a href="" onclick="mostrarListaAlumnos('+ arrayRespuesta[i]["id"] +')" >'+ arrayRespuesta[i]["nombre"] +'</a> <a href="#opcionesAsignatura" onclick="javascript:opcionesConfAsig('+arrayRespuesta[i]["id"]+')" data-rel="dialog"  data-transition="pop"></a></li>';
+					if(arrayRespuesta[i]["pet"]== 0){
+						codhtml = codhtml + '<li data-icon="gear" ><a href="" onclick="mostrarListaAlumnos('+ arrayRespuesta[i]["id"] +')" >'+ arrayRespuesta[i]["nombre"] +'</a> <a href="#opcionesAsignatura" onclick="javascript:opcionesConfAsig('+arrayRespuesta[i]["id"]+')" data-rel="dialog"  data-transition="pop"></a></li>';
+					}else if(arrayRespuesta[i]["pet"]== 1){
+						codhtml = codhtml + '<li data-icon="lock" class="ui-disabled"><a href=""  >'+ arrayRespuesta[i]["nombre"] +'</a> <a href="" class="ui-disabled" data-rel="dialog"  data-transition="pop"></a></li>';
+					}
 				}
 				codhtml = codhtml + '</ul>';
 				
