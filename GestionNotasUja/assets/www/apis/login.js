@@ -6,32 +6,34 @@
 function leerDatosUsuario(){
 
    var check = window.localStorage.getItem("check");
-   alert("lee datos");
-   alert(check);
+
    if(check=='true'){
-	   alert("Econtramos datos");
+
 	   var email = window.localStorage.getItem("correo");
 	   var pass = window.localStorage.getItem("pass");  
-	   $("#passwordinput").val(pass);
-	   $("#textinput").val(email);
-	   $("#checkRec").attr('checked', true);
+	   $("#passwordinput").val(pass.toString());
+	   $("#textinput").val(email.toString());
+	   $("#checkRec").attr('checked', true);  
+	   $("#checkRec").attr("checked",true).checkboxradio("refresh");
+	   $("#pageLogin").trigger('update');
+	   
    }
 }
 
 function comprobarDatosUsuario(){
 	 var check = $("#checkRec").attr('checked');
-	 alert("comprobamos datos");
+
 	 if(check =='checked'){
-		 alert("check a on");
+
 		var pass = $("#passwordinput").val();
-		var email =  $("#textinput").val(); 
-		alert(pass);
-		alert(corre);
-		window.localStorage.setItem("pass",pass);
-		window.localStorage.setItem("correo",email);
+		var email = $("#textinput").val(); 
+
+		window.localStorage.setItem("pass",pass.toString());
+		window.localStorage.setItem("correo",email.toString());
 		window.localStorage.setItem("check","true");
+
 	 }else{
-		 alert("check a off");
+
 		 var check = window.localStorage.getItem("check");
 		 if(check == 'true'){
 			 window.localStorage.removeItem("correo");

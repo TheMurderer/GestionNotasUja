@@ -15,7 +15,7 @@
 <script src="jquery.mobile/jquery.mobile-1.1.0.min.js"></script>
 <script src="jquery.mobile/jquery.validate.js"></script>
 
-<script type="text/javascript" charset="utf-8" src="cordova-2.6.0.js"></script>
+<script type="text/javascript" charset="utf-8" src="cordova-2.5.0.js"></script>
 <script type="text/javascript" charset="utf-8" src="index.js"></script>
 
 <script type="text/javascript" charset="utf-8" src="config.js"></script>
@@ -42,7 +42,7 @@
 <script type="text/javascript" charset="utf-8">document.addEventListener("deviceready", leerDatosUsuario, false);</script>
 </head>
 
-<body onload="leerDatosUsuario();resetTimer();refresco(); validarFormulario('formLogin');validarFormulario('formRegister');validarFormulario('formPorcentajes');validarFormulario('formPorcentajesAct');">
+<body onload="resetTimer();refresco(); validarFormulario('formLogin');validarFormulario('formRegister');validarFormulario('formPorcentajes');validarFormulario('formPorcentajesAct');">
 
 	<!--***********************************************************************-->
 	<!-- @page 		  : LOGIN de usario -->
@@ -55,7 +55,7 @@
 			<h1>Gestor de Notas</h1>
 			<a href="#pageRegister" data-icon="gear">Registro</a>
 		</div>
-		<div data-role="content">
+		<div data-role="content" id="loginInicio">
 			<form id="formLogin" action="javascript:peticionLogin()">
 				<div class="agrupacionElementos">
 					<p class="letraDocumento" >Usuario:</p>
@@ -68,7 +68,7 @@
 					<br>
 				</div>
 				<div class="agrupacionElementos">
-					<label><input type="checkbox" name="Recuerdame" id='checkRec'/>Recuerdame </label>
+					<label><input type="checkbox" name="Recuerdame" id="checkRec"/>Recuerdame </label>
 				</div> 
 				<div align="center">
 					<input id="btLogin" value="Entrar" type="submit" data-inline="true" >
