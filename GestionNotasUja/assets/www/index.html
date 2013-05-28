@@ -39,7 +39,24 @@
 
 <script src="jquery.mobile/json.min.js"></script>
 <!-- <script src="http://code.jquery.com/jquery-1.5.min.js" type="text/javascript"></script>-->
-<script type="text/javascript" charset="utf-8">document.addEventListener("deviceready", leerDatosUsuario, false);</script>
+<script type="text/javascript" charset="utf-8">
+
+document.addEventListener("deviceready", leerDatosUsuario, false);
+document.addEventListener("deviceready", onBackKeyDown, false);
+
+function handleBackButton(){
+	 
+    if($.mobile.activePage.attr('id') == 'pageLogin'){
+        navigator.app.exitApp();
+    }else if ($.mobile.activePage.attr('id') == 'pageSignatures'){
+        $.mobile.changePage('#pageLogin');
+    }
+}
+
+function onBackKeyDown() {
+	 document.addEventListener("backbutton", handleBackButton, true);
+}
+</script>
 </head>
 
 <body onload="resetTimer();refresco(); validarFormulario('formLogin');validarFormulario('formRegister');validarFormulario('formPorcentajes');validarFormulario('formPorcentajesAct');">
