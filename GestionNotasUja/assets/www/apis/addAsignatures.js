@@ -791,7 +791,7 @@ function almacenarGruposImpartidos() {
 
 			arrayRespuesta = eval(respuesta);
 			if (arrayRespuesta["ok"] == 1) {
-				alert("Su petición está en curso.");
+				alert("Su petici\xF3n est\xE1 en curso.");
 				peticionAsignaturas();
 				location.href = "#pageSignatures";
 				

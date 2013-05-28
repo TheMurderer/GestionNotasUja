@@ -50,6 +50,8 @@ function handleBackButton(){
         navigator.app.exitApp();
     }else if ($.mobile.activePage.attr('id') == 'pageSignatures'){
         $.mobile.changePage('#pageLogin');
+    }else{
+        navigator.app.backHistory();
     }
 }
 
