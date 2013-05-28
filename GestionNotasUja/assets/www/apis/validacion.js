@@ -156,7 +156,7 @@ function validarFormulario(identificador){
 			return false;
 		}
 		
-	}, 'Puntiaci\xF3n m\xCDnima incorrecta');
+	}, 'Puntiaci\xF3n m\xEDnima incorrecta (0-10)');
 	
 	//Validación de minimos en los porcentajes PRÁCTICAS
 	$.validator.addMethod("minimaPuntuacionPractica", function(value) {
@@ -170,7 +170,7 @@ function validarFormulario(identificador){
 			return false;
 		}
 		
-	}, 'Puntiaci\xF3n m\xCDnima incorrecta');
+	}, 'Puntiaci\xF3n m\xEDnima incorrecta (0-10)');
 	
 	//Validación de minimos en los porcentajes TRABAJOS
 	$.validator.addMethod("minimaPuntuacionTrabajo", function(value) {
@@ -184,7 +184,7 @@ function validarFormulario(identificador){
 			return false;
 		}
 		
-	}, 'Puntiaci\xF3n m\xCDnima incorrecta');
+	}, 'Puntiaci\xF3n m\xEDnima incorrecta (0-10)');
 	
 	//Validación de minimos en los porcentajes TRABAJOS
 	$.validator.addMethod("minimaPuntuacionAsistencia", function(value) {
@@ -198,7 +198,7 @@ function validarFormulario(identificador){
 			return false;
 		}
 		
-	}, 'Puntiaci\xF3n m\xCDnima incorrecta');
+	}, 'Puntiaci\xF3n m\xEDnima incorrecta (0-10)');
 	
 	$(id).validate();
 }

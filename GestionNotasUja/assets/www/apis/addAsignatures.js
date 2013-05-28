@@ -85,7 +85,7 @@ function peticionTitulaciones() {
 				// Opción por defecto
 				codhtml = codhtml
 						+ '<option value="" disabled="disabled" selected>'
-						+ "Eliga una titulaci\xF3n" + '</option>';
+						+ "Elija una titulaci\xF3n" + '</option>';
 				for (i = 0; i < arrayRespuesta.length; i++) {
 					codhtml = codhtml + '<option value="'
 							+ arrayRespuesta[i]["id"] + '">'
@@ -162,7 +162,7 @@ function peticionAsignaturasTitulacion(idTitulacion) {
 						// Opción por defecto
 						codhtml = codhtml
 								+ '<option value="" disabled="disabled" selected>'
-								+ "Eliga una asignatura" + '</option>';
+								+ "Elija una asignatura" + '</option>';
 						for (i = 0; i < arrayRespuesta.length; i++) {
 							codhtml = codhtml + '<option value="'
 									+ arrayRespuesta[i]["id"] + '">'
@@ -791,9 +791,10 @@ function almacenarGruposImpartidos() {
 
 			arrayRespuesta = eval(respuesta);
 			if (arrayRespuesta["ok"] == 1) {
+				alert("Su petición está en curso.");
 				peticionAsignaturas();
 				location.href = "#pageSignatures";
-
+				
 			}
 
 		},
